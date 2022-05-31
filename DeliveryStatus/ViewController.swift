@@ -90,13 +90,13 @@ class ViewController: UIViewController {
         containerStackView.spacing = isExpaned ? 6 : 2
         
         if isExpaned {
-            commpressStatus()
-        } else {
             expandStatus()
+        } else {
+            commpressStatus()
         }
     }
     
-    func commpressStatus() {
+    func expandStatus() {
         descriptionViews.enumerated().forEach { index, view in
             view.setType(
                 descriptionInfo[index].0,
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         descriptionViews.forEach { $0.isHidden = false}
     }
     
-    func expandStatus() {
+    func commpressStatus() {
         descriptionViews.last?.setType(shortDescriptionInfo.0, isPrimary: shortDescriptionInfo.1)
         
         descriptionViews.enumerated().forEach { index, view in

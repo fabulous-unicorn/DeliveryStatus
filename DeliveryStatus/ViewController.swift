@@ -120,7 +120,9 @@ class ViewController: UIViewController {
 
 extension ViewController: DeliveryStatusTitleDelegate {
     func tappedTitle() {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(
+            withDuration: GlobalConstant.statusChangeStateAnimationDuration
+        ) {
             self.toggleState()
             self.containerStackView.setNeedsLayout()
         }

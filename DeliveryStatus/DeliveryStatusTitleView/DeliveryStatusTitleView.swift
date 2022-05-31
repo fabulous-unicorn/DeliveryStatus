@@ -57,7 +57,7 @@ class DeliveryStatusTitleView: UIView {
     }
     
     func showArrowAnimation() {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: GlobalConstant.statusChangeStateAnimationDuration) {
             self.arrowView.transform = CGAffineTransform(
                 rotationAngle: self.isRotate ? Constant.default :  Constant.rotate)
         }

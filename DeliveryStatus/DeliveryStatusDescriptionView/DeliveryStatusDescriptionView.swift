@@ -55,7 +55,7 @@ class DeliveryStatusDescriptionView: UIView {
             case let .simple(title):
                 UIView.transition(
                     with: self.titleLabel,
-                    duration: 0.3,
+                    duration: GlobalConstant.statusChangeStateAnimationDuration,
                     options: .transitionCrossDissolve,
                     animations: {
                         self.titleLabel.text = title
@@ -69,7 +69,7 @@ class DeliveryStatusDescriptionView: UIView {
             case let .subhead(title):
                 UIView.transition(
                     with: self.titleLabel,
-                    duration: 0.3,
+                    duration: GlobalConstant.statusChangeStateAnimationDuration,
                     options: .transitionCrossDissolve,
                     animations: {
                         self.titleLabel.text = title
@@ -84,7 +84,7 @@ class DeliveryStatusDescriptionView: UIView {
                 
                 UIView.transition(
                     with: self.titleLabel,
-                    duration: 0.3,
+                    duration: GlobalConstant.statusChangeStateAnimationDuration,
                     options: .transitionCrossDissolve,
                     animations: {
                         self.titleLabel.text = title

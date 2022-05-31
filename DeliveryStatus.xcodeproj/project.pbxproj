@@ -17,6 +17,7 @@
 		60FC9F9C28410EAC00758ACC /* DeliveryStatusTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F9B28410EAC00758ACC /* DeliveryStatusTitleView.swift */; };
 		60FC9F9E2841148D00758ACC /* DeliveryStatusTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F9D2841148D00758ACC /* DeliveryStatusTitleView.xib */; };
 		60FC9FA02841159400758ACC /* DeliveryStatusDescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F9F2841159400758ACC /* DeliveryStatusDescriptionView.xib */; };
+		60FC9FA72846204100758ACC /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9FA62846204100758ACC /* GlobalConstant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		60FC9F9B28410EAC00758ACC /* DeliveryStatusTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusTitleView.swift; sourceTree = "<group>"; };
 		60FC9F9D2841148D00758ACC /* DeliveryStatusTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusTitleView.xib; sourceTree = "<group>"; };
 		60FC9F9F2841159400758ACC /* DeliveryStatusDescriptionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusDescriptionView.xib; sourceTree = "<group>"; };
+		60FC9FA62846204100758ACC /* GlobalConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				60FC9F8C284100A500758ACC /* Assets.xcassets */,
 				60FC9F8E284100A500758ACC /* LaunchScreen.storyboard */,
 				60FC9F91284100A500758ACC /* Info.plist */,
+				60FC9FA62846204100758ACC /* GlobalConstant.swift */,
 			);
 			path = DeliveryStatus;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60FC9FA72846204100758ACC /* GlobalConstant.swift in Sources */,
 				60FC9F88284100A400758ACC /* ViewController.swift in Sources */,
 				60FC9F9A28410E9500758ACC /* DeliveryStatusDescriptionView.swift in Sources */,
 				60FC9F9C28410EAC00758ACC /* DeliveryStatusTitleView.swift in Sources */,

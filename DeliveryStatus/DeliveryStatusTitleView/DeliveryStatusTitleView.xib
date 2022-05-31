@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeliveryStatusTitleView" customModule="DeliveryStatus" customModuleProvider="target">
             <connections>
+                <outlet property="arrowView" destination="gjy-IK-0Cm" id="CRq-fP-hLh"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Rzp-AM-9MS"/>
                 <outlet property="iconView" destination="8BZ-hn-tOx" id="2Nw-F9-pKZ"/>
                 <outlet property="titleLabel" destination="nv0-NB-Htv" id="Avh-iF-HFo"/>
@@ -21,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Посылка прибыла" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nv0-NB-Htv">
-                    <rect key="frame" x="42" y="-0.5" width="372" height="29"/>
+                    <rect key="frame" x="42" y="-0.5" width="215.5" height="29"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -49,26 +50,36 @@
                         <constraint firstAttribute="height" constant="28" id="ndV-Pp-KJy"/>
                     </constraints>
                 </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderDetail.arrow.down" translatesAutoresizingMaskIntoConstraints="NO" id="gjy-IK-0Cm">
+                    <rect key="frame" x="265.5" y="2" width="24" height="24"/>
+                    <color key="tintColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="UqB-DD-X33"/>
+                        <constraint firstAttribute="width" constant="24" id="YFx-PZ-BjN"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="nv0-NB-Htv" firstAttribute="leading" secondItem="8BZ-hn-tOx" secondAttribute="trailing" constant="14" id="0j0-PV-sjf"/>
                 <constraint firstItem="8BZ-hn-tOx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2IR-WD-Paf"/>
+                <constraint firstItem="gjy-IK-0Cm" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Ils-yK-G70"/>
+                <constraint firstItem="gjy-IK-0Cm" firstAttribute="leading" secondItem="nv0-NB-Htv" secondAttribute="trailing" constant="8" id="JKS-eJ-9XL"/>
                 <constraint firstItem="nv0-NB-Htv" firstAttribute="centerY" secondItem="8BZ-hn-tOx" secondAttribute="centerY" id="VkL-TI-duc"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gjy-IK-0Cm" secondAttribute="trailing" id="aGT-Xt-IwC"/>
                 <constraint firstItem="FKZ-Nq-iQR" firstAttribute="top" secondItem="8BZ-hn-tOx" secondAttribute="top" id="anF-BI-Xty"/>
                 <constraint firstItem="FKZ-Nq-iQR" firstAttribute="trailing" secondItem="8BZ-hn-tOx" secondAttribute="trailing" id="clO-9d-z6m"/>
                 <constraint firstItem="FKZ-Nq-iQR" firstAttribute="leading" secondItem="8BZ-hn-tOx" secondAttribute="leading" id="n3a-U6-lVy"/>
                 <constraint firstItem="FKZ-Nq-iQR" firstAttribute="bottom" secondItem="8BZ-hn-tOx" secondAttribute="bottom" id="qV9-dr-VFd"/>
                 <constraint firstAttribute="bottom" secondItem="8BZ-hn-tOx" secondAttribute="bottom" id="u9N-8S-MZ1"/>
                 <constraint firstItem="8BZ-hn-tOx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vjB-ME-3hI"/>
-                <constraint firstAttribute="trailing" secondItem="nv0-NB-Htv" secondAttribute="trailing" id="zMd-oq-isg"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outletCollection property="gestureRecognizers" destination="JI7-0Y-XNt" appends="YES" id="SnI-ze-Otf"/>
             </connections>
-            <point key="canvasLocation" x="169.56521739130437" y="267.52232142857139"/>
+            <point key="canvasLocation" x="169.56521739130437" y="267.1875"/>
         </view>
         <tapGestureRecognizer id="JI7-0Y-XNt">
             <connections>
@@ -77,6 +88,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="orderDetail.arrow.down" width="24" height="24"/>
         <image name="orderDetail.status.InProgress" width="28" height="28"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

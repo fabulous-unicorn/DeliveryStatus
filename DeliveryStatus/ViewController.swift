@@ -86,14 +86,13 @@ class ViewController: UIViewController {
     }
     
     func toggleState() {
+        if isExpaned {
+            commpressStatus()
+        } else {
+            expandStatus()
+        }
         isExpaned.toggle()
         containerStackView.spacing = isExpaned ? 6 : 2
-        
-        if isExpaned {
-            expandStatus()
-        } else {
-            commpressStatus()
-        }
     }
     
     func expandStatus() {
@@ -103,7 +102,10 @@ class ViewController: UIViewController {
                 isPrimary: descriptionInfo[index].1
             )
         }
-        descriptionViews.forEach { $0.isHidden = false}
+        descriptionViews.forEach { view in
+                view.alpha = 1
+                view.isHidden = false
+        }
     }
     
     func commpressStatus() {
@@ -111,14 +113,13 @@ class ViewController: UIViewController {
         
         descriptionViews.enumerated().forEach { index, view in
             view.isHidden = index == descriptionViews.count - 1 ? false : true
+            view.alpha = index == descriptionViews.count - 1 ? 1 : 0
         }
     }
 }
 
 extension ViewController: DeliveryStatusTitleDelegate {
     func tappedTitle() {
-        print("Open title")
-
         UIView.animate(withDuration: 0.5) {
             self.toggleState()
             self.containerStackView.setNeedsLayout()

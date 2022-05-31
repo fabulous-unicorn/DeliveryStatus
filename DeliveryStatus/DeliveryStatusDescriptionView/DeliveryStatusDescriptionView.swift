@@ -13,8 +13,6 @@ class DeliveryStatusDescriptionView: UIView {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
-
-    @IBOutlet private weak var backgroundView: UIView!
     
     var isPrimary: Bool = true
     
@@ -94,41 +92,33 @@ class DeliveryStatusDescriptionView: UIView {
                     },
                     completion: nil
                 )
-                
-                UIView.transition(
-                    with: self.titleLabel,
-                    duration: 0.3,
-                    options: .transitionCrossDissolve,
-                    animations: {
-                        self.dateLabel.text = title
-                        self.dateLabel.font = .systemFont(ofSize: 12)
-                    },
-                    completion: nil
-                )
                 // ХЗ
-                if self.dateLabel.alpha == 0 {
-                    self.dateLabel.text = ""
-                    UIView.transition(
-                        with: self.dateLabel,
-                        duration: 2,
-                        options: .transitionCrossDissolve,
-                        animations: {
-                            self.dateLabel.text = date
-                            self.dateLabel.alpha = 1
-                        },
-                        completion: nil
-                    )
-                } else {
-                    UIView.transition(
-                        with: self.dateLabel,
-                        duration: 2,
-                        options: .transitionCrossDissolve,
-                        animations: {
-                            self.dateLabel.text = date
-                        },
-                        completion: nil
-                    )
-                }
+//                if self.dateLabel.alpha == 0 {
+//                    self.dateLabel.text = ""
+//                    UIView.transition(
+//                        with: self.dateLabel,
+//                        duration: 0.3,
+//                        options: .transitionCrossDissolve,
+//                        animations: {
+//                            self.dateLabel.text = date
+//                            self.dateLabel.alpha = 1
+//                        },
+//                        completion: nil
+//                    )
+//                } else {
+//                    UIView.transition(
+//                        with: self.dateLabel,
+//                        duration: 2,
+//                        options: .transitionCrossDissolve,
+//                        animations: {
+//                            self.dateLabel.text = date
+//                        },
+//                        completion: nil
+//                    )
+//                }
+                
+                self.dateLabel.text = date
+                self.dateLabel.alpha = 1
                 
                 self.statusView.backgroundColor = status
                 self.statusView.alpha = 1

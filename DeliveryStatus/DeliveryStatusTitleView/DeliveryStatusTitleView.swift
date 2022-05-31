@@ -17,9 +17,18 @@ class DeliveryStatusTitleView: UIView {
         case past, future, present
     }
     
+    enum Constant {
+        static let `default`: CGFloat = 0
+        static let rotate = -CGFloat.pi * 99 / 100
+    }
+    
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var iconView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet weak var arrowView: UIImageView!
+    
+//    var arrowAnimator: UIViewPropertyAnimator!
+    var isRotate = false
     
     var delegate: DeliveryStatusTitleDelegate?
     
@@ -39,11 +48,20 @@ class DeliveryStatusTitleView: UIView {
     }
     
     @IBAction func tappedTitle(_ sender: Any) {
+        showArrowAnimation()
         delegate?.tappedTitle()
     }
     
     func configure(_ delegate: DeliveryStatusTitleDelegate) {
         self.delegate = delegate
+    }
+    
+    func showArrowAnimation() {
+        UIView.animate(withDuration: 0.5) {
+            self.arrowView.transform = CGAffineTransform(
+                rotationAngle: self.isRotate ? Constant.default :  Constant.rotate)
+        }
+        self.isRotate.toggle()
     }
     
 }

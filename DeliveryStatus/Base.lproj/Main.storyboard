@@ -1,24 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DeliveryStatus" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-g3-5ns">
+                                <rect key="frame" x="20" y="64" width="374" height="128"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rDi-UC-E9S" customClass="DeliveryStatusTitleView" customModule="DeliveryStatus" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="28"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ClS-Ci-el1">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="80"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="54h-vi-cJe" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="16"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="Lzr-s3-e71" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="16" width="374" height="16"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="viJ-bA-4WO" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="32" width="374" height="16"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="xlm-Ml-sMh" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="48" width="374" height="16"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="hkf-bT-gAB" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="64" width="374" height="16"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="20" right="0.0"/>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pBY-g3-5ns" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="23F-Vw-iWF"/>
+                            <constraint firstItem="pBY-g3-5ns" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3Lf-yn-6dg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pBY-g3-5ns" secondAttribute="bottom" priority="999" id="FLB-wy-T27"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pBY-g3-5ns" secondAttribute="trailing" constant="20" id="qhr-x5-npy"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="containerStackView" destination="pBY-g3-5ns" id="kMD-Gw-Gb2"/>
+                        <outlet property="infoView" destination="ClS-Ci-el1" id="y8T-Pq-2AS"/>
+                        <outlet property="titleView" destination="rDi-UC-E9S" id="dDK-qr-Bao"/>
+                        <outletCollection property="descriptionViews" destination="54h-vi-cJe" collectionClass="NSMutableArray" id="qHd-go-rD1"/>
+                        <outletCollection property="descriptionViews" destination="Lzr-s3-e71" collectionClass="NSMutableArray" id="LR2-tj-NMx"/>
+                        <outletCollection property="descriptionViews" destination="viJ-bA-4WO" collectionClass="NSMutableArray" id="ENk-Xd-CvF"/>
+                        <outletCollection property="descriptionViews" destination="xlm-Ml-sMh" collectionClass="NSMutableArray" id="x28-dD-SV1"/>
+                        <outletCollection property="descriptionViews" destination="hkf-bT-gAB" collectionClass="NSMutableArray" id="H2P-hu-qui"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="5.7971014492753632" y="87.723214285714278"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

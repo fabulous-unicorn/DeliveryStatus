@@ -17,39 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-g3-5ns">
-                                <rect key="frame" x="20" y="64" width="374" height="128"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rDi-UC-E9S" customClass="DeliveryStatusTitleView" customModule="DeliveryStatus" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="28"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ClS-Ci-el1">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="80"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="54h-vi-cJe" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="16"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="Lzr-s3-e71" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="16" width="374" height="16"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="viJ-bA-4WO" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="32" width="374" height="16"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="xlm-Ml-sMh" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="48" width="374" height="16"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="374" placeholderIntrinsicHeight="16" translatesAutoresizingMaskIntoConstraints="NO" id="hkf-bT-gAB" customClass="DeliveryStatusDescriptionView" customModule="DeliveryStatus" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="64" width="374" height="16"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-g3-5ns">
+                                <rect key="frame" x="20" y="64" width="374" height="100"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="20" right="0.0"/>
                             </stackView>
                         </subviews>
@@ -63,14 +32,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="containerStackView" destination="pBY-g3-5ns" id="kMD-Gw-Gb2"/>
-                        <outlet property="infoView" destination="ClS-Ci-el1" id="y8T-Pq-2AS"/>
-                        <outlet property="titleView" destination="rDi-UC-E9S" id="dDK-qr-Bao"/>
-                        <outletCollection property="descriptionViews" destination="54h-vi-cJe" collectionClass="NSMutableArray" id="qHd-go-rD1"/>
-                        <outletCollection property="descriptionViews" destination="Lzr-s3-e71" collectionClass="NSMutableArray" id="LR2-tj-NMx"/>
-                        <outletCollection property="descriptionViews" destination="viJ-bA-4WO" collectionClass="NSMutableArray" id="ENk-Xd-CvF"/>
-                        <outletCollection property="descriptionViews" destination="xlm-Ml-sMh" collectionClass="NSMutableArray" id="x28-dD-SV1"/>
-                        <outletCollection property="descriptionViews" destination="hkf-bT-gAB" collectionClass="NSMutableArray" id="H2P-hu-qui"/>
+                        <outlet property="containerStackView" destination="pBY-g3-5ns" id="Jmm-Vm-7Pm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

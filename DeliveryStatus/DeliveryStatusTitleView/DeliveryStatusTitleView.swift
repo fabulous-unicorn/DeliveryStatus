@@ -12,11 +12,8 @@ protocol DeliveryStatusTitleDelegate {
     func tappedTitle()
 }
 
+// TODO: Alesya Volosach | нет стилей/ нет типов
 class DeliveryStatusTitleView: UIView {
-    enum StatusType {
-        case past, future, present
-    }
-    
     enum Constant {
         static let `default`: CGFloat = 0
         static let rotate = -CGFloat.pi * 99 / 100
@@ -24,12 +21,14 @@ class DeliveryStatusTitleView: UIView {
     
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var iconView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet weak var arrowView: UIImageView!
+    @IBOutlet private weak var iconContainerView: UIView!
     
-//    var arrowAnimator: UIViewPropertyAnimator!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var arrowView: UIImageView!
+    
     var isRotate = false
     
+    var model: DeliveryStatusTitleViewModel?
     var delegate: DeliveryStatusTitleDelegate?
     
     override init(frame: CGRect) {
@@ -52,8 +51,32 @@ class DeliveryStatusTitleView: UIView {
         delegate?.tappedTitle()
     }
     
-    func configure(_ delegate: DeliveryStatusTitleDelegate) {
+    func configure(
+        _ model: DeliveryStatusTitleViewModel,
+        _ delegate: DeliveryStatusTitleDelegate
+    ) {
+        self.model = model
         self.delegate = delegate
+        
+        self.titleLabel.text = model.title
+        self.iconView.image = model.group.icon
+        
+        setStyles(model)
+    }
+    
+    private func setStyles(_ model: DeliveryStatusTitleViewModel) {
+        self.iconView.tintColor = model.group.tintColor
+        self.iconContainerView.backgroundColor = model.group.backgroundColorIcon
+        
+        switch model.type {
+        case .past:
+            self.titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        case .present:
+            self.titleLabel.font = .systemFont(ofSize: 24, weight: .semibold)
+        case .future:
+            self.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+            self.titleLabel.alpha = 0.6
+        }
     }
     
     func showArrowAnimation() {
@@ -66,18 +89,7 @@ class DeliveryStatusTitleView: UIView {
     
 }
 
-extension UIView
-{
-    func fixInView(_ container: UIView!) -> Void{
-        self.translatesAutoresizingMaskIntoConstraints = false;
-        self.frame = container.frame;
-        container.addSubview(self);
-        NSLayoutConstraint(item: self, attribute: .leading, relatedBy: .equal, toItem: container, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
-    }
-}
+
 
 
 // TODO: Alesya Volosach | Почитать про uitests

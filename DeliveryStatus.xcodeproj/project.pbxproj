@@ -13,10 +13,10 @@
 		60FC9F8B284100A400758ACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F89284100A400758ACC /* Main.storyboard */; };
 		60FC9F8D284100A500758ACC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F8C284100A500758ACC /* Assets.xcassets */; };
 		60FC9F90284100A500758ACC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F8E284100A500758ACC /* LaunchScreen.storyboard */; };
-		60FC9F9A28410E9500758ACC /* DeliveryStatusPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F9928410E9500758ACC /* DeliveryStatusPointView.swift */; };
+		60FC9F9A28410E9500758ACC /* DeliveryStatusStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F9928410E9500758ACC /* DeliveryStatusStepView.swift */; };
 		60FC9F9C28410EAC00758ACC /* DeliveryStatusTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F9B28410EAC00758ACC /* DeliveryStatusTitleView.swift */; };
 		60FC9F9E2841148D00758ACC /* DeliveryStatusTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F9D2841148D00758ACC /* DeliveryStatusTitleView.xib */; };
-		60FC9FA02841159400758ACC /* DeliveryStatusPointView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F9F2841159400758ACC /* DeliveryStatusPointView.xib */; };
+		60FC9FA02841159400758ACC /* DeliveryStatusStepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F9F2841159400758ACC /* DeliveryStatusStepView.xib */; };
 		60FC9FA72846204100758ACC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9FA62846204100758ACC /* Global.swift */; };
 		60FC9FAA2846277700758ACC /* DeliveryStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9FA92846277700758ACC /* DeliveryStatusView.swift */; };
 		60FC9FAC2846565600758ACC /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9FAB2846565600758ACC /* ViewModels.swift */; };
@@ -31,10 +31,10 @@
 		60FC9F8C284100A500758ACC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		60FC9F8F284100A500758ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		60FC9F91284100A500758ACC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		60FC9F9928410E9500758ACC /* DeliveryStatusPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusPointView.swift; sourceTree = "<group>"; };
+		60FC9F9928410E9500758ACC /* DeliveryStatusStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusStepView.swift; sourceTree = "<group>"; };
 		60FC9F9B28410EAC00758ACC /* DeliveryStatusTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusTitleView.swift; sourceTree = "<group>"; };
 		60FC9F9D2841148D00758ACC /* DeliveryStatusTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusTitleView.xib; sourceTree = "<group>"; };
-		60FC9F9F2841159400758ACC /* DeliveryStatusPointView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusPointView.xib; sourceTree = "<group>"; };
+		60FC9F9F2841159400758ACC /* DeliveryStatusStepView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusStepView.xib; sourceTree = "<group>"; };
 		60FC9FA62846204100758ACC /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		60FC9FA92846277700758ACC /* DeliveryStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusView.swift; sourceTree = "<group>"; };
 		60FC9FAB2846565600758ACC /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 			children = (
 				60FC9FA82846275000758ACC /* DeliveryStatusView */,
 				60FC9F9828410DD600758ACC /* DeliveryStatusTitleView */,
-				60FC9F9728410DBD00758ACC /* DeliveryStatusPointView */,
+				60FC9F9728410DBD00758ACC /* DeliveryStatusStepView */,
 				60FC9F83284100A400758ACC /* AppDelegate.swift */,
 				60FC9F85284100A400758ACC /* SceneDelegate.swift */,
 				60FC9F87284100A400758ACC /* ViewController.swift */,
@@ -86,13 +86,13 @@
 			path = DeliveryStatus;
 			sourceTree = "<group>";
 		};
-		60FC9F9728410DBD00758ACC /* DeliveryStatusPointView */ = {
+		60FC9F9728410DBD00758ACC /* DeliveryStatusStepView */ = {
 			isa = PBXGroup;
 			children = (
-				60FC9F9928410E9500758ACC /* DeliveryStatusPointView.swift */,
-				60FC9F9F2841159400758ACC /* DeliveryStatusPointView.xib */,
+				60FC9F9928410E9500758ACC /* DeliveryStatusStepView.swift */,
+				60FC9F9F2841159400758ACC /* DeliveryStatusStepView.xib */,
 			);
-			path = DeliveryStatusPointView;
+			path = DeliveryStatusStepView;
 			sourceTree = "<group>";
 		};
 		60FC9F9828410DD600758ACC /* DeliveryStatusTitleView */ = {
@@ -173,7 +173,7 @@
 				60FC9F90284100A500758ACC /* LaunchScreen.storyboard in Resources */,
 				60FC9F9E2841148D00758ACC /* DeliveryStatusTitleView.xib in Resources */,
 				60FC9F8D284100A500758ACC /* Assets.xcassets in Resources */,
-				60FC9FA02841159400758ACC /* DeliveryStatusPointView.xib in Resources */,
+				60FC9FA02841159400758ACC /* DeliveryStatusStepView.xib in Resources */,
 				60FC9F8B284100A400758ACC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,7 +189,7 @@
 				60FC9F88284100A400758ACC /* ViewController.swift in Sources */,
 				60FC9FAC2846565600758ACC /* ViewModels.swift in Sources */,
 				60FC9FAA2846277700758ACC /* DeliveryStatusView.swift in Sources */,
-				60FC9F9A28410E9500758ACC /* DeliveryStatusPointView.swift in Sources */,
+				60FC9F9A28410E9500758ACC /* DeliveryStatusStepView.swift in Sources */,
 				60FC9F9C28410EAC00758ACC /* DeliveryStatusTitleView.swift in Sources */,
 				60FC9F84284100A400758ACC /* AppDelegate.swift in Sources */,
 				60FC9F86284100A400758ACC /* SceneDelegate.swift in Sources */,

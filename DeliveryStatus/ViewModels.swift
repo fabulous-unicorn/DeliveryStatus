@@ -12,7 +12,7 @@ struct DeliveryStatusViewModel {
 //    let id: Int
     var title: DeliveryStatusTitleViewModel
     var steps: [DeliveryStatusStepViewModel]
-//    var expandedSteps: [Int]
+//    var isAvailableExpanded: Bool
     var evolutionStage: Stage
     var group: Group
     

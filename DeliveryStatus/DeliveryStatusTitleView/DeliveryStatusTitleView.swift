@@ -12,7 +12,11 @@ protocol DeliveryStatusTitleDelegate {
     func tappedTitle()
 }
 
-// TODO: Alesya Volosach | нет стилей/ нет типов
+
+/// Заголовок статуса доставки
+///
+/// Типы:
+///
 class DeliveryStatusTitleView: UIView {
     enum Constant {
         static let `default`: CGFloat = 0
@@ -99,10 +103,3 @@ class DeliveryStatusTitleView: UIView {
 
 // TODO: Alesya Volosach | Почитать про uitests
 
-/// Заголовок статуса доставки
-///
-/// Типы:
-///
-/// **past** -
-/// **present** -
-/// **future** -

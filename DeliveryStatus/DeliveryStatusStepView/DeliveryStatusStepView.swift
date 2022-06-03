@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class DeliveryStatusPointView: UIView {
+class DeliveryStatusStepView: UIView {
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -28,7 +28,7 @@ class DeliveryStatusPointView: UIView {
     }
     
     func commonInit() {
-        Bundle.main.loadNibNamed("DeliveryStatusPointView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("DeliveryStatusStepView", owner: self, options: nil)
         contentView.fixInView(self)
     }
     
@@ -72,8 +72,6 @@ class DeliveryStatusPointView: UIView {
                 self.topSpace.constant = 4
                 
             case let .point(date, isPrimary):
-            //isShort: Bool self.titleLabel.textColor = .lightGray
-                
                 UIView.transition(
                     with: self.titleLabel,
                     duration: GlobalConstant.statusChangeStateAnimationDuration,

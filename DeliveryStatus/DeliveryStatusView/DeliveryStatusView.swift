@@ -10,16 +10,19 @@ import UIKit
 
 class DeliveryStatusView: UIStackView {
     private var titleView = DeliveryStatusTitleView()
-    private var pointsContainerView = UIStackView()
+    private var stepsContainerView = UIStackView()
     private var backgroundLine = UIView()
     private var accentLine = UIView()
     private var isExpaned = true
     
-    private var pointsViews: [DeliveryStatusPointView] = []
+    private var stepsViews: [DeliveryStatusStepView] = []
     
     private var model: DeliveryStatusViewModel?
     
-//    private weak var contentView: UIView!
+    enum Constant {
+        static let expanedSpacing: CGFloat = 6
+        static let compressSpacing: CGFloat = 2
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -31,14 +34,12 @@ class DeliveryStatusView: UIStackView {
     }
     
     func commonInit() {
-//        self.titleView.delegate = self
-        
         self.isLayoutMarginsRelativeArrangement = true
         self.addArrangedSubview(titleView)
-        self.addArrangedSubview(pointsContainerView)
+        self.addArrangedSubview(stepsContainerView)
         self.axis = .vertical
-        self.pointsContainerView.axis = .vertical
-        self.pointsContainerView.spacing = 8.0
+        self.stepsContainerView.axis = .vertical
+        self.stepsContainerView.spacing = 8.0
         
         self.layoutMargins = .init(top: 0, left: 0, bottom: 20, right: 0)
     }
@@ -48,11 +49,11 @@ class DeliveryStatusView: UIStackView {
         
         self.titleView.configure(model.title, self)
         
-        model.steps.forEach { point in
-            let view = DeliveryStatusPointView()
-            view.setType(point)
-            self.pointsViews.append(view)
-            self.pointsContainerView.addArrangedSubview(view)
+        model.steps.forEach { step in
+            let view = DeliveryStatusStepView()
+            view.setType(step)
+            self.stepsViews.append(view)
+            self.stepsContainerView.addArrangedSubview(view)
         }
         
         toggleState()
@@ -77,7 +78,7 @@ class DeliveryStatusView: UIStackView {
         case .past:
             accentLine.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         case .present:
-            if let lastView = self.pointsViews.last {
+            if let lastView = self.stepsViews.last {
                 accentLine.bottomAnchor.constraint(equalTo: lastView.centerYAnchor).isActive = true
             }
         case .future:
@@ -105,15 +106,15 @@ class DeliveryStatusView: UIStackView {
             expandStatus()
         }
         isExpaned.toggle()
-        self.spacing = isExpaned ? 6 : 2
+        self.spacing = isExpaned ? Constant.expanedSpacing : Constant.compressSpacing
     }
     
     func expandStatus() {
-        pointsViews.enumerated().forEach { index, view in
+        stepsViews.enumerated().forEach { index, view in
             guard let model = model else { return }
             view.setType(model.steps[index])
         }
-        pointsViews.forEach { view in
+        stepsViews.forEach { view in
                 view.alpha = 1
                 view.isHidden = false
         }
@@ -121,11 +122,11 @@ class DeliveryStatusView: UIStackView {
     
     func commpressStatus() {
         guard let model = model else { return }
-        pointsViews.last?.setType(model.shortInfo)
+        stepsViews.last?.setType(model.shortInfo)
         
-        pointsViews.enumerated().forEach { index, view in
-            view.isHidden = index == pointsViews.count - 1 ? false : true
-            view.alpha = index == pointsViews.count - 1 ? 1 : 0
+        stepsViews.enumerated().forEach { index, view in
+            view.isHidden = index == stepsViews.count - 1 ? false : true
+            view.alpha = index == stepsViews.count - 1 ? 1 : 0
         }
     }
 }

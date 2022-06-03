@@ -17,7 +17,7 @@
 		60FC9F9C28410EAC00758ACC /* DeliveryStatusTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F9B28410EAC00758ACC /* DeliveryStatusTitleView.swift */; };
 		60FC9F9E2841148D00758ACC /* DeliveryStatusTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F9D2841148D00758ACC /* DeliveryStatusTitleView.xib */; };
 		60FC9FA02841159400758ACC /* DeliveryStatusPointView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F9F2841159400758ACC /* DeliveryStatusPointView.xib */; };
-		60FC9FA72846204100758ACC /* GlobalConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9FA62846204100758ACC /* GlobalConstant.swift */; };
+		60FC9FA72846204100758ACC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9FA62846204100758ACC /* Global.swift */; };
 		60FC9FAA2846277700758ACC /* DeliveryStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9FA92846277700758ACC /* DeliveryStatusView.swift */; };
 		60FC9FAC2846565600758ACC /* ViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9FAB2846565600758ACC /* ViewModels.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,7 @@
 		60FC9F9B28410EAC00758ACC /* DeliveryStatusTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusTitleView.swift; sourceTree = "<group>"; };
 		60FC9F9D2841148D00758ACC /* DeliveryStatusTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusTitleView.xib; sourceTree = "<group>"; };
 		60FC9F9F2841159400758ACC /* DeliveryStatusPointView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusPointView.xib; sourceTree = "<group>"; };
-		60FC9FA62846204100758ACC /* GlobalConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstant.swift; sourceTree = "<group>"; };
+		60FC9FA62846204100758ACC /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		60FC9FA92846277700758ACC /* DeliveryStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusView.swift; sourceTree = "<group>"; };
 		60FC9FAB2846565600758ACC /* ViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,7 +80,7 @@
 				60FC9F8C284100A500758ACC /* Assets.xcassets */,
 				60FC9F8E284100A500758ACC /* LaunchScreen.storyboard */,
 				60FC9F91284100A500758ACC /* Info.plist */,
-				60FC9FA62846204100758ACC /* GlobalConstant.swift */,
+				60FC9FA62846204100758ACC /* Global.swift */,
 				60FC9FAB2846565600758ACC /* ViewModels.swift */,
 			);
 			path = DeliveryStatus;
@@ -185,7 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60FC9FA72846204100758ACC /* GlobalConstant.swift in Sources */,
+				60FC9FA72846204100758ACC /* Global.swift in Sources */,
 				60FC9F88284100A400758ACC /* ViewController.swift in Sources */,
 				60FC9FAC2846565600758ACC /* ViewModels.swift in Sources */,
 				60FC9FAA2846277700758ACC /* DeliveryStatusView.swift in Sources */,

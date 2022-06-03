@@ -15,10 +15,7 @@ class DeliveryStatusPointView: UIView {
     @IBOutlet private weak var dateLabel: UILabel!
     
     @IBOutlet weak var topSpace: NSLayoutConstraint!
-    var model: DeliveryStatusPointViewModel?
-    
-    var isPrimary: Bool = true
-    var customTintColor: UIColor = .lightGray
+    var model: DeliveryStatusStepViewModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,13 +32,7 @@ class DeliveryStatusPointView: UIView {
         contentView.fixInView(self)
     }
     
-    // TODO: Alesya Volosach | выпилить
-    func setStyles(addAccent: Bool, tintColor: UIColor) {
-        self.isPrimary = addAccent
-        self.customTintColor = tintColor
-    }
-    
-    func setType(_ model: DeliveryStatusPointViewModel) {
+    func setType(_ model: DeliveryStatusStepViewModel) {
         self.model = model
         
         
@@ -80,7 +71,7 @@ class DeliveryStatusPointView: UIView {
                 self.dateLabel.alpha = 0
                 self.topSpace.constant = 4
                 
-            case let .full(date):
+            case let .point(date, isPrimary):
             //isShort: Bool self.titleLabel.textColor = .lightGray
                 
                 UIView.transition(
@@ -90,7 +81,7 @@ class DeliveryStatusPointView: UIView {
                     animations: {
                         self.titleLabel.text = model.title
                         self.titleLabel.font = .systemFont(ofSize: 12)
-                        self.titleLabel.textColor = self.isPrimary ? .black : .lightGray
+                        self.titleLabel.textColor = isPrimary ? .black : .lightGray
                     },
                     completion: nil
                 )
@@ -98,7 +89,7 @@ class DeliveryStatusPointView: UIView {
                 self.dateLabel.text = date
                 self.dateLabel.alpha = 1
                 
-                self.statusView.backgroundColor = self.customTintColor
+                self.statusView.backgroundColor = model.group.tintColor
                 self.statusView.alpha = 1
                 
                 self.topSpace.constant = 0

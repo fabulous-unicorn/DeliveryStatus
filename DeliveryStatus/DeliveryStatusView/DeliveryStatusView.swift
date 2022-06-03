@@ -38,6 +38,7 @@ class DeliveryStatusView: UIStackView {
         self.addArrangedSubview(pointsContainerView)
         self.axis = .vertical
         self.pointsContainerView.axis = .vertical
+        self.pointsContainerView.spacing = 8.0
         
         self.layoutMargins = .init(top: 0, left: 0, bottom: 20, right: 0)
     }
@@ -47,9 +48,8 @@ class DeliveryStatusView: UIStackView {
         
         self.titleView.configure(model.title, self)
         
-        model.points.forEach { point in
+        model.steps.forEach { point in
             let view = DeliveryStatusPointView()
-            view.setStyles(addAccent: false, tintColor: model.title.group.tintColor)
             view.setType(point)
             self.pointsViews.append(view)
             self.pointsContainerView.addArrangedSubview(view)
@@ -60,9 +60,10 @@ class DeliveryStatusView: UIStackView {
     }
     
     func setLine() {
+        guard let model = model else { return }
         
         // Set accent line
-        accentLine.backgroundColor = self.model?.title.group.tintColor ?? .lightGray
+        accentLine.backgroundColor = model.title.group.tintColor
         accentLine.translatesAutoresizingMaskIntoConstraints = false
         self.insertSubview(accentLine, at: 0)
         
@@ -72,8 +73,15 @@ class DeliveryStatusView: UIStackView {
             accentLine.topAnchor.constraint(equalTo: self.topAnchor)
         ])
         
-        if let lastView = self.pointsViews.last {
-            accentLine.bottomAnchor.constraint(equalTo: lastView.centerYAnchor).isActive = true
+        switch model.evolutionStage {
+        case .past:
+            accentLine.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        case .present:
+            if let lastView = self.pointsViews.last {
+                accentLine.bottomAnchor.constraint(equalTo: lastView.centerYAnchor).isActive = true
+            }
+        case .future:
+            accentLine.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         }
         
         // Set bg line
@@ -89,6 +97,7 @@ class DeliveryStatusView: UIStackView {
         ])
     }
     
+    
     func toggleState() {
         if isExpaned {
             commpressStatus()
@@ -102,8 +111,7 @@ class DeliveryStatusView: UIStackView {
     func expandStatus() {
         pointsViews.enumerated().forEach { index, view in
             guard let model = model else { return }
-            view.setStyles(addAccent: false, tintColor: model.title.group.tintColor)
-            view.setType(model.points[index])
+            view.setType(model.steps[index])
         }
         pointsViews.forEach { view in
                 view.alpha = 1
@@ -113,8 +121,6 @@ class DeliveryStatusView: UIStackView {
     
     func commpressStatus() {
         guard let model = model else { return }
-        // TODO: Alesya Volosach | шо-то явно переделать с такими стилями, мб чуть больше типов ячеек ввести все же будет решением получше 
-        pointsViews.last?.setStyles(addAccent: true, tintColor: model.title.group.tintColor)
         pointsViews.last?.setType(model.shortInfo)
         
         pointsViews.enumerated().forEach { index, view in
@@ -122,7 +128,6 @@ class DeliveryStatusView: UIStackView {
             view.alpha = index == pointsViews.count - 1 ? 1 : 0
         }
     }
-
 }
 
 extension DeliveryStatusView: DeliveryStatusTitleDelegate {

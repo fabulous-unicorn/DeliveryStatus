@@ -9,60 +9,76 @@ import Foundation
 import UIKit
 
 struct DeliveryStatusViewModel {
+//    let id: Int
     var title: DeliveryStatusTitleViewModel
-    var points: [DeliveryStatusPointViewModel]
+    var steps: [DeliveryStatusStepViewModel]
+//    var expandedSteps: [Int]
+    var evolutionStage: Stage
+    var group: Group
     
-    var shortInfo: DeliveryStatusPointViewModel {
+    // TODO: Alesya Volosach | прост временное упрощение
+    init(
+        group: Group,
+        evolutionStage: Stage,
+        title: DeliveryStatusTitleViewModel,
+        steps: [DeliveryStatusStepViewModel]
+    ) {
+        self.title = title
+        self.group = group
+        self.evolutionStage = evolutionStage
+        self.steps = steps
+    }
+    
+    var shortInfo: DeliveryStatusStepViewModel {
         // Title
         var title = ""
-        if let lastSubheadPoint = self.points.last(
-            where: { point in
-                if case .subhead = point.type {
-                        return true
+        if let lastStepSubhead = self.steps.last(
+            where: { step in
+                if case .subhead = step.type {
+                    return true
                 }
                 return false
             }
         ) {
-            title = lastSubheadPoint.title
+            title = lastStepSubhead.title
         }
         
         // Status
         var date = ""
         if
-            let lastPoint = self.points.last,
-            case let .full(lastDate) = lastPoint.type
+            let lastStep = self.steps.last,
+            case let .point(lastDate, _) = lastStep.type
         {
             date = lastDate
-            
             if
-                lastPoint.title != title,
+                lastStep.title != title,
                 !title.isEmpty
             {
-                title = "\(title)\\\(lastPoint.title)"
+                title = "\(title) / \(lastStep.title)"
             } else {
-                title = lastPoint.title
+                title = lastStep.title
             }
         }
         
-        return DeliveryStatusPointViewModel(
+        return DeliveryStatusStepViewModel(
             title: title,
-            type: .full(
-                date: date)
+            type: .point(
+                date: date,
+                isPrimary: true
+            ),
+            evolutionStage: self.evolutionStage,
+            group: self.group
         )
     }
-}
-
-// TODO: Alesya Volosach | Для плоской структуры
-
-// MARK: - DeliveryStatusTitleViewModel
-struct DeliveryStatusTitleViewModel {
-    // TODO: Alesya Volosach | нужно еще понимать когда есть и когда нет стрелки
-    var title: String
-    var group: Group
-    var type: StatusType
-    var date: String?
     
-    // MARK: AdditionalModels
+    // MARK: - DeliveryStatusViewModel.Stage
+    enum Stage {
+        case past
+        case future
+        case present
+    }
+    
+    // MARK: - DeliveryStatusViewModel.Group
     enum Group: String {
         case created = "CREATED"
         case inProgress = "IN_PROGRESS"
@@ -100,7 +116,7 @@ struct DeliveryStatusTitleViewModel {
             }
         }
         
-        var backgroundColorIcon: UIColor {
+        var backgroundColor: UIColor {
             switch self {
             case .created:
                 return UIColor.hexStringToUIColor(hex: "FCF6D9")
@@ -115,7 +131,7 @@ struct DeliveryStatusTitleViewModel {
             }
         }
         
-        var inactiveTintIconColor: UIColor {
+        var inactiveTintColor: UIColor {
             return UIColor.hexStringToUIColor(hex: "BBBBBB")
         }
         
@@ -123,29 +139,39 @@ struct DeliveryStatusTitleViewModel {
             return UIColor.hexStringToUIColor(hex: "DFDFDF")
         }
         
-        var inactiveBackgroundIconColor: UIColor {
+        var inactiveBackgroundColor: UIColor {
             return UIColor.hexStringToUIColor(hex: "F4F4F4")
         }
     }
-    
-    enum StatusType {
-        case past
-        case future
-        case present
-    }
 }
 
-// MARK: - DeliveryStatusPointViewModel
-struct DeliveryStatusPointViewModel {
+// MARK: - DeliveryStatusTitleViewModel
+struct DeliveryStatusTitleViewModel {
+//    let id: Int
     var title: String
-    var type: PointType
+    var date: String?
+    var isExpanded: Bool
+    
+    var evolutionStage: DeliveryStatusViewModel.Stage
+    var group: DeliveryStatusViewModel.Group
+}
+
+// MARK: - DeliveryStatusStepViewModel
+struct DeliveryStatusStepViewModel {
+//    let id: Int
+    var title: String 
+    var type: StepType
+    
+    var evolutionStage: DeliveryStatusViewModel.Stage
+    var group: DeliveryStatusViewModel.Group
     
     // MARK: AdditionalModels
-    enum PointType {
+    enum StepType {
         case simple
         case subhead
-        case full(
-            date: String
+        case point(
+            date: String,
+            isPrimary: Bool
         )
     }
 }

@@ -66,9 +66,9 @@ class DeliveryStatusTitleView: UIView {
     
     private func setStyles(_ model: DeliveryStatusTitleViewModel) {
         self.iconView.tintColor = model.group.tintColor
-        self.iconContainerView.backgroundColor = model.group.backgroundColorIcon
+        self.iconContainerView.backgroundColor = model.group.backgroundColor
         
-        switch model.type {
+        switch model.evolutionStage {
         case .past:
             self.titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
         case .present:

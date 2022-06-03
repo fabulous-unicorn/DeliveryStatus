@@ -150,7 +150,7 @@ struct DeliveryStatusTitleViewModel {
 //    let id: Int
     var title: String
     var date: String?
-    var isExpanded: Bool
+    var isAvailableExpanded: Bool
     
     var evolutionStage: DeliveryStatusViewModel.Stage
     var group: DeliveryStatusViewModel.Group

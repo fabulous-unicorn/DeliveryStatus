@@ -85,7 +85,7 @@ class DeliveryStatusView: UIStackView {
         }
         
         // Set bg line
-        backgroundLine.backgroundColor = .lightGray
+        backgroundLine.backgroundColor = UIColor.hexStringToUIColor(hex: "DFDFDF")
         backgroundLine.translatesAutoresizingMaskIntoConstraints = false
         self.self.insertSubview(backgroundLine, at: 0)
         

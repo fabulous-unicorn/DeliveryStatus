@@ -65,18 +65,23 @@ class DeliveryStatusTitleView: UIView {
     }
     
     private func setStyles(_ model: DeliveryStatusTitleViewModel) {
-        self.iconView.tintColor = model.group.tintColor
-        self.iconContainerView.backgroundColor = model.group.backgroundColor
-        
         switch model.evolutionStage {
         case .past:
+            self.iconView.tintColor = model.group.tintColor
+            self.iconContainerView.backgroundColor = model.group.backgroundColor
             self.titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
         case .present:
+            self.iconView.tintColor = model.group.tintColor
+            self.iconContainerView.backgroundColor = model.group.backgroundColor
             self.titleLabel.font = .systemFont(ofSize: 24, weight: .semibold)
         case .future:
+            self.iconView.tintColor = model.group.inactiveTintColor
+            self.iconContainerView.backgroundColor = model.group.inactiveBackgroundColor
             self.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
             self.titleLabel.alpha = 0.6
         }
+        
+        self.arrowView.isHidden = !model.isAvailableExpanded
     }
     
     func showArrowAnimation() {

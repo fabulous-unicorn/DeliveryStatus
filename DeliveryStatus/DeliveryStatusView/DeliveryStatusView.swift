@@ -57,7 +57,9 @@ class DeliveryStatusView: UIStackView {
         }
         
         toggleState()
-        setLine()
+        if !model.isLastStatus {
+            setLine()
+        }
     }
     
     func setLine() {

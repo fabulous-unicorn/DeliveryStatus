@@ -12,11 +12,13 @@ class ViewController: UIViewController {
     
     func getStatus(
         _ group: DeliveryStatusViewModel.Group,
-        _ evolutionStage: DeliveryStatusViewModel.Stage
+        _ evolutionStage: DeliveryStatusViewModel.Stage,
+        _ isLastStatus: Bool
     )  -> DeliveryStatusViewModel {
     return DeliveryStatusViewModel(
             group: group,
             evolutionStage: evolutionStage,
+            isLastStatus: isLastStatus,
             title: DeliveryStatusTitleViewModel(
                 title: "Посылка прибыла",
                 date: nil,
@@ -70,11 +72,13 @@ class ViewController: UIViewController {
     
     func getStatusPrimary(
         _ group: DeliveryStatusViewModel.Group,
-        _ evolutionStage: DeliveryStatusViewModel.Stage
+        _ evolutionStage: DeliveryStatusViewModel.Stage,
+        _ isLastStatus: Bool
     )  -> DeliveryStatusViewModel {
     return DeliveryStatusViewModel(
         group: group,
         evolutionStage: evolutionStage,
+        isLastStatus: isLastStatus,
         title: DeliveryStatusTitleViewModel(
             title: "Доставка курьером",
             date: nil,
@@ -106,11 +110,13 @@ class ViewController: UIViewController {
     
     func getStatus3(
         _ group: DeliveryStatusViewModel.Group,
-        _ evolutionStage: DeliveryStatusViewModel.Stage
+        _ evolutionStage: DeliveryStatusViewModel.Stage,
+        _ isLastStatus: Bool
     )  -> DeliveryStatusViewModel {
     return DeliveryStatusViewModel(
                 group: group,
                 evolutionStage: evolutionStage,
+                isLastStatus: isLastStatus,
                 title: DeliveryStatusTitleViewModel(
                     title: "Вручение",
                     date: "27.04.2020",
@@ -135,15 +141,15 @@ class ViewController: UIViewController {
         let evolutionStage3: DeliveryStatusViewModel.Stage = .future
         
         let view = DeliveryStatusView()
-        view.configure(getStatus(group1, evolutionStage1))
+        view.configure(getStatus(group1, evolutionStage1, false))
         self.containerStackView.addArrangedSubview(view)
         
         let view2 = DeliveryStatusView()
-        view2.configure(getStatusPrimary(group2, evolutionStage2))
+        view2.configure(getStatusPrimary(group2, evolutionStage2, false))
         self.containerStackView.addArrangedSubview(view2)
         
         let view3 = DeliveryStatusView()
-        view3.configure(getStatus3(group3, evolutionStage3))
+        view3.configure(getStatus3(group3, evolutionStage3, true))
         self.containerStackView.addArrangedSubview(view3)
     }
 }

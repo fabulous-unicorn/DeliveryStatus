@@ -12,19 +12,25 @@ struct DeliveryStatusViewModel {
 //    let id: Int
     var title: DeliveryStatusTitleViewModel
     var steps: [DeliveryStatusStepViewModel]
+
 //    var isAvailableExpanded: Bool
     var evolutionStage: Stage
     var group: Group
+    
+//    var statusType: StatusType
+    var isLastStatus: Bool
     
     // TODO: Alesya Volosach | прост временное упрощение
     init(
         group: Group,
         evolutionStage: Stage,
+        isLastStatus: Bool,
         title: DeliveryStatusTitleViewModel,
         steps: [DeliveryStatusStepViewModel]
     ) {
         self.title = title
         self.group = group
+        self.isLastStatus = isLastStatus
         self.evolutionStage = evolutionStage
         self.steps = steps
     }
@@ -70,6 +76,12 @@ struct DeliveryStatusViewModel {
             group: self.group
         )
     }
+    
+    // MARK: - DeliveryStatusViewModel.StatusType
+//    enum StatusType {
+//        case table(steps: [DeliveryStatusStepViewModel])
+//        case card(message: String, card: DeliveryStatusCardViewModel)
+//    }
     
     // MARK: - DeliveryStatusViewModel.Stage
     enum Stage {
@@ -175,3 +187,7 @@ struct DeliveryStatusStepViewModel {
         )
     }
 }
+
+//struct DeliveryStatusCardViewModel {
+////???
+//}

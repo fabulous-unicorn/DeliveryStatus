@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="8" id="Z3V-F7-JuC">
+            <rect key="frame" x="0.0" y="0.0" width="346" height="346"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="346" placeholderIntrinsicHeight="274" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jlU-It-WOO">
+                    <rect key="frame" x="0.0" y="0.0" width="346" height="274"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="1" id="gKp-iE-SLH">
+                            <rect key="frame" x="16" y="12" width="314" height="82"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGo-cs-dLh">
+                                    <rect key="frame" x="0.0" y="0.0" width="314" height="24"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderDetail.roadpoint.deliveryPoint" translatesAutoresizingMaskIntoConstraints="NO" id="aab-Cu-74c">
+                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="OQr-xG-a21"/>
+                                                <constraint firstAttribute="width" constant="24" id="zYj-KI-Ie5"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Курьер" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qhv-xU-RtJ">
+                                            <rect key="frame" x="32" y="3.5" width="282" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="aab-Cu-74c" secondAttribute="bottom" id="JwB-km-Nub"/>
+                                        <constraint firstAttribute="trailing" secondItem="qhv-xU-RtJ" secondAttribute="trailing" id="Rou-gE-xl7"/>
+                                        <constraint firstItem="qhv-xU-RtJ" firstAttribute="centerY" secondItem="aab-Cu-74c" secondAttribute="centerY" id="m0y-gV-zQD"/>
+                                        <constraint firstItem="qhv-xU-RtJ" firstAttribute="leading" secondItem="aab-Cu-74c" secondAttribute="trailing" constant="8" id="qKJ-0D-Gkw"/>
+                                        <constraint firstItem="aab-Cu-74c" firstAttribute="top" secondItem="FGo-cs-dLh" secondAttribute="top" id="vEg-V4-96P"/>
+                                        <constraint firstItem="aab-Cu-74c" firstAttribute="leading" secondItem="FGo-cs-dLh" secondAttribute="leading" id="xcN-I0-vTN"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Москва, ул. Ленина 234, кв. 56" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkY-C4-Ihw">
+                                    <rect key="frame" x="0.0" y="25" width="314" height="36"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ms7-A1-Ywq">
+                                    <rect key="frame" x="0.0" y="62" width="314" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="7g4-TB-pFt"/>
+                                    </constraints>
+                                    <color key="tintColor" red="0.10196078431372549" green="0.69803921568627447" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Показать на карте">
+                                        <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
+                                        <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
+                                    </buttonConfiguration>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uhU-Mf-KeS">
+                            <rect key="frame" x="16" y="106" width="314" height="40.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText">
+                                <fragment>
+                                    <string key="content">Дата и время забора:
+</string>
+                                    <attributes>
+                                        <font key="NSFont" metaFont="menu" size="14"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content="18.04.2020 с 16:00 до 18:00">
+                                    <attributes>
+                                        <font key="NSFont" metaFont="menu" size="14"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.3999999999999999" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L40-F5-DAO">
+                            <rect key="frame" x="16" y="158.5" width="314" height="17"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="OxP-rM-HPW"/>
+                            </constraints>
+                            <color key="tintColor" red="0.1019607843" green="0.69803921570000005" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Изменить">
+                                <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.0" bottom="0.0" trailing="0.0"/>
+                            </buttonConfiguration>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d2I-9e-5fG">
+                            <rect key="frame" x="16" y="187.5" width="314" height="33.5"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <attributedString key="attributedText">
+                                <fragment>
+                                    <string key="content">Поступление в курьерскую службу до:
+</string>
+                                    <attributes>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" metaFont="system" size="14"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content="22 апреля 2020">
+                                    <attributes>
+                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <font key="NSFont" metaFont="system" size="14"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.3999999999999999" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w5A-Hn-BG5">
+                            <rect key="frame" x="16" y="233" width="314" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <string key="text">Плановая дата доставки будет определена 
+после поступления заказа в СДЭК</string>
+                            <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <edgeInsets key="layoutMargins" top="12" left="16" bottom="12" right="16"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </stackView>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aNe-XY-HmI">
+                    <rect key="frame" x="0.0" y="282" width="346" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVu-OM-6QH">
+                            <rect key="frame" x="16" y="12" width="282" height="40"/>
+                            <attributedString key="attributedText">
+                                <fragment>
+                                    <string key="content">Срок хранения до: 
+</string>
+                                    <attributes>
+                                        <font key="NSFont" metaFont="menu" size="14"/>
+                                    </attributes>
+                                </fragment>
+                                <fragment content="29 апреля 2022">
+                                    <attributes>
+                                        <font key="NSFont" metaFont="menu" size="14"/>
+                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.3" tighteningFactorForTruncation="0.0"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n5O-OC-Xfc">
+                            <rect key="frame" x="306" y="20" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="4Ix-1F-eKI"/>
+                                <constraint firstAttribute="height" constant="24" id="AEr-dz-CUJ"/>
+                            </constraints>
+                            <color key="tintColor" red="0.1019607843" green="0.69803921570000005" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="n5O-OC-Xfc" firstAttribute="centerY" secondItem="aNe-XY-HmI" secondAttribute="centerY" id="5Vy-fo-Zik"/>
+                        <constraint firstItem="vVu-OM-6QH" firstAttribute="leading" secondItem="aNe-XY-HmI" secondAttribute="leading" constant="16" id="HCa-XC-v6I"/>
+                        <constraint firstAttribute="bottom" secondItem="vVu-OM-6QH" secondAttribute="bottom" constant="12" id="LdO-Pd-SNq"/>
+                        <constraint firstAttribute="trailing" secondItem="n5O-OC-Xfc" secondAttribute="trailing" constant="16" id="SPP-p7-d8j"/>
+                        <constraint firstItem="vVu-OM-6QH" firstAttribute="top" secondItem="aNe-XY-HmI" secondAttribute="top" constant="12" id="g1c-60-sLn"/>
+                        <constraint firstItem="n5O-OC-Xfc" firstAttribute="leading" secondItem="vVu-OM-6QH" secondAttribute="trailing" constant="8" id="jV0-mA-Pjh"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <point key="canvasLocation" x="401.44927536231887" y="67.299107142857139"/>
+        </stackView>
+    </objects>
+    <resources>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="orderDetail.roadpoint.deliveryPoint" width="24" height="24"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

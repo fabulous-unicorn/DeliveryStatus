@@ -103,7 +103,6 @@ class DeliveryStatusCardView: UIStackView {
                 right: 0
             )
         }
-        
     }
     
 
@@ -114,5 +113,8 @@ class DeliveryStatusCardView: UIStackView {
     }
     
     @IBAction func tappedKeepInfo(_ sender: Any) {
+    }
+    
+    func configure(_ model: DeliveryStatusViewModel.Card) {
     }
 }

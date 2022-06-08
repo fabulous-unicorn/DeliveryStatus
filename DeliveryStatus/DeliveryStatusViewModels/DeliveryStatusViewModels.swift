@@ -253,6 +253,41 @@ struct DeliveryStatusViewModel {
     ///
     /// Формируется из всей модели заказа
     struct Card {
+        var group: Group
+        // TODO: Под вопросом
+        private var mode: DeliveryType
         
+        var title: String {
+            switch mode {
+                // TODO: Alesya Volosach | локализованные ресурсы
+            case .postomate: return "Постамат"
+            case .pvz: return "Пункт СДЭК"
+            case .home:
+                switch group {
+                case .created: return "Курьер"
+                case .delivered, .notDelivered: return "Курьер привезёт"
+                default: return "Информация о доставке"
+                }
+            }
+        }
+        
+        var icon: UIImage {
+            switch mode {
+            case .postomate:
+                return UIImage(named: "orderDetail.roadpoint.postomate")!
+            case .pvz:
+                return UIImage(named: "orderDetail.roadpoint.deliveryPoint")!
+            case .home:
+                return UIImage(named: "orderDetail.roadpoint.courier")!
+            }
+        }
+        
+        var address: String
+        var officeId: Int?
+        var pickUpInfp: String?
+        var displayDeliveryInfo: String?
+        var message: String?
+        var keepDate: String?
+        var keepDateLink: URL?
     }
 }

@@ -12,6 +12,8 @@ enum GlobalConstant {
     static let statusChangeStateAnimationDuration = 0.3
 }
 
+
+
 extension UIView {
     func fixInView(_ container: UIView!) -> Void{
         self.translatesAutoresizingMaskIntoConstraints = false;
@@ -21,6 +23,36 @@ extension UIView {
         NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
+    }
+}
+
+// MARK: - In project
+
+enum DeliveryType: String, Codable {
+    case home = "HOME"
+    case pvz = "PVZ"
+    case postomate = "POSTOMATE"
+    
+    var index: UInt {
+        switch self {
+        case .home:
+            return 0
+        case .pvz:
+            return 1
+        case .postomate:
+            return 2
+        }
+    }
+    
+    static func fromIndex(_ index: UInt) -> DeliveryType {
+        switch index {
+        case 0:
+            return .home
+        case 1:
+            return .pvz
+        default:
+            return .postomate
+        }
     }
 }
 

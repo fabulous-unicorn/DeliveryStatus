@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+// TODO: Alesya Volosach | Доработать установку стилей текста в didSet
 /// Карточка для группы статусов
 class DeliveryStatusCardView: UIStackView {
     @IBOutlet var contentView: UIStackView!
@@ -24,15 +24,18 @@ class DeliveryStatusCardView: UIStackView {
     @IBOutlet weak var pickUpInfoLabel: UILabel!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var planneDeliveryInfoLabel: UILabel!
-    @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
 
-    @IBOutlet weak var keepDateContainer: UIView!
-    @IBOutlet weak var keepDateLabel: UILabel!
+    @IBOutlet weak var keepInfoContainer: UIView!
+    @IBOutlet weak var keepInfoLabel: UILabel!
     @IBOutlet weak var keepInfoButton: UIButton!
+    
+    private var model: DeliveryStatusViewModel.Card?
     
     enum Constant {
         static let surfaceCornerRadius: CGFloat = 12
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -44,6 +47,7 @@ class DeliveryStatusCardView: UIStackView {
     }
     
     func commonInit() {
+        // TODO: Alesya Volosach | В проекте поменять логику встраивания subviews
         Bundle.main.loadNibNamed("DeliveryStatusCardView", owner: self, options: nil)
         self.addArrangedSubview(contentView)
         
@@ -71,9 +75,9 @@ class DeliveryStatusCardView: UIStackView {
             mainInfoBackgroundView.borderWidth = 1
         }
         
-        keepDateContainer.cornerRadius = Constant.surfaceCornerRadius
-        keepDateContainer.borderColor = UIColor(named: "borderSurface")
-        keepDateContainer.borderWidth = 1
+        keepInfoContainer.cornerRadius = Constant.surfaceCornerRadius
+        keepInfoContainer.borderColor = UIColor(named: "borderSurface")
+        keepInfoContainer.borderWidth = 1
         
         // Buttons insets
         if #available(iOS 15, *) {
@@ -103,18 +107,46 @@ class DeliveryStatusCardView: UIStackView {
                 right: 0
             )
         }
+        
+        // Buttons fonts
+        openMapButton.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
+        changeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
     }
     
 
     @IBAction func tappedOpenMap(_ sender: Any) {
+        print("| Log | Open map")
     }
     
     @IBAction func tappedChange(_ sender: Any) {
+        print("| Log | Tap change")
     }
     
     @IBAction func tappedKeepInfo(_ sender: Any) {
+        print("| Log | Open keep Info: Url: \(model?.keepInfoLink)")
     }
     
     func configure(_ model: DeliveryStatusViewModel.Card) {
+        self.model = model
+        
+        iconView.image = model.icon
+        modeTitleLabel.text = model.title
+        addressLabel.text = model.address
+        
+        openMapButton.isHidden = model.officeId == nil
+        
+        pickUpInfoLabel.isHidden = model.pickUpInfo == nil
+        pickUpInfoLabel.text = model.pickUpInfo
+        
+        changeButton.isHidden = !model.displayChangeButton
+        
+        planneDeliveryInfoLabel.isHidden = model.planedDeliveryInfo == nil
+        planneDeliveryInfoLabel.text = model.planedDeliveryInfo
+        
+        messageLabel.isHidden = model.message == nil
+        messageLabel.text = model.message
+        
+        keepInfoContainer.isHidden = model.keepDateInfo == nil
+        keepInfoLabel.text = model.keepDateInfo
     }
 }

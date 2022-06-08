@@ -153,6 +153,33 @@ class ViewController: UIViewController {
 //        self.containerStackView.addArrangedSubview(view3)
         
         let view4 = DeliveryStatusCardView()
+        view4.configure(DeliveryStatusViewModel.Card(
+            group: .delivered,
+            mode: .home,
+            address: "Москва, ул. Ленина 234, кв. 56",
+            displayChangeButton: true,
+            message: """
+                     Плановая дата доставки будет определена
+                     после поступления заказа в СДЭК
+                     """
+        ))
         self.containerStackView.addArrangedSubview(view4)
     }
 }
+
+
+//DeliveryStatusViewModel.Card(
+//    group: .delivered,
+//    mode: .home,
+//    address: "Москва, ул. Ленина 234, кв. 56",
+//    officeId: 1,
+//    pickUpInfo: """
+//                Дата и время вручения:
+//                18.04.2020 с 16:00 до 18:00
+//                """,
+//    displayChangeButton: true,
+//    planedDeliveryInfo: """
+//                Поступление в курьерскую службу до:
+//                22 апреля 2020
+//                """
+//)

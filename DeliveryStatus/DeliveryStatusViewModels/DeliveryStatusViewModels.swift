@@ -256,6 +256,14 @@ struct DeliveryStatusViewModel {
         var group: Group
         // TODO: Под вопросом
         private var mode: DeliveryType
+        var address: String
+        var officeId: Int?
+        var pickUpInfo: String?
+        var displayChangeButton: Bool
+        var planedDeliveryInfo: String?
+        var message: String?
+        var keepDateInfo: String?
+        var keepInfoLink: URL?
         
         var title: String {
             switch mode {
@@ -282,12 +290,28 @@ struct DeliveryStatusViewModel {
             }
         }
         
-        var address: String
-        var officeId: Int?
-        var pickUpInfp: String?
-        var displayDeliveryInfo: String?
-        var message: String?
-        var keepDate: String?
-        var keepDateLink: URL?
+        internal init(
+            group: DeliveryStatusViewModel.Group,
+            mode: DeliveryType,
+            address: String,
+            officeId: Int? = nil,
+            pickUpInfo: String? = nil,
+            displayChangeButton: Bool,
+            planedDeliveryInfo: String? = nil,
+            message: String? = nil,
+            keepDateInfo: String? = nil,
+            keepInfoLink: URL? = nil
+        ) {
+            self.group = group
+            self.mode = mode
+            self.address = address
+            self.officeId = officeId
+            self.pickUpInfo = pickUpInfo
+            self.displayChangeButton = displayChangeButton
+            self.planedDeliveryInfo = planedDeliveryInfo
+            self.message = message
+            self.keepDateInfo = keepDateInfo
+            self.keepInfoLink = keepInfoLink
+        }
     }
 }

@@ -131,25 +131,28 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        let group1: DeliveryStatusViewModel.Group = .inProgress
-        let evolutionStage1: DeliveryStatusViewModel.Stage = .past
+//        let group1: DeliveryStatusViewModel.Group = .inProgress
+//        let evolutionStage1: DeliveryStatusViewModel.Stage = .past
+//        
+//        let group2: DeliveryStatusViewModel.Group = .courier
+//        let evolutionStage2: DeliveryStatusViewModel.Stage = .present
+//        
+//        let group3: DeliveryStatusViewModel.Group = .delivered
+//        let evolutionStage3: DeliveryStatusViewModel.Stage = .future
+//        
+//        let view = DeliveryStatusView()
+//        view.configure(getStatus(group1, evolutionStage1, false))
+//        self.containerStackView.addArrangedSubview(view)
+//        
+//        let view2 = DeliveryStatusView()
+//        view2.configure(getStatusPrimary(group2, evolutionStage2, false))
+//        self.containerStackView.addArrangedSubview(view2)
+//        
+//        let view3 = DeliveryStatusView()
+//        view3.configure(getStatus3(group3, evolutionStage3, true))
+//        self.containerStackView.addArrangedSubview(view3)
         
-        let group2: DeliveryStatusViewModel.Group = .courier
-        let evolutionStage2: DeliveryStatusViewModel.Stage = .present
-        
-        let group3: DeliveryStatusViewModel.Group = .delivered
-        let evolutionStage3: DeliveryStatusViewModel.Stage = .future
-        
-        let view = DeliveryStatusView()
-        view.configure(getStatus(group1, evolutionStage1, false))
-        self.containerStackView.addArrangedSubview(view)
-        
-        let view2 = DeliveryStatusView()
-        view2.configure(getStatusPrimary(group2, evolutionStage2, false))
-        self.containerStackView.addArrangedSubview(view2)
-        
-        let view3 = DeliveryStatusView()
-        view3.configure(getStatus3(group3, evolutionStage3, true))
-        self.containerStackView.addArrangedSubview(view3)
+        let view4 = DeliveryStatusCardView()
+        self.containerStackView.addArrangedSubview(view4)
     }
 }

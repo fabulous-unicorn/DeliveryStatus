@@ -14,9 +14,6 @@ protocol DeliveryStatusTitleDelegate {
 
 
 /// Заголовок статуса доставки
-///
-/// Типы:
-///
 class DeliveryStatusTitleView: UIView {
     enum Constant {
         static let `default`: CGFloat = 0

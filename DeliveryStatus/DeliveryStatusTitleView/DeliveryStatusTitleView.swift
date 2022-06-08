@@ -71,14 +71,16 @@ class DeliveryStatusTitleView: UIView {
             self.iconView.tintColor = model.group.tintColor
             self.iconContainerView.backgroundColor = model.group.backgroundColor
             self.titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
+            self.titleLabel.alpha = 1
         case .present:
             self.iconView.tintColor = model.group.tintColor
             self.iconContainerView.backgroundColor = model.group.backgroundColor
             self.titleLabel.font = .systemFont(ofSize: 24, weight: .semibold)
+            self.titleLabel.alpha = 1
         case .future:
             self.iconView.tintColor = model.group.inactiveTintColor
             self.iconContainerView.backgroundColor = model.group.inactiveBackgroundColor
-            self.titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+            self.titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
             self.titleLabel.alpha = 0.6
         }
         

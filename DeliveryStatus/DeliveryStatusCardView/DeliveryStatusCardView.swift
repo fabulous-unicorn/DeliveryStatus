@@ -50,6 +50,7 @@ class DeliveryStatusCardView: UIStackView {
         // TODO: Alesya Volosach | В проекте поменять логику встраивания subviews
         Bundle.main.loadNibNamed("DeliveryStatusCardView", owner: self, options: nil)
         self.addArrangedSubview(contentView)
+        self.axis = .vertical
         
         // Reset titles
         keepInfoButton.setTitle("", for: .normal)
@@ -109,6 +110,7 @@ class DeliveryStatusCardView: UIStackView {
         }
         
         // Buttons fonts
+        // TODO: Alesya Volosach | На 15 версии сбрасывается
         openMapButton.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
         changeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
     }

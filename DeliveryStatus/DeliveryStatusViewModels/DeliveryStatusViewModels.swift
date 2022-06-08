@@ -24,10 +24,9 @@ struct DeliveryStatusViewModel {
     var message: String?
     
     ///  Доступно ли расскрытие группы
-    ///  ?Под вопросом - возможно будет удалено
-    ///  и вычисление будет происходит с наличием контента
-    ///  или станет вычисляемым
-//    var isExpandingAvailable: Bool
+    var isExpandingAvailable: Bool {
+        return !self.steps.isEmpty || self.card != nil
+    }
     
     /// Стадия группы относительно заказа
     ///
@@ -52,7 +51,29 @@ struct DeliveryStatusViewModel {
         
     /// Конфигурация вида шага, для свернутой группы
     /// Возможны изменения из-за карточки
-    var stepForShortView: Step {
+    var stepForShortView: Step? {
+        switch group {
+        case .created, .delivered, .notDelivered:
+            return getStepForShortViewCard()
+        default:
+            return getStepForShortViewTable()
+        }
+    }
+    
+    private func getStepForShortViewCard() -> Step? {
+        guard let address = card?.address else { return nil }
+        
+        return Step(
+            title: address,
+            type: .simple,
+            evolutionStage: self.evolutionStage,
+            group: self.group
+        )
+    }
+    
+    private func getStepForShortViewTable() -> Step? {
+        guard !self.steps.isEmpty else { return nil }
+        
         // Title
         var title = ""
         if let lastStepSubhead = self.steps.last(
@@ -97,18 +118,20 @@ struct DeliveryStatusViewModel {
     // TODO: Alesya Volosach | прост временное упрощение
     init(
         group: Group,
+        message: String? = nil,
         evolutionStage: Stage,
         isLastStatus: Bool,
         title: Title,
-        steps: [Step]
+        steps: [Step],
+        card: Card? = nil
     ) {
+        self.message = message
         self.title = title
         self.group = group
         self.isLastStatus = isLastStatus
         self.evolutionStage = evolutionStage
         self.steps = steps
-        
-       
+        self.card = card
     }
     
     // TODO: Alesya Volosach | может быть добавить какие-то специфичные конфигураторы

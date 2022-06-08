@@ -35,7 +35,6 @@ class DeliveryStatusStepView: UIView {
     func setType(_ model: DeliveryStatusViewModel.Step) {
         self.model = model
         
-        
         switch model.type {
         case .simple:
             UIView.transition(
@@ -45,7 +44,7 @@ class DeliveryStatusStepView: UIView {
                 animations: {
                     self.titleLabel.text = model.title
                     self.titleLabel.font = .systemFont(ofSize: 12)
-                    self.titleLabel.textColor = .black
+                    self.titleLabel.textColor = model.evolutionStage == .future ? .lightGray : .black
                 },
                 completion: nil
             )

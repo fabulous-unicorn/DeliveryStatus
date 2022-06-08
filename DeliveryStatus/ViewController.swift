@@ -9,6 +9,78 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var containerStackView: UIStackView!
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let evolutionStage0: DeliveryStatusViewModel.Stage = .past
+    
+        let group1: DeliveryStatusViewModel.Group = .inProgress
+        let evolutionStage1: DeliveryStatusViewModel.Stage = .past
+        
+        let group2: DeliveryStatusViewModel.Group = .courier
+        let evolutionStage2: DeliveryStatusViewModel.Stage = .present
+        
+        let group3: DeliveryStatusViewModel.Group = .delivered
+        let evolutionStage3: DeliveryStatusViewModel.Stage = .future
+        
+        let view0 = DeliveryStatusView()
+        view0.configure(getCreateStatus(evolutionStage0, false))
+        self.containerStackView.addArrangedSubview(view0)
+        
+        let view1 = DeliveryStatusView()
+        view1.configure(getStatus(group1, evolutionStage1, false))
+        self.containerStackView.addArrangedSubview(view1)
+        
+        let view2 = DeliveryStatusView()
+        view2.configure(getStatusPrimary(group2, evolutionStage2, false))
+        self.containerStackView.addArrangedSubview(view2)
+        
+        let view3 = DeliveryStatusView()
+        view3.configure(getStatus3(group3, evolutionStage3, true))
+        self.containerStackView.addArrangedSubview(view3)
+    }
+}
+
+extension ViewController {
+    func getCreateStatus(
+        _ evolutionStage: DeliveryStatusViewModel.Stage,
+        _ isLastStatus: Bool
+    )  -> DeliveryStatusViewModel {
+        
+        let group: DeliveryStatusViewModel.Group = .created
+        let cardModel = DeliveryStatusViewModel.Card(
+            group: group,
+            mode: .home,
+            address: "Москва, ул. Ленина 234, кв. 56",
+            displayChangeButton: true,
+            message: """
+                     Плановая дата доставки будет определена
+                     после поступления заказа в СДЭК
+                     """
+        )
+        
+        return DeliveryStatusViewModel(
+            group: group,
+            message: """
+                     Отправитель еще не передал посылку
+                     для доставки в СДЭК.
+                     """,
+            evolutionStage: evolutionStage,
+            isLastStatus: isLastStatus,
+            title: DeliveryStatusViewModel.Title(
+                title: "Посылка прибыла",
+                date: nil,
+                isAvailableExpanded: true,
+                evolutionStage: evolutionStage,
+                group: group
+            ),
+            steps: [],
+            card: cardModel
+        )
+    }
+    
+    
     
     func getStatus(
         _ group: DeliveryStatusViewModel.Group,
@@ -127,46 +199,7 @@ class ViewController: UIViewController {
                 steps: []
             )
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
-//        let group1: DeliveryStatusViewModel.Group = .inProgress
-//        let evolutionStage1: DeliveryStatusViewModel.Stage = .past
-//        
-//        let group2: DeliveryStatusViewModel.Group = .courier
-//        let evolutionStage2: DeliveryStatusViewModel.Stage = .present
-//        
-//        let group3: DeliveryStatusViewModel.Group = .delivered
-//        let evolutionStage3: DeliveryStatusViewModel.Stage = .future
-//        
-//        let view = DeliveryStatusView()
-//        view.configure(getStatus(group1, evolutionStage1, false))
-//        self.containerStackView.addArrangedSubview(view)
-//        
-//        let view2 = DeliveryStatusView()
-//        view2.configure(getStatusPrimary(group2, evolutionStage2, false))
-//        self.containerStackView.addArrangedSubview(view2)
-//        
-//        let view3 = DeliveryStatusView()
-//        view3.configure(getStatus3(group3, evolutionStage3, true))
-//        self.containerStackView.addArrangedSubview(view3)
-        
-        let view4 = DeliveryStatusCardView()
-        view4.configure(DeliveryStatusViewModel.Card(
-            group: .delivered,
-            mode: .home,
-            address: "Москва, ул. Ленина 234, кв. 56",
-            displayChangeButton: true,
-            message: """
-                     Плановая дата доставки будет определена
-                     после поступления заказа в СДЭК
-                     """
-        ))
-        self.containerStackView.addArrangedSubview(view4)
-    }
 }
-
 
 //DeliveryStatusViewModel.Card(
 //    group: .delivered,

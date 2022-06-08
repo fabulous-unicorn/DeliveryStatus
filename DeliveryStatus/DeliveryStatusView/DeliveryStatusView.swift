@@ -13,6 +13,9 @@ class DeliveryStatusView: UIStackView {
     private var stepsContainerView = UIStackView()
     private var cardView: DeliveryStatusCardView?
     
+    private var messageContainer: UIView?
+    private var messageLabel: UILabel?
+    
     private var backgroundLine = UIView()
     private var accentLine = UIView()
     
@@ -51,6 +54,33 @@ class DeliveryStatusView: UIStackView {
         self.model = model
         
         self.titleView.configure(model.title, self)
+        
+        if let message = model.message {
+            let messageContainer = UIView()
+            let messageLabel = UILabel()
+
+            messageLabel.text = message
+            messageLabel.numberOfLines = 0
+            messageLabel.font = .italicSystemFont(ofSize: 12)
+            messageLabel.textColor = UIColor.hexStringToUIColor(hex: "777777")
+
+            messageContainer.addSubview(messageLabel)
+            
+            messageContainer.translatesAutoresizingMaskIntoConstraints = false
+            messageLabel.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                messageLabel.leadingAnchor.constraint(equalTo: messageContainer.leadingAnchor, constant: 40),
+                messageLabel.trailingAnchor.constraint(equalTo: messageContainer.trailingAnchor),
+                messageLabel.topAnchor.constraint(equalTo: messageContainer.topAnchor),
+                messageLabel.bottomAnchor.constraint(equalTo: messageContainer.bottomAnchor)
+            ])
+            
+            self.messageContainer = messageContainer
+            self.messageLabel = messageLabel
+            
+            self.addArrangedSubview(messageContainer)
+        }
         
         model.steps.forEach { step in
             let view = DeliveryStatusStepView()
@@ -123,7 +153,7 @@ class DeliveryStatusView: UIStackView {
         ])
     }
     
-    
+    // TODO: Alesya Volosach | Отрефакторить
     func toggleState() {
         if isExpaned {
             commpressStatus()
@@ -135,7 +165,11 @@ class DeliveryStatusView: UIStackView {
     }
     
     func expandStatus() {
-        // TODO: Alesya Volosach | Доработать метод карточка и таблица разные виды сворачивания
+        if self.messageContainer != nil {
+            messageContainer?.isHidden = false
+            messageContainer?.alpha = 1
+        }
+
         if model?.card != nil {
             expandStatusForCard()
         } else {
@@ -163,7 +197,11 @@ class DeliveryStatusView: UIStackView {
     }
     
     func commpressStatus() {
-        // TODO: Alesya Volosach | Доработать метод карточка и таблица разные виды сворачивания
+        if self.messageContainer != nil {
+            messageContainer?.isHidden = true
+            messageContainer?.alpha = 0
+        }
+
         if model?.card != nil {
             commpressStatusForCard()
         } else {

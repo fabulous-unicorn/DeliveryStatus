@@ -19,7 +19,7 @@ class ViewController: UIViewController {
             group: group,
             evolutionStage: evolutionStage,
             isLastStatus: isLastStatus,
-            title: DeliveryStatusTitleViewModel(
+            title: DeliveryStatusViewModel.Title(
                 title: "Посылка прибыла",
                 date: nil,
                 isAvailableExpanded: true,
@@ -27,13 +27,13 @@ class ViewController: UIViewController {
                 group: group
             ),
             steps: [
-                DeliveryStatusStepViewModel(
+                DeliveryStatusViewModel.Step(
                     title: "Москва",
                     type: .subhead,
                     evolutionStage: evolutionStage,
                     group: group
                 ),
-                DeliveryStatusStepViewModel(
+                DeliveryStatusViewModel.Step(
                     title: "Принято на доставку",
                     type: .point(
                         date: "18.04.2020",
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
                     evolutionStage: evolutionStage,
                     group: group
                 ),
-                DeliveryStatusStepViewModel(
+                DeliveryStatusViewModel.Step(
                     title: "Отправлено в город назначения",
                     type: .point(
                         date: "20.04.2020",
@@ -51,13 +51,13 @@ class ViewController: UIViewController {
                     evolutionStage: evolutionStage,
                     group: group
                 ),
-                DeliveryStatusStepViewModel(
+                DeliveryStatusViewModel.Step(
                     title: "Новосибирск",
                     type: .subhead,
                     evolutionStage: evolutionStage,
                     group: group
                 ),
-                DeliveryStatusStepViewModel(
+                DeliveryStatusViewModel.Step(
                     title: "Готов  к выдаче",
                     type: .point(
                         date: "22.04.2020",
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
         group: group,
         evolutionStage: evolutionStage,
         isLastStatus: isLastStatus,
-        title: DeliveryStatusTitleViewModel(
+        title: DeliveryStatusViewModel.Title(
             title: "Доставка курьером",
             date: nil,
             isAvailableExpanded: true,
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
             group: group
         ),
         steps: [
-            DeliveryStatusStepViewModel(
+            DeliveryStatusViewModel.Step(
                 title: "Выдано курьеру",
                 type: .point(
                     date: "22.04.2020",
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
                 evolutionStage: evolutionStage,
                 group: group
             ),
-            DeliveryStatusStepViewModel(
+            DeliveryStatusViewModel.Step(
                 title: "Курьер не смог вручить посылку",
                 type: .point(
                     date: "22.04.2020",
@@ -117,7 +117,7 @@ class ViewController: UIViewController {
                 group: group,
                 evolutionStage: evolutionStage,
                 isLastStatus: isLastStatus,
-                title: DeliveryStatusTitleViewModel(
+                title: DeliveryStatusViewModel.Title(
                     title: "Вручение",
                     date: "27.04.2020",
                     isAvailableExpanded: false,

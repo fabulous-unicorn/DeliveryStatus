@@ -15,7 +15,7 @@ class DeliveryStatusStepView: UIView {
     @IBOutlet private weak var dateLabel: UILabel!
     
     @IBOutlet weak var topSpace: NSLayoutConstraint!
-    var model: DeliveryStatusStepViewModel?
+    var model: DeliveryStatusViewModel.Step?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,7 +32,7 @@ class DeliveryStatusStepView: UIView {
         contentView.fixInView(self)
     }
     
-    func setType(_ model: DeliveryStatusStepViewModel) {
+    func setType(_ model: DeliveryStatusViewModel.Step) {
         self.model = model
         
         

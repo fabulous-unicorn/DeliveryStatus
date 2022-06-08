@@ -32,7 +32,7 @@ class DeliveryStatusTitleView: UIView {
     
     var isRotate = false
     
-    var model: DeliveryStatusTitleViewModel?
+    var model: DeliveryStatusViewModel.Title?
     var delegate: DeliveryStatusTitleDelegate?
     
     override init(frame: CGRect) {
@@ -56,7 +56,7 @@ class DeliveryStatusTitleView: UIView {
     }
     
     func configure(
-        _ model: DeliveryStatusTitleViewModel,
+        _ model: DeliveryStatusViewModel.Title,
         _ delegate: DeliveryStatusTitleDelegate
     ) {
         self.model = model
@@ -68,7 +68,7 @@ class DeliveryStatusTitleView: UIView {
         setStyles(model)
     }
     
-    private func setStyles(_ model: DeliveryStatusTitleViewModel) {
+    private func setStyles(_ model: DeliveryStatusViewModel.Title) {
         switch model.evolutionStage {
         case .past:
             self.iconView.tintColor = model.group.tintColor

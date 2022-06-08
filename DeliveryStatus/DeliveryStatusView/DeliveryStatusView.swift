@@ -124,7 +124,7 @@ class DeliveryStatusView: UIStackView {
     
     func commpressStatus() {
         guard let model = model else { return }
-        stepsViews.last?.setType(model.shortInfo)
+        stepsViews.last?.setType(model.stepForShortView)
         
         stepsViews.enumerated().forEach { index, view in
             view.isHidden = index == stepsViews.count - 1 ? false : true

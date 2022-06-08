@@ -69,8 +69,8 @@ extension ViewController {
             evolutionStage: evolutionStage,
             isLastStatus: isLastStatus,
             title: DeliveryStatusViewModel.Title(
-                title: "Посылка прибыла",
-                date: nil,
+                title: "Создан заказ",
+                date: "17.04.2020",
                 isAvailableExpanded: true,
                 evolutionStage: evolutionStage,
                 group: group

@@ -12,8 +12,17 @@ protocol DeliveryStatusTitleDelegate {
     func tappedTitle()
 }
 
-
-/// Заголовок статуса доставки
+/**
+View: Заголовок группы-статуса для заказа
+    
+Все стили уникальные для групп предустановленны и берутся из ``DeliveryStatusViewModel/Group-swift.enum`` и
+ ``DeliveryStatusViewModel/Title-swift.struct``
+ 
+Визуально включает в себя:
+- Иконка
+- Заголовок
+- Поворачивающаяся стрелка
+ */
 class DeliveryStatusTitleView: UIView {
     enum Constant {
         static let `default`: CGFloat = 0
@@ -27,10 +36,10 @@ class DeliveryStatusTitleView: UIView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var arrowView: UIImageView!
     
-    var isRotate = false
+    private var isRotate = false
     
-    var model: DeliveryStatusViewModel.Title?
-    var delegate: DeliveryStatusTitleDelegate?
+    private var titleModel: DeliveryStatusViewModel.Title?
+    private var delegate: DeliveryStatusTitleDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,6 +57,8 @@ class DeliveryStatusTitleView: UIView {
     }
     
     @IBAction func tappedTitle(_ sender: Any) {
+        guard titleModel?.isAvailableExpanded == true else { return }
+        
         showArrowAnimation()
         delegate?.tappedTitle()
     }
@@ -56,35 +67,36 @@ class DeliveryStatusTitleView: UIView {
         _ model: DeliveryStatusViewModel.Title,
         _ delegate: DeliveryStatusTitleDelegate
     ) {
-        self.model = model
+        self.titleModel = model
         self.delegate = delegate
         
-        self.titleLabel.text = model.title
-        self.iconView.image = model.group.icon
+        titleLabel.text = model.title
+        iconView.image = model.group.icon
         
         setStyles(model)
     }
     
+    // TODO: Alesya Volosach | Может вывести где-то правило, где передается в методы view модель, а где напрямую тянем из свойств
     private func setStyles(_ model: DeliveryStatusViewModel.Title) {
         switch model.evolutionStage {
         case .past:
-            self.iconView.tintColor = model.group.tintColor
-            self.iconContainerView.backgroundColor = model.group.backgroundColor
-            self.titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
-            self.titleLabel.alpha = 1
+            iconView.tintColor = model.group.tintColor
+            iconContainerView.backgroundColor = model.group.backgroundColor
+            titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
+            titleLabel.alpha = 1
         case .present:
-            self.iconView.tintColor = model.group.tintColor
-            self.iconContainerView.backgroundColor = model.group.backgroundColor
-            self.titleLabel.font = .systemFont(ofSize: 24, weight: .semibold)
-            self.titleLabel.alpha = 1
+            iconView.tintColor = model.group.tintColor
+            iconContainerView.backgroundColor = model.group.backgroundColor
+            titleLabel.font = .systemFont(ofSize: 24, weight: .semibold)
+            titleLabel.alpha = 1
         case .future:
-            self.iconView.tintColor = model.group.inactiveTintColor
-            self.iconContainerView.backgroundColor = model.group.inactiveBackgroundColor
-            self.titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
-            self.titleLabel.alpha = 0.6
+            iconView.tintColor = model.group.inactiveTintColor
+            iconContainerView.backgroundColor = model.group.inactiveBackgroundColor
+            titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
+            titleLabel.alpha = 0.6
         }
         
-        self.arrowView.isHidden = !model.isAvailableExpanded
+        arrowView.isHidden = !model.isAvailableExpanded
     }
     
     func showArrowAnimation() {
@@ -92,13 +104,6 @@ class DeliveryStatusTitleView: UIView {
             self.arrowView.transform = CGAffineTransform(
                 rotationAngle: self.isRotate ? Constant.default :  Constant.rotate)
         }
-        self.isRotate.toggle()
+        isRotate.toggle()
     }
-    
 }
-
-
-
-
-// TODO: Alesya Volosach | Почитать про uitests
-

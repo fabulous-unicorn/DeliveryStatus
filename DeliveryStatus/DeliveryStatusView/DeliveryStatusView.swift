@@ -24,12 +24,12 @@ View: Группа-статуса для заказа
 - В развернутом:
  - Описание
  - Либо таблицу с промежуточными шагами, ячейки: ``DeliveryStatusStepView``
- - Либо карточку ``DeliveryStatusCardView``
+ - Либо карточку: ``DeliveryStatusCardView``
  
  */
 class DeliveryStatusView: UIStackView {
-    private var titleView = DeliveryStatusTitleView()
-    private var stepsContainerView = UIStackView()
+    private let titleView = DeliveryStatusTitleView()
+    private let stepsContainerView = UIStackView()
     private var stepsViews: [DeliveryStatusStepView] = []
     private var cardView: DeliveryStatusCardView?
     
@@ -59,7 +59,7 @@ class DeliveryStatusView: UIStackView {
         commonInit()
     }
     
-    func commonInit() {
+    private func commonInit() {
         self.addArrangedSubview(titleView)
         self.addArrangedSubview(stepsContainerView)
         
@@ -214,7 +214,7 @@ class DeliveryStatusView: UIStackView {
 
 // MARK: - Toggle state
 extension DeliveryStatusView {
-    func toggleState() {
+    private func toggleState() {
         if isExpanded {
             commpressStatus()
         } else {

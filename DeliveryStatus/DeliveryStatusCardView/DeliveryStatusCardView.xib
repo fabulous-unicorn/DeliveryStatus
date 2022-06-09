@@ -4,12 +4,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeliveryStatusCardView" customModule="DeliveryStatus" customModuleProvider="target">
             <connections>
+                <outlet property="addressContainer" destination="gKp-iE-SLH" id="uwz-6Y-MXm"/>
                 <outlet property="addressLabel" destination="IkY-C4-Ihw" id="3zG-5m-7Qq"/>
                 <outlet property="changeButton" destination="L40-F5-DAO" id="7D3-ty-gAN"/>
                 <outlet property="contentView" destination="Z3V-F7-JuC" id="Qec-Aq-qgL"/>
@@ -20,13 +22,13 @@
                 <outlet property="mainInfoContainer" destination="jlU-It-WOO" id="TrR-47-mKJ"/>
                 <outlet property="messageLabel" destination="w5A-Hn-BG5" id="3bH-1I-4hI"/>
                 <outlet property="modeTitleLabel" destination="qhv-xU-RtJ" id="iRs-pX-ILE"/>
-                <outlet property="openMapButton" destination="Ms7-A1-Ywq" id="N37-iv-3zE"/>
+                <outlet property="openMapLabel" destination="zzV-xC-LIB" id="rlG-8I-0YT"/>
                 <outlet property="pickUpInfoLabel" destination="uhU-Mf-KeS" id="PUN-gb-6q1"/>
                 <outlet property="planneDeliveryInfoLabel" destination="d2I-9e-5fG" id="Imc-8a-dNK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="8" id="Z3V-F7-JuC">
+        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" id="Z3V-F7-JuC">
             <rect key="frame" x="0.0" y="0.0" width="346" height="348"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -71,20 +73,16 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ms7-A1-Ywq">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Показать на карте" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzV-xC-LIB">
                                     <rect key="frame" x="0.0" y="48" width="314" height="20"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="7g4-TB-pFt"/>
+                                        <constraint firstAttribute="height" constant="20" id="bX8-J7-ROV"/>
                                     </constraints>
-                                    <color key="tintColor" red="0.10196078431372549" green="0.69803921568627447" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" title="Показать на карте">
-                                        <fontDescription key="titleFontDescription" type="system" pointSize="12"/>
-                                    </buttonConfiguration>
-                                    <connections>
-                                        <action selector="tappedOpenMap:" destination="-1" eventType="touchUpInside" id="bj5-Ka-hlD"/>
-                                    </connections>
-                                </button>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                    <color key="textColor" red="0.1019607843" green="0.69803921570000005" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uhU-Mf-KeS">
@@ -205,6 +203,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="WDv-Yd-sgX"/>
             <point key="canvasLocation" x="401.44927536231887" y="66.964285714285708"/>
         </stackView>
     </objects>

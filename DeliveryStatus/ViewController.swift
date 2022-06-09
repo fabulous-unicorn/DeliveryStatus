@@ -40,12 +40,27 @@ extension ViewController {
         let cardModel = DeliveryStatusViewModel.CardExample(
             mode: .home,
             address: "Москва, ул. Ленина 234, кв. 56",
+            officeId: 1,
+            pickUpInfo: """
+                        Дата и время вручения:
+                        18.04.2020 с 16:00 до 18:00
+                        """,
             displayChangeButton: true,
-            message: """
-                     Плановая дата доставки будет определена
-                     после поступления заказа в СДЭК
-                     """
+            planedDeliveryInfo: """
+                        Поступление в курьерскую службу до:
+                        22 апреля 2020
+                        """
         )
+        
+//        let cardModel = DeliveryStatusViewModel.CardExample(
+//            mode: .home,
+//            address: "Москва, ул. Ленина 234, кв. 56",
+//            displayChangeButton: true,
+//            message: """
+//                     Плановая дата доставки будет определена
+//                     после поступления заказа в СДЭК
+//                     """
+//        )
         
         return DeliveryStatusViewModel(
             group: .created,

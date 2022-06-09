@@ -187,11 +187,11 @@ struct DeliveryStatusViewModel {
         
         // Check available expanded
         var isAvailableExpanded = false
-        if group == .created && evolutionStage == .past {
-            isAvailableExpanded = false
-        } else {
+//        if group == .created && evolutionStage == .past {
+//            isAvailableExpanded = false
+//        } else {
             isAvailableExpanded = !steps.isEmpty || card != nil
-        }
+//        }
         
         // Date
         var dateForTitle: String? = nil

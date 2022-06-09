@@ -25,7 +25,10 @@ class DeliveryStatusCardView: UIStackView {
     @IBOutlet private weak var modeTitleLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
     // TODO: Alesya Volosach | Пересмотреть отображать кнопку или сделать невидимую кнопку захватывающую в область нажатия адрес
-    @IBOutlet private weak var openMapButton: UIButton!
+    
+    @IBOutlet private weak var addressContainer: UIStackView!
+    @IBOutlet private weak var openMapLabel: UILabel!
+    private var transparentOpenMapButton: UIButton?
     @IBOutlet private weak var pickUpInfoLabel: UILabel!
     @IBOutlet private weak var changeButton: UIButton!
     @IBOutlet private weak var planneDeliveryInfoLabel: UILabel!
@@ -90,12 +93,6 @@ class DeliveryStatusCardView: UIStackView {
         
         // Buttons insets
         if #available(iOS 15, *) {
-            openMapButton.configuration?.contentInsets = .init(
-                top: 0,
-                leading: 0,
-                bottom: 0,
-                trailing: 0
-            )
             changeButton.configuration?.contentInsets = .init(
                 top: 0,
                 leading: 0,
@@ -103,12 +100,6 @@ class DeliveryStatusCardView: UIStackView {
                 trailing: 0
             )
         } else {
-            openMapButton.imageEdgeInsets = .init(
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 0
-            )
             changeButton.imageEdgeInsets = .init(
                 top: 0,
                 left: 0,
@@ -119,13 +110,12 @@ class DeliveryStatusCardView: UIStackView {
         
         // Buttons fonts
         // TODO: Alesya Volosach | На 15 версии сбрасывается
-        openMapButton.titleLabel?.font = .systemFont(ofSize: 12, weight: .regular)
         changeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
     }
     
     // MARK: - Actions Outlets
 
-    @IBAction func tappedOpenMap(_ sender: Any) {
+    @objc func tappedOpenMap(_ sender: Any) {
         print("| Log | Open map")
         // Открытие отсюда
     }
@@ -149,12 +139,17 @@ class DeliveryStatusCardView: UIStackView {
         modeTitleLabel.text = cardModel.title
         addressLabel.text = cardModel.address
         
-        openMapButton.isHidden = cardModel.officeId == nil
+        if cardModel.officeId != nil {
+            openMapLabel.isHidden = false
+            configureTransparentOpenMapButton()
+        } else {
+            openMapLabel.isHidden = true
+        }
         
         pickUpInfoLabel.isHidden = cardModel.pickUpInfo == nil
         pickUpInfoLabel.text = cardModel.pickUpInfo
         
-        changeButton.isHidden = !model.displayChangeButton
+        changeButton.isHidden = !cardModel.displayChangeButton
         
         planneDeliveryInfoLabel.isHidden = cardModel.planedDeliveryInfo == nil
         planneDeliveryInfoLabel.text = cardModel.planedDeliveryInfo
@@ -164,5 +159,29 @@ class DeliveryStatusCardView: UIStackView {
         
         keepInfoContainer.isHidden = cardModel.keepDateInfo == nil
         keepInfoLabel.text = cardModel.keepDateInfo
+    }
+    
+    private func configureTransparentOpenMapButton() {
+        let transparentOpenMapButton = UIButton()
+        transparentOpenMapButton.backgroundColor = .clear
+        transparentOpenMapButton.setTitle("", for: .normal)
+        
+        // Constraints
+        transparentOpenMapButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        addressContainer.insertSubview(transparentOpenMapButton, at: 0)
+        
+        NSLayoutConstraint.activate([
+            transparentOpenMapButton.leadingAnchor.constraint(equalTo: addressContainer.leadingAnchor),
+            transparentOpenMapButton.trailingAnchor.constraint(equalTo: addressContainer.trailingAnchor),
+            transparentOpenMapButton.topAnchor.constraint(equalTo: addressLabel.topAnchor),
+            transparentOpenMapButton.bottomAnchor.constraint(equalTo: openMapLabel.bottomAnchor)
+        ])
+        
+        // Action
+        transparentOpenMapButton.addTarget(self, action: #selector(tappedOpenMap), for: .touchDown)
+        
+        // Save
+        self.transparentOpenMapButton = transparentOpenMapButton
     }
 }

@@ -8,22 +8,41 @@
 import Foundation
 import UIKit
 
+/**
+View: Группа-статуса для заказа
+    
+Все стили уникальные для групп предустановленны и берутся из ``DeliveryStatusViewModel/Group-swift.enum`` и
+ ``DeliveryStatusViewModel/Title-swift.struct``
+ 
+Визуально включает в себя:
+- Заголовок статуса ``DeliveryStatusTitleView``, который позволяет раскрывать статус
+- Линию прогресса, если это не последний шаг
+
+- В свернутом состоянии:
+ - Краткое описание ``DeliveryStatusStepView``
+
+- В развернутом:
+ - Описание
+ - Либо таблицу с промежуточными шагами, ячейки: ``DeliveryStatusStepView``
+ - Либо карточку ``DeliveryStatusCardView``
+ 
+ */
 class DeliveryStatusView: UIStackView {
     private var titleView = DeliveryStatusTitleView()
     private var stepsContainerView = UIStackView()
+    private var stepsViews: [DeliveryStatusStepView] = []
     private var cardView: DeliveryStatusCardView?
     
     private var messageContainer: UIView?
     private var messageLabel: UILabel?
     
+    // TODO: Alesya Volosach | Нужно ли их удерживать полями? - // Save
     private var backgroundLine: UIView?
     private var progressLine: UIView?
     
-    private var stepsViews: [DeliveryStatusStepView] = []
+    private var isExpanded = true
     
-    private var isExpaned = true
-    
-    private var model: DeliveryStatusViewModel?
+    private var statusModel: DeliveryStatusViewModel?
     
     enum Constant {
         static let expanedSpacing: CGFloat = 6
@@ -52,77 +71,100 @@ class DeliveryStatusView: UIStackView {
         self.layoutMargins = .init(top: 0, left: 0, bottom: 20, right: 0)
     }
     
-    func configure(_ model: DeliveryStatusViewModel) {
-        self.model = model
+    func configure(_ statusModel: DeliveryStatusViewModel) {
+        self.statusModel = statusModel
         
-        self.titleView.configure(model.title, self)
+        self.titleView.configure(statusModel.title, self)
         
-        if let message = model.message {
-            let messageContainer = UIView()
-            let messageLabel = UILabel()
-
-            messageLabel.text = message
-            messageLabel.numberOfLines = 0
-            messageLabel.font = .italicSystemFont(ofSize: 12)
-            messageLabel.textColor = UIColor.hexStringToUIColor(hex: "777777")
-
-            messageContainer.addSubview(messageLabel)
-            
-            messageContainer.translatesAutoresizingMaskIntoConstraints = false
-            messageLabel.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                messageLabel.leadingAnchor.constraint(equalTo: messageContainer.leadingAnchor, constant: 40),
-                messageLabel.trailingAnchor.constraint(equalTo: messageContainer.trailingAnchor),
-                messageLabel.topAnchor.constraint(equalTo: messageContainer.topAnchor),
-                messageLabel.bottomAnchor.constraint(equalTo: messageContainer.bottomAnchor)
-            ])
-            
-            self.messageContainer = messageContainer
-            self.messageLabel = messageLabel
-            
-            self.addArrangedSubview(messageContainer)
+        if let message = statusModel.message {
+            configureMessage(text: message)
         }
         
-        model.steps.forEach { step in
-            let view = DeliveryStatusStepView()
-            view.setType(step)
-            self.stepsViews.append(view)
-            self.stepsContainerView.addArrangedSubview(view)
-        }
+        // TODO: Alesya Volosach | Оставшееся под вопросом: какие статусы будут приходить в первом и последнем шаге(там где есть карточка)
         
-        if let cardModel = model.card {
-            let cardView = DeliveryStatusCardView()
-            cardView.configure(cardModel)
-            
-            cardView.isLayoutMarginsRelativeArrangement = true
-            cardView.layoutMargins = .init(top: 8, left: 26, bottom: 0, right: 0)
-            self.addArrangedSubview(cardView)
-            self.cardView = cardView
-            
-            if let shortInfoModel = model.stepForShortView {
-                let shortInfoViews = DeliveryStatusStepView()
-                shortInfoViews.setType(shortInfoModel)
-                self.stepsViews.append(shortInfoViews)
-                self.stepsContainerView.addArrangedSubview(shortInfoViews)
+        if let cardModel = statusModel.card {
+            configureCard(model: cardModel)
+        } else {
+            statusModel.steps.forEach { step in
+                let view = DeliveryStatusStepView()
+                view.setType(step)
+                self.stepsViews.append(view)
+                self.stepsContainerView.addArrangedSubview(view)
             }
         }
         
-        // TODO: Alesya Volosach | Определить зачем тогл в конфигурации?
-        toggleState()
-        if !model.isLastStatus {
-            setProgressLine()
+        if !statusModel.isLastStatus {
+            configureProgressLine()
+        }
+        
+        configureInitialExpandedState()
+    }
+    
+    private func configureMessage(text: String) {
+        let messageContainer = UIView()
+        let messageLabel = UILabel()
+
+        messageLabel.text = text
+        
+        // Styles
+        messageLabel.numberOfLines = 0
+        messageLabel.font = .italicSystemFont(ofSize: 12)
+        messageLabel.textColor = UIColor.hexStringToUIColor(hex: "777777")
+
+        messageContainer.addSubview(messageLabel)
+        
+        // Constraints
+        messageContainer.translatesAutoresizingMaskIntoConstraints = false
+        messageLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            messageLabel.leadingAnchor.constraint(equalTo: messageContainer.leadingAnchor, constant: 40),
+            messageLabel.trailingAnchor.constraint(equalTo: messageContainer.trailingAnchor),
+            messageLabel.topAnchor.constraint(equalTo: messageContainer.topAnchor),
+            messageLabel.bottomAnchor.constraint(equalTo: messageContainer.bottomAnchor)
+        ])
+        
+        // Save
+        self.messageContainer = messageContainer
+        self.messageLabel = messageLabel
+        
+        // Common Hierachy
+        self.addArrangedSubview(messageContainer)
+    }
+    
+    private func configureCard(model cardModel:  DeliveryStatusViewModel.Card) {
+        guard let model = statusModel else { return }
+        
+        let cardView = DeliveryStatusCardView()
+        cardView.configure(cardModel)
+        
+        cardView.isLayoutMarginsRelativeArrangement = true
+        cardView.layoutMargins = .init(top: 8, left: 26, bottom: 0, right: 0)
+        
+        self.addArrangedSubview(cardView)
+        
+        // Save
+        self.cardView = cardView
+        
+        // Short Info (Table)
+        if let shortInfoModel = model.stepForShortView {
+            let shortInfoViews = DeliveryStatusStepView()
+            shortInfoViews.setType(shortInfoModel)
+            
+            self.stepsViews.append(shortInfoViews)
+            self.stepsContainerView.addArrangedSubview(shortInfoViews)
         }
     }
     
-    func setProgressLine() {
-        guard let model = model else { return }
+    private func configureProgressLine() {
+        guard let model = statusModel else { return }
         
         let backgroundLine = UIView()
         let accentLine = UIView()
         
-        // Set accent line
+        // Set progress
         accentLine.backgroundColor = model.title.group.tintColor
+        
         accentLine.translatesAutoresizingMaskIntoConstraints = false
         self.insertSubview(accentLine, at: 0)
         
@@ -147,6 +189,7 @@ class DeliveryStatusView: UIStackView {
         
         // Set bg line
         backgroundLine.backgroundColor = UIColor.hexStringToUIColor(hex: "DFDFDF")
+        
         backgroundLine.translatesAutoresizingMaskIntoConstraints = false
         self.insertSubview(backgroundLine, at: 0)
         
@@ -157,38 +200,59 @@ class DeliveryStatusView: UIStackView {
             backgroundLine.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
+        // Save
         self.backgroundLine = backgroundLine
         self.progressLine = accentLine
-        
     }
     
-    // TODO: Alesya Volosach | Отрефакторить
+    func configureInitialExpandedState(){
+        self.isExpanded = false
+        commpressStatus()
+        self.spacing = isExpanded ? Constant.expanedSpacing : Constant.compressSpacing
+    }
+}
+
+// MARK: - Toggle state
+extension DeliveryStatusView {
     func toggleState() {
-        if isExpaned {
+        if isExpanded {
             commpressStatus()
         } else {
             expandStatus()
         }
-        isExpaned.toggle()
-        self.spacing = isExpaned ? Constant.expanedSpacing : Constant.compressSpacing
+        isExpanded.toggle()
+        self.spacing = isExpanded ? Constant.expanedSpacing : Constant.compressSpacing
     }
     
-    func expandStatus() {
-        if self.messageContainer != nil {
-            messageContainer?.isHidden = false
-            messageContainer?.alpha = 1
-        }
-
-        if model?.card != nil {
+    private func expandStatus() {
+        // Message
+        messageContainer?.isHidden = false
+        messageContainer?.alpha = 1
+        
+        // Card or Table
+        if statusModel?.card != nil {
             expandStatusForCard()
         } else {
             expandStatusForTable()
         }
     }
     
+    private func commpressStatus() {
+        // Message
+        messageContainer?.isHidden = true
+        messageContainer?.alpha = 0
+
+        // Card or Table
+        if statusModel?.card != nil {
+            commpressStatusForCard()
+        } else {
+            commpressStatusForTable()
+        }
+    }
+    
     private func expandStatusForTable() {
         stepsViews.enumerated().forEach { index, view in
-            guard let model = model else { return }
+            guard let model = statusModel else { return }
             view.setType(model.steps[index])
         }
         stepsViews.forEach { view in
@@ -205,21 +269,8 @@ class DeliveryStatusView: UIStackView {
         self.stepsContainerView.alpha = 0
     }
     
-    func commpressStatus() {
-        if self.messageContainer != nil {
-            messageContainer?.isHidden = true
-            messageContainer?.alpha = 0
-        }
-
-        if model?.card != nil {
-            commpressStatusForCard()
-        } else {
-            commpressStatusForTable()
-        }
-    }
-    
     private func commpressStatusForTable() {
-        guard let model = model else { return }
+        guard let model = statusModel else { return }
         
         guard let stepForShortView = model.stepForShortView else {
             // TODO: Alesya Volosach | По идее невозможный кейс
@@ -246,6 +297,7 @@ class DeliveryStatusView: UIStackView {
     }
 }
 
+// MARK: - DeliveryStatusTitleDelegate
 extension DeliveryStatusView: DeliveryStatusTitleDelegate {
     func tappedTitle() {
         UIView.animate(

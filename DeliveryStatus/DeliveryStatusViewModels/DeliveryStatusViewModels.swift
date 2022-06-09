@@ -139,7 +139,6 @@ struct DeliveryStatusViewModel {
     }
     
     // TODO: Alesya Volosach | прост временное упрощение
-    
     struct StepExample {
         var title: String
         var type: StepType

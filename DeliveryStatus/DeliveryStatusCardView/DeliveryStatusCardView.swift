@@ -33,6 +33,7 @@ class DeliveryStatusCardView: UIStackView {
     private var model: DeliveryStatusViewModel.Card?
     
     enum Constant {
+        // TODO: Alesya Volosach | было бы круто вынести кудаа-то к ui-lib эту константу, она распространяется на все виджеты и практически все плашки
         static let surfaceCornerRadius: CGFloat = 12
     }
     

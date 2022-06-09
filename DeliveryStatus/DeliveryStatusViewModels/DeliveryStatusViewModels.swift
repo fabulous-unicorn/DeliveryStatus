@@ -25,6 +25,10 @@ struct DeliveryStatusViewModel {
     
     ///  Доступно ли расскрытие группы
     var isExpandingAvailable: Bool {
+        if self.group == .created && self.evolutionStage == .past {
+            return false
+        }
+        
         return !self.steps.isEmpty || self.card != nil
     }
     

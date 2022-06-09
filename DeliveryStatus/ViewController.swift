@@ -49,7 +49,12 @@ extension ViewController {
             planedDeliveryInfo: """
                         Поступление в курьерскую службу до:
                         22 апреля 2020
-                        """
+                        """,
+            keepDateInfo: """
+                        Срок хранения до:
+                        29 апреля 2022
+                        """,
+            keepInfoLink: URL(string: "")
         )
         
 //        let cardModel = DeliveryStatusViewModel.CardExample(

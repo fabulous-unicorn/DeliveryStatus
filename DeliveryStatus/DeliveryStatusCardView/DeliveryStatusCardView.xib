@@ -36,7 +36,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="346" height="274"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" spacing="1" id="gKp-iE-SLH">
-                            <rect key="frame" x="16" y="12" width="314" height="68"/>
+                            <rect key="frame" x="16" y="12" width="314" height="70"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGo-cs-dLh">
@@ -68,13 +68,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Москва, ул. Ленина 234, кв. 56" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkY-C4-Ihw">
-                                    <rect key="frame" x="0.0" y="25" width="314" height="22"/>
+                                    <rect key="frame" x="0.0" y="25" width="314" height="24"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Показать на карте" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzV-xC-LIB">
-                                    <rect key="frame" x="0.0" y="48" width="314" height="20"/>
+                                    <rect key="frame" x="0.0" y="50" width="314" height="20"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="bX8-J7-ROV"/>
@@ -86,7 +86,7 @@
                             </subviews>
                         </stackView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uhU-Mf-KeS">
-                            <rect key="frame" x="16" y="92" width="314" height="40.5"/>
+                            <rect key="frame" x="16" y="94" width="314" height="40.5"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <attributedString key="attributedText">
                                 <fragment>
@@ -106,15 +106,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L40-F5-DAO">
-                            <rect key="frame" x="16" y="144.5" width="314" height="31"/>
+                            <rect key="frame" x="16" y="146.5" width="314" height="29"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="32" id="OxP-rM-HPW"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                             <color key="tintColor" red="0.1019607843" green="0.69803921570000005" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Изменить">
-                                <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                            </buttonConfiguration>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Изменить"/>
                             <connections>
                                 <action selector="tappedChange:" destination="-1" eventType="touchUpInside" id="HyC-zU-Z0Y"/>
                             </connections>

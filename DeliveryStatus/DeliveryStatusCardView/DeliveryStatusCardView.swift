@@ -90,29 +90,9 @@ class DeliveryStatusCardView: UIStackView {
         keepInfoContainer.borderColor = UIColor(named: "borderSurface")
         keepInfoContainer.borderWidth = 1
         
-        // Buttons
-        if #available(iOS 15, *) {
-            var configuration = changeButton.configuration
-            configuration?.contentInsets = .init(
-                top: 0,
-                leading: 0,
-                bottom: 0,
-                trailing: 0
-            )
-            configuration?.attributedTitle = .init("Изменить")
-            configuration?.attributedTitle?.font = .systemFont(ofSize: 14, weight: .semibold)
-            
-            changeButton.configuration = configuration
-//            changeButton.setNeedsUpdateConfiguration()
-        } else {
-            changeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
-            changeButton.imageEdgeInsets = .init(
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 0
-            )
-        }
+        // Button
+        changeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
+        changeButton.imageEdgeInsets = .init(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     // MARK: - Actions Outlets

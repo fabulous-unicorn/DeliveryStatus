@@ -8,34 +8,41 @@
 import Foundation
 import UIKit
 // TODO: Alesya Volosach | Доработать установку стилей текста в didSet
-/// Карточка для группы статусов
-class DeliveryStatusCardView: UIStackView {
-    @IBOutlet var contentView: UIStackView!
-    
-    @IBOutlet weak var mainInfoContainer: UIStackView!
-    // Only version before iOS 14
-    private var mainInfoBackgroundView = UIView()
-    
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var modeTitleLabel: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
-    // TODO: Alesya Volosach | Пересмотреть отображать кнопку или сделать невидимую кнопку захватывающую в область нажатия адрес
-    @IBOutlet weak var openMapButton: UIButton!
-    @IBOutlet weak var pickUpInfoLabel: UILabel!
-    @IBOutlet weak var changeButton: UIButton!
-    @IBOutlet weak var planneDeliveryInfoLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
 
-    @IBOutlet weak var keepInfoContainer: UIView!
-    @IBOutlet weak var keepInfoLabel: UILabel!
-    @IBOutlet weak var keepInfoButton: UIButton!
+/**
+View: Карточка для группы-статуса
+ 
+Визуально включает в себя либо одну, либо 2 плашки с информацией о принятие/отдаче заказа
+ */
+class DeliveryStatusCardView: UIStackView {
+    @IBOutlet private var contentView: UIStackView!
     
-    private var model: DeliveryStatusViewModel.Card?
+    @IBOutlet private weak var mainInfoContainer: UIStackView!
+    // Only version before iOS 14
+    private let mainInfoBackgroundView = UIView()
+    
+    @IBOutlet private weak var iconView: UIImageView!
+    @IBOutlet private weak var modeTitleLabel: UILabel!
+    @IBOutlet private weak var addressLabel: UILabel!
+    // TODO: Alesya Volosach | Пересмотреть отображать кнопку или сделать невидимую кнопку захватывающую в область нажатия адрес
+    @IBOutlet private weak var openMapButton: UIButton!
+    @IBOutlet private weak var pickUpInfoLabel: UILabel!
+    @IBOutlet private weak var changeButton: UIButton!
+    @IBOutlet private weak var planneDeliveryInfoLabel: UILabel!
+    @IBOutlet private weak var messageLabel: UILabel!
+
+    @IBOutlet private weak var keepInfoContainer: UIView!
+    @IBOutlet private weak var keepInfoLabel: UILabel!
+    @IBOutlet private weak var keepInfoButton: UIButton!
+    
+    private var cardModel: DeliveryStatusViewModel.Card?
     
     enum Constant {
-        // TODO: Alesya Volosach | было бы круто вынести кудаа-то к ui-lib эту константу, она распространяется на все виджеты и практически все плашки
+        // TODO: Alesya Volosach | было бы круто вынести куда-то к ui-lib эту константу, она распространяется на все виджеты и практически все плашки
         static let surfaceCornerRadius: CGFloat = 12
     }
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -116,6 +123,7 @@ class DeliveryStatusCardView: UIStackView {
         changeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
     }
     
+    // MARK: - Actions Outlets
 
     @IBAction func tappedOpenMap(_ sender: Any) {
         print("| Log | Open map")
@@ -128,31 +136,33 @@ class DeliveryStatusCardView: UIStackView {
     }
     
     @IBAction func tappedKeepInfo(_ sender: Any) {
-        print("| Log | Open keep Info: Url: \(model?.keepInfoLink)")
+        print("| Log | Open keep Info: Url: \(cardModel?.keepInfoLink)")
         // Открытие отсюда
     }
     
-    func configure(_ model: DeliveryStatusViewModel.Card) {
-        self.model = model
+    // MARK: - Configure
+    
+    func configure(_ cardModel: DeliveryStatusViewModel.Card) {
+        self.cardModel = cardModel
         
-        iconView.image = model.icon
-        modeTitleLabel.text = model.title
-        addressLabel.text = model.address
+        iconView.image = cardModel.icon
+        modeTitleLabel.text = cardModel.title
+        addressLabel.text = cardModel.address
         
-        openMapButton.isHidden = model.officeId == nil
+        openMapButton.isHidden = cardModel.officeId == nil
         
-        pickUpInfoLabel.isHidden = model.pickUpInfo == nil
-        pickUpInfoLabel.text = model.pickUpInfo
+        pickUpInfoLabel.isHidden = cardModel.pickUpInfo == nil
+        pickUpInfoLabel.text = cardModel.pickUpInfo
         
         changeButton.isHidden = !model.displayChangeButton
         
-        planneDeliveryInfoLabel.isHidden = model.planedDeliveryInfo == nil
-        planneDeliveryInfoLabel.text = model.planedDeliveryInfo
+        planneDeliveryInfoLabel.isHidden = cardModel.planedDeliveryInfo == nil
+        planneDeliveryInfoLabel.text = cardModel.planedDeliveryInfo
         
-        messageLabel.isHidden = model.message == nil
-        messageLabel.text = model.message
+        messageLabel.isHidden = cardModel.message == nil
+        messageLabel.text = cardModel.message
         
-        keepInfoContainer.isHidden = model.keepDateInfo == nil
-        keepInfoLabel.text = model.keepDateInfo
+        keepInfoContainer.isHidden = cardModel.keepDateInfo == nil
+        keepInfoLabel.text = cardModel.keepDateInfo
     }
 }

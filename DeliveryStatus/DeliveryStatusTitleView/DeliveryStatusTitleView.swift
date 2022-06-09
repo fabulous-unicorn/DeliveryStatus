@@ -25,6 +25,7 @@ View: Заголовок группы-статуса для заказа
  */
 class DeliveryStatusTitleView: UIView {
     @IBOutlet private weak var contentView: UIView!
+    
     @IBOutlet private weak var iconView: UIImageView!
     @IBOutlet private weak var iconContainerView: UIView!
     
@@ -41,6 +42,8 @@ class DeliveryStatusTitleView: UIView {
     private var titleModel: DeliveryStatusViewModel.Title?
     private var delegate: DeliveryStatusTitleDelegate?
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -56,12 +59,16 @@ class DeliveryStatusTitleView: UIView {
         contentView.fixInView(self)
     }
     
+    // MARK: - Actions Outlets
+    
     @IBAction func tappedTitle(_ sender: Any) {
         guard titleModel?.isAvailableExpanded == true else { return }
         
         showArrowAnimation()
         delegate?.tappedTitle()
     }
+    
+    // MARK: - Configure
     
     func configure(
         _ model: DeliveryStatusViewModel.Title,
@@ -75,6 +82,8 @@ class DeliveryStatusTitleView: UIView {
         
         setStyles(model)
     }
+    
+    // MARK: - Other
     
     // TODO: Alesya Volosach | Может вывести где-то правило, где передается в методы view модель, а где напрямую тянем из свойств
     private func setStyles(_ model: DeliveryStatusViewModel.Title) {

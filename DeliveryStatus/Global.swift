@@ -12,8 +12,6 @@ enum GlobalConstant {
     static let statusChangeStateAnimationDuration = 0.3
 }
 
-
-
 extension UIView {
     func fixInView(_ container: UIView!) -> Void{
         self.translatesAutoresizingMaskIntoConstraints = false;

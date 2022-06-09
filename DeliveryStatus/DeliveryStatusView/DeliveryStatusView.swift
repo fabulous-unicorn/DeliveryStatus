@@ -87,7 +87,7 @@ class DeliveryStatusView: UIStackView {
         } else {
             statusModel.steps.forEach { step in
                 let view = DeliveryStatusStepView()
-                view.setType(step)
+                view.configure(step)
                 self.stepsViews.append(view)
                 self.stepsContainerView.addArrangedSubview(view)
             }
@@ -149,7 +149,7 @@ class DeliveryStatusView: UIStackView {
         // Short Info (Table)
         if let shortInfoModel = model.stepForShortView {
             let shortInfoViews = DeliveryStatusStepView()
-            shortInfoViews.setType(shortInfoModel)
+            shortInfoViews.configure(shortInfoModel)
             
             self.stepsViews.append(shortInfoViews)
             self.stepsContainerView.addArrangedSubview(shortInfoViews)
@@ -253,7 +253,7 @@ extension DeliveryStatusView {
     private func expandStatusForTable() {
         stepsViews.enumerated().forEach { index, view in
             guard let model = statusModel else { return }
-            view.setType(model.steps[index])
+            view.configure(model.steps[index])
         }
         stepsViews.forEach { view in
                 view.alpha = 1
@@ -280,7 +280,7 @@ extension DeliveryStatusView {
             return
         }
 
-        stepsViews.last?.setType(stepForShortView)
+        stepsViews.last?.configure(stepForShortView)
         
         stepsViews.enumerated().forEach { index, view in
             view.isHidden = index == stepsViews.count - 1 ? false : true

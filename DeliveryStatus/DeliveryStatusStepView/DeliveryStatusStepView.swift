@@ -10,12 +10,16 @@ import UIKit
 
 class DeliveryStatusStepView: UIView {
     @IBOutlet private weak var contentView: UIView!
+    
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     
-    @IBOutlet weak var topSpace: NSLayoutConstraint!
-    var model: DeliveryStatusViewModel.Step?
+    @IBOutlet private weak var topSpace: NSLayoutConstraint!
+    
+    private var stepModel: DeliveryStatusViewModel.Step?
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,69 +31,85 @@ class DeliveryStatusStepView: UIView {
         commonInit()
     }
     
-    func commonInit() {
+    private func commonInit() {
         Bundle.main.loadNibNamed("DeliveryStatusStepView", owner: self, options: nil)
         contentView.fixInView(self)
     }
     
-    func setType(_ model: DeliveryStatusViewModel.Step) {
-        self.model = model
+    // MARK: - Configure
+    
+    func configure(_ stepModel: DeliveryStatusViewModel.Step) {
+        self.stepModel = stepModel
         
-        switch model.type {
+        switch stepModel.type {
         case .simple:
-            UIView.transition(
-                with: self.titleLabel,
-                duration: GlobalConstant.statusChangeStateAnimationDuration,
-                options: .transitionCrossDissolve,
-                animations: {
-                    self.titleLabel.text = model.title
-                    self.titleLabel.font = .systemFont(ofSize: 12)
-                    self.titleLabel.textColor = model.evolutionStage == .future ? .lightGray : .black
-                },
-                completion: nil
-            )
-               
-                self.statusView.alpha = 0
-                self.dateLabel.alpha = 0
-                self.topSpace.constant = 0
-                
+            configureSimple(stepModel)
         case .subhead:
-                UIView.transition(
-                    with: self.titleLabel,
-                    duration: GlobalConstant.statusChangeStateAnimationDuration,
-                    options: .transitionCrossDissolve,
-                    animations: {
-                        self.titleLabel.text = model.title
-                        self.titleLabel.font = .systemFont(ofSize: 13)
-                        self.titleLabel.textColor = .black
-                    },
-                    completion: nil
-                )
-                
-                self.statusView.alpha = 0
-                self.dateLabel.alpha = 0
-                self.topSpace.constant = 4
-                
-            case let .point(date, isPrimary):
-                UIView.transition(
-                    with: self.titleLabel,
-                    duration: GlobalConstant.statusChangeStateAnimationDuration,
-                    options: .transitionCrossDissolve,
-                    animations: {
-                        self.titleLabel.text = model.title
-                        self.titleLabel.font = .systemFont(ofSize: 12)
-                        self.titleLabel.textColor = isPrimary ? .black : .lightGray
-                    },
-                    completion: nil
-                )
-                
-                self.dateLabel.text = date
-                self.dateLabel.alpha = 1
-                
-                self.statusView.backgroundColor = model.group.tintColor
-                self.statusView.alpha = 1
-                
-                self.topSpace.constant = 0
+            configureSubhead(stepModel)
+        case let .point(date, isPrimary):
+            configurePoint(stepModel, date, isPrimary)
         }
+    }
+    
+    private func configureSimple(_ stepModel: DeliveryStatusViewModel.Step) {
+        UIView.transition(
+            with: self.titleLabel,
+            duration: GlobalConstant.statusChangeStateAnimationDuration,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.titleLabel.text = stepModel.title
+                self.titleLabel.font = .systemFont(ofSize: 12)
+                self.titleLabel.textColor = stepModel.evolutionStage == .future ? .lightGray : .black
+            },
+            completion: nil
+        )
+           
+            self.statusView.alpha = 0
+            self.dateLabel.alpha = 0
+            self.topSpace.constant = 0
+    }
+    
+    private func configureSubhead(_ stepModel: DeliveryStatusViewModel.Step) {
+        UIView.transition(
+            with: self.titleLabel,
+            duration: GlobalConstant.statusChangeStateAnimationDuration,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.titleLabel.text = stepModel.title
+                self.titleLabel.font = .systemFont(ofSize: 13)
+                self.titleLabel.textColor = .black
+            },
+            completion: nil
+        )
+        
+        self.statusView.alpha = 0
+        self.dateLabel.alpha = 0
+        self.topSpace.constant = 4
+    }
+    
+    private func configurePoint(
+        _ stepModel: DeliveryStatusViewModel.Step,
+        _ date: String,
+        _ isPrimary: Bool
+    ) {
+        UIView.transition(
+            with: self.titleLabel,
+            duration: GlobalConstant.statusChangeStateAnimationDuration,
+            options: .transitionCrossDissolve,
+            animations: {
+                self.titleLabel.text = stepModel.title
+                self.titleLabel.font = .systemFont(ofSize: 12)
+                self.titleLabel.textColor = isPrimary ? .black : .lightGray
+            },
+            completion: nil
+        )
+        
+        self.dateLabel.text = date
+        self.dateLabel.alpha = 1
+        
+        self.statusView.backgroundColor = stepModel.group.tintColor
+        self.statusView.alpha = 1
+        
+        self.topSpace.constant = 0
     }
 }

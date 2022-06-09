@@ -24,17 +24,17 @@ View: Заголовок группы-статуса для заказа
 - Поворачивающаяся стрелка
  */
 class DeliveryStatusTitleView: UIView {
-    enum Constant {
-        static let `default`: CGFloat = 0
-        static let rotate = -CGFloat.pi * 99 / 100
-    }
-    
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var iconView: UIImageView!
     @IBOutlet private weak var iconContainerView: UIView!
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var arrowView: UIImageView!
+    
+    enum TurnArrowConstant {
+        static let `default`: CGFloat = 0
+        static let rotate = -CGFloat.pi * 99 / 100
+    }
     
     private var isRotate = false
     
@@ -102,7 +102,7 @@ class DeliveryStatusTitleView: UIView {
     func showArrowAnimation() {
         UIView.animate(withDuration: GlobalConstant.statusChangeStateAnimationDuration) {
             self.arrowView.transform = CGAffineTransform(
-                rotationAngle: self.isRotate ? Constant.default :  Constant.rotate)
+                rotationAngle: self.isRotate ? TurnArrowConstant.default :  TurnArrowConstant.rotate)
         }
         isRotate.toggle()
     }

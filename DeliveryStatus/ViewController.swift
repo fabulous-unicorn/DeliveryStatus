@@ -13,31 +13,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let evolutionStage0: DeliveryStatusViewModel.Stage = .past
-    
-        let group1: DeliveryStatusViewModel.Group = .inProgress
-        let evolutionStage1: DeliveryStatusViewModel.Stage = .past
-        
-        let group2: DeliveryStatusViewModel.Group = .courier
-        let evolutionStage2: DeliveryStatusViewModel.Stage = .present
-        
-        let group3: DeliveryStatusViewModel.Group = .delivered
-        let evolutionStage3: DeliveryStatusViewModel.Stage = .future
-        
         let view0 = DeliveryStatusView()
-        view0.configure(getCreateStatus(evolutionStage0, false))
+        view0.configure(getCreateStatus(.past, isLastStatus: false))
         self.containerStackView.addArrangedSubview(view0)
         
         let view1 = DeliveryStatusView()
-        view1.configure(getStatus(group1, evolutionStage1, false))
+        view1.configure(getStatusInProgress(.past, isLastStatus: false))
         self.containerStackView.addArrangedSubview(view1)
         
         let view2 = DeliveryStatusView()
-        view2.configure(getStatusPrimary(group2, evolutionStage2, false))
+        view2.configure(getStatusCourier(.present, isLastStatus: false))
         self.containerStackView.addArrangedSubview(view2)
         
         let view3 = DeliveryStatusView()
-        view3.configure(getStatus3(group3, evolutionStage3, true))
+        view3.configure(getStatusDelivered(.future, isLastStatus: true))
         self.containerStackView.addArrangedSubview(view3)
     }
 }
@@ -45,12 +34,10 @@ class ViewController: UIViewController {
 extension ViewController {
     func getCreateStatus(
         _ evolutionStage: DeliveryStatusViewModel.Stage,
-        _ isLastStatus: Bool
+        isLastStatus: Bool
     )  -> DeliveryStatusViewModel {
         
-        let group: DeliveryStatusViewModel.Group = .created
-        let cardModel = DeliveryStatusViewModel.Card(
-            group: group,
+        let cardModel = DeliveryStatusViewModel.CardExample(
             mode: .home,
             address: "Москва, ул. Ленина 234, кв. 56",
             displayChangeButton: true,
@@ -61,141 +48,99 @@ extension ViewController {
         )
         
         return DeliveryStatusViewModel(
-            group: group,
-            message: """
-                     Отправитель еще не передал посылку
-                     для доставки в СДЭК.
-                     """,
+            group: .created,
             evolutionStage: evolutionStage,
             isLastStatus: isLastStatus,
-            title: DeliveryStatusViewModel.Title(
-                title: "Создан заказ",
-                date: "17.04.2020",
-                isAvailableExpanded: true,
-                evolutionStage: evolutionStage,
-                group: group
-            ),
+            title: "Создан заказ",
+            date: "17.04.2020",
             steps: [],
             card: cardModel
         )
     }
     
-    
-    
-    func getStatus(
-        _ group: DeliveryStatusViewModel.Group,
+    func getStatusInProgress(
         _ evolutionStage: DeliveryStatusViewModel.Stage,
-        _ isLastStatus: Bool
+        isLastStatus: Bool
     )  -> DeliveryStatusViewModel {
     return DeliveryStatusViewModel(
-            group: group,
-            evolutionStage: evolutionStage,
-            isLastStatus: isLastStatus,
-            title: DeliveryStatusViewModel.Title(
-                title: "Посылка прибыла",
-                date: nil,
-                isAvailableExpanded: true,
-                evolutionStage: evolutionStage,
-                group: group
-            ),
-            steps: [
-                DeliveryStatusViewModel.Step(
-                    title: "Москва",
-                    type: .subhead,
-                    evolutionStage: evolutionStage,
-                    group: group
-                ),
-                DeliveryStatusViewModel.Step(
-                    title: "Принято на доставку",
-                    type: .point(
-                        date: "18.04.2020",
-                        isPrimary: false
-                    ),
-                    evolutionStage: evolutionStage,
-                    group: group
-                ),
-                DeliveryStatusViewModel.Step(
-                    title: "Отправлено в город назначения",
-                    type: .point(
-                        date: "20.04.2020",
-                        isPrimary: false
-                    ),
-                    evolutionStage: evolutionStage,
-                    group: group
-                ),
-                DeliveryStatusViewModel.Step(
-                    title: "Новосибирск",
-                    type: .subhead,
-                    evolutionStage: evolutionStage,
-                    group: group
-                ),
-                DeliveryStatusViewModel.Step(
-                    title: "Готов  к выдаче",
-                    type: .point(
-                        date: "22.04.2020",
-                        isPrimary: false
-                    ),
-                    evolutionStage: evolutionStage,
-                    group: group
-                )
-            ]
-        )
-    }
-    
-    func getStatusPrimary(
-        _ group: DeliveryStatusViewModel.Group,
-        _ evolutionStage: DeliveryStatusViewModel.Stage,
-        _ isLastStatus: Bool
-    )  -> DeliveryStatusViewModel {
-    return DeliveryStatusViewModel(
-        group: group,
+        group: .inProgress,
         evolutionStage: evolutionStage,
         isLastStatus: isLastStatus,
-        title: DeliveryStatusViewModel.Title(
-            title: "Доставка курьером",
-            date: nil,
-            isAvailableExpanded: true,
-            evolutionStage: evolutionStage,
-            group: group
-        ),
+        title: "Посылка прибыла",
+        date: "18.04.2020",
         steps: [
-            DeliveryStatusViewModel.Step(
-                title: "Выдано курьеру",
-                type: .point(
-                    date: "22.04.2020",
-                    isPrimary: true
-                ),
-                evolutionStage: evolutionStage,
-                group: group
+            DeliveryStatusViewModel.StepExample(
+                title: "Москва",
+                type: .subhead
             ),
-            DeliveryStatusViewModel.Step(
-                title: "Курьер не смог вручить посылку",
+            DeliveryStatusViewModel.StepExample(
+                title: "Принято на доставку",
+                type: .point(
+                    date: "18.04.2020",
+                    isPrimary: false
+                )
+            ),
+            DeliveryStatusViewModel.StepExample(
+                title: "Отправлено в город назначения",
+                type: .point(
+                    date: "20.04.2020",
+                    isPrimary: false
+                )
+            ),
+            DeliveryStatusViewModel.StepExample(
+                title: "Новосибирск",
+                type: .subhead
+            ),
+            DeliveryStatusViewModel.StepExample(
+                title: "Готов  к выдаче",
                 type: .point(
                     date: "22.04.2020",
-                    isPrimary: true
-                ),
-                evolutionStage: evolutionStage,
-                group: group
+                    isPrimary: false
+                )
             )
-        ])
+        ]
+    )
     }
     
-    func getStatus3(
-        _ group: DeliveryStatusViewModel.Group,
+    func getStatusCourier(
         _ evolutionStage: DeliveryStatusViewModel.Stage,
-        _ isLastStatus: Bool
+        isLastStatus: Bool
+    )  -> DeliveryStatusViewModel {
+        return DeliveryStatusViewModel(
+            group: .courier,
+            evolutionStage: evolutionStage,
+            isLastStatus: isLastStatus,
+            title: "Доставка курьером",
+            date: "19.04.2020",
+            steps: [
+                DeliveryStatusViewModel.StepExample(
+                    title: "Выдано курьеру",
+                    type: .point(
+                        date: "22.04.2020",
+                        isPrimary: true
+                    )
+                ),
+                DeliveryStatusViewModel.StepExample(
+                    title: "Курьер не смог вручить посылку",
+                    type: .point(
+                        date: "22.04.2020",
+                        isPrimary: true
+                    )
+                )
+            ])
+    }
+
+    
+    func getStatusDelivered(
+        _ evolutionStage: DeliveryStatusViewModel.Stage,
+        isLastStatus: Bool
     )  -> DeliveryStatusViewModel {
     return DeliveryStatusViewModel(
-                group: group,
+        group: .delivered,
                 evolutionStage: evolutionStage,
                 isLastStatus: isLastStatus,
-                title: DeliveryStatusViewModel.Title(
-                    title: "Вручение",
-                    date: "27.04.2020",
-                    isAvailableExpanded: false,
-                    evolutionStage: evolutionStage,
-                    group: group
-                ),
+                title: "Вручение",
+                date: nil,
                 steps: []
             )
     }

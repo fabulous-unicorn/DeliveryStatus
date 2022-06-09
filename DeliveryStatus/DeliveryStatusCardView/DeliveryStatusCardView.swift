@@ -119,14 +119,17 @@ class DeliveryStatusCardView: UIStackView {
 
     @IBAction func tappedOpenMap(_ sender: Any) {
         print("| Log | Open map")
+        // Открытие отсюда
     }
     
     @IBAction func tappedChange(_ sender: Any) {
         print("| Log | Tap change")
+        // Output
     }
     
     @IBAction func tappedKeepInfo(_ sender: Any) {
         print("| Log | Open keep Info: Url: \(model?.keepInfoLink)")
+        // Открытие отсюда
     }
     
     func configure(_ model: DeliveryStatusViewModel.Card) {

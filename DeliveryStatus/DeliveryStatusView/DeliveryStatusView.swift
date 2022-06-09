@@ -16,12 +16,12 @@ class DeliveryStatusView: UIStackView {
     private var messageContainer: UIView?
     private var messageLabel: UILabel?
     
-    private var backgroundLine = UIView()
-    private var accentLine = UIView()
-    
-    private var isExpaned = true
+    private var backgroundLine: UIView?
+    private var progressLine: UIView?
     
     private var stepsViews: [DeliveryStatusStepView] = []
+    
+    private var isExpaned = true
     
     private var model: DeliveryStatusViewModel?
     
@@ -29,6 +29,7 @@ class DeliveryStatusView: UIStackView {
         static let expanedSpacing: CGFloat = 6
         static let compressSpacing: CGFloat = 2
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -42,6 +43,7 @@ class DeliveryStatusView: UIStackView {
     func commonInit() {
         self.addArrangedSubview(titleView)
         self.addArrangedSubview(stepsContainerView)
+        
         self.axis = .vertical
         self.stepsContainerView.axis = .vertical
         self.stepsContainerView.spacing = 8.0
@@ -109,12 +111,15 @@ class DeliveryStatusView: UIStackView {
         // TODO: Alesya Volosach | Определить зачем тогл в конфигурации?
         toggleState()
         if !model.isLastStatus {
-            setLine()
+            setProgressLine()
         }
     }
     
-    func setLine() {
+    func setProgressLine() {
         guard let model = model else { return }
+        
+        let backgroundLine = UIView()
+        let accentLine = UIView()
         
         // Set accent line
         accentLine.backgroundColor = model.title.group.tintColor
@@ -151,6 +156,10 @@ class DeliveryStatusView: UIStackView {
             backgroundLine.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundLine.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
+        
+        self.backgroundLine = backgroundLine
+        self.progressLine = accentLine
+        
     }
     
     // TODO: Alesya Volosach | Отрефакторить

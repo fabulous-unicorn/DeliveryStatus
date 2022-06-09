@@ -23,14 +23,14 @@ struct DeliveryStatusViewModel {
     /// Бэк: order.statusGroup[].message
     var message: String?
     
-    ///  Доступно ли расскрытие группы
-    var isExpandingAvailable: Bool {
-        if self.group == .created && self.evolutionStage == .past {
-            return false
-        }
-        
-        return !self.steps.isEmpty || self.card != nil
-    }
+    ///  Доступно ли расскрытие группы - Здесь свойство будеи не нужно, его конфигурация будет перенесена в конфигурацию title
+//    var isExpandingAvailable: Bool {
+//        if self.group == .created && self.evolutionStage == .past {
+//            return false
+//        }
+//
+//        return !self.steps.isEmpty || self.card != nil
+//    }
     
     /// Стадия группы относительно заказа
     ///
@@ -138,8 +138,93 @@ struct DeliveryStatusViewModel {
         self.card = card
     }
     
-    // TODO: Alesya Volosach | может быть добавить какие-то специфичные конфигураторы
+    // TODO: Alesya Volosach | прост временное упрощение
     
+    struct StepExample {
+        var title: String
+        var type: StepType
+    }
+
+    struct CardExample {
+        var mode: DeliveryType
+        var address: String
+        var officeId: Int?
+        var pickUpInfo: String?
+        var displayChangeButton: Bool
+        var planedDeliveryInfo: String?
+        var message: String?
+        var keepDateInfo: String?
+        var keepInfoLink: URL?
+        
+        func getCard(group: Group) -> Card {
+            return Card(
+                group: group,
+                mode: self.mode,
+                address: self.address,
+                officeId: self.officeId,
+                pickUpInfo: self.pickUpInfo,
+                displayChangeButton: self.displayChangeButton,
+                planedDeliveryInfo: self.planedDeliveryInfo,
+                message: self.message,
+                keepDateInfo: self.keepDateInfo,
+                keepInfoLink: self.keepInfoLink
+            )
+        }
+    }
+    
+    init(group: Group,
+         message: String? = nil,
+         evolutionStage: Stage,
+         isLastStatus: Bool,
+         title: String,
+         date: String?,
+         steps: [StepExample],
+         card: CardExample? = nil
+    ) {
+        self.message = message
+        self.group = group
+        self.isLastStatus = isLastStatus
+        self.evolutionStage = evolutionStage
+        
+        // Check available expanded
+        var isAvailableExpanded = false
+        if group == .created && evolutionStage == .past {
+            isAvailableExpanded = false
+        } else {
+            isAvailableExpanded = !steps.isEmpty || card != nil
+        }
+        
+        // Date
+        var dateForTitle: String? = nil
+        switch group {
+        case .created, .delivered, .notDelivered:
+            dateForTitle = nil
+        case .inProgress, .courier, .readyForPick:
+            dateForTitle = date
+        }
+        
+        // Title
+        self.title = Title(
+            title: title,
+            date: dateForTitle,
+            isAvailableExpanded: isAvailableExpanded,
+            evolutionStage: evolutionStage,
+            group: group
+        )
+        
+        // Card
+        self.card = card?.getCard(group: group)
+        
+        // Steps
+        self.steps = steps.map { step in
+            return Step(
+                title: step.title,
+                type: step.type,
+                evolutionStage: evolutionStage,
+                group: group
+            )
+        }
+    }
     
     
     // MARK: - DeliveryStatusViewModel.Stage

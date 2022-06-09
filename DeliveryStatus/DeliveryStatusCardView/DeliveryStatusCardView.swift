@@ -24,7 +24,6 @@ class DeliveryStatusCardView: UIStackView {
     @IBOutlet private weak var iconView: UIImageView!
     @IBOutlet private weak var modeTitleLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
-    // TODO: Alesya Volosach | Пересмотреть отображать кнопку или сделать невидимую кнопку захватывающую в область нажатия адрес
     
     @IBOutlet private weak var addressContainer: UIStackView!
     @IBOutlet private weak var openMapLabel: UILabel!
@@ -91,15 +90,22 @@ class DeliveryStatusCardView: UIStackView {
         keepInfoContainer.borderColor = UIColor(named: "borderSurface")
         keepInfoContainer.borderWidth = 1
         
-        // Buttons insets
+        // Buttons
         if #available(iOS 15, *) {
-            changeButton.configuration?.contentInsets = .init(
+            var configuration = changeButton.configuration
+            configuration?.contentInsets = .init(
                 top: 0,
                 leading: 0,
                 bottom: 0,
                 trailing: 0
             )
+            configuration?.attributedTitle = .init("Изменить")
+            configuration?.attributedTitle?.font = .systemFont(ofSize: 14, weight: .semibold)
+            
+            changeButton.configuration = configuration
+//            changeButton.setNeedsUpdateConfiguration()
         } else {
+            changeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
             changeButton.imageEdgeInsets = .init(
                 top: 0,
                 left: 0,
@@ -107,10 +113,6 @@ class DeliveryStatusCardView: UIStackView {
                 right: 0
             )
         }
-        
-        // Buttons fonts
-        // TODO: Alesya Volosach | На 15 версии сбрасывается
-        changeButton.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
     }
     
     // MARK: - Actions Outlets

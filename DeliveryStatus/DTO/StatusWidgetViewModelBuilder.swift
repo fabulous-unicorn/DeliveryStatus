@@ -64,54 +64,9 @@ class StatusWidgetViewModelBuilder {
         switch group {
         case .created: return cardForCreatedGroup(group, groupDTO)
             // TODO: Alesya Volosach | Проверить добавлять ли другие группы?
-//        case .recived: return cardForFinalGroup(group, groupDTO)
+        case .recived: return cardForFinalGroup(group, groupDTO)
         default: return nil
         }
-    }
-    
-//    func cardForFinalGroup(
-//        _ group: DeliveryStatusViewModel.Group,
-//        _ groupDTO: OrderStatusGroupDto,
-//    ) -> DeliveryStatusViewModel.Card {
-//
-//        return DeliveryStatusViewModel.Card(
-//            group: <#T##DeliveryStatusViewModel.Group#>,
-//            mode: <#T##DeliveryStatusViewModel.Card.DeliveryType#>,
-//            address: <#T##String#>,
-//            officeId: <#T##Int?#>,
-//            pickUpInfo: <#T##String?#>,
-//            displayChangeButton: <#T##Bool#>,
-//            planedDeliveryInfo: <#T##String?#>,
-//            message: <#T##String?#>,
-//            keepDateInfo: <#T##String?#>,
-//            keepInfoLink: <#T##URL?#>
-//        )
-//    }
-    
-    func cardForCreatedGroup(
-        _ group: DeliveryStatusViewModel.Group,
-        _ groupDTO: OrderStatusGroupDto
-    ) -> DeliveryStatusViewModel.Card {
-        let mode = deliveryTypeForCard(order.senderDeliveryType)
-        let address = createdAddress(for: order.senderDeliveryType)
-        let officeId = order.senderOffice?.id
-        let pickUpInfo = pickUpInfo()
-        let displayChangeButton = false // Для этого релиза свойство не предполагается
-        
-        return DeliveryStatusViewModel.Card(
-            group: group,
-            // TODO: Alesya Volosach | переименновать поле в type или что-то типо того
-            mode: mode,
-            address: address,
-            officeId: officeId,
-            pickUpInfo: pickUpInfo,
-            displayChangeButton: displayChangeButton,
-            planedDeliveryInfo: nil,
-            // TODO: Alesya Volosach | не преполагается но на всякий проверить
-            message: nil,
-            keepDateInfo: nil,
-            keepInfoLink: nil
-        )
     }
     
     /// Только для отправителя
@@ -122,23 +77,6 @@ class StatusWidgetViewModelBuilder {
                Дата и время забора:
                \(time)
                """
-    }
-    
-    func createdAddress(for deliveryType: DeliveryType?) -> String {
-        let result = order.departureCity.name
-        
-        if deliveryType == .home {
-            if let address = order.sender?.address, !address.isEmpty {
-                return result + "," + address
-            }
-            return result
-        }
-        
-        if let address = order.office?.address, !address.isEmpty {
-            return result + "," + address
-        }
-        
-        return result
     }
     
     func configureGroup(
@@ -220,6 +158,65 @@ class StatusWidgetViewModelBuilder {
         return steps
     }
     
+    func cardForCreatedGroup(
+        _ group: DeliveryStatusViewModel.Group,
+        _ groupDTO: OrderStatusGroupDto
+    ) -> DeliveryStatusViewModel.Card {
+        let mode = deliveryTypeForCard(order.senderDeliveryType)
+        let address = senderAddress(for: order.senderDeliveryType)
+        let officeId = order.senderOffice?.id
+        let pickUpInfo = pickUpInfo()
+        let displayChangeButton = false // Для этого релиза свойство не предполагается
+        
+        return DeliveryStatusViewModel.Card(
+            group: group,
+            // TODO: Alesya Volosach | переименновать поле в type или что-то типо того
+            mode: mode,
+            address: address,
+            officeId: officeId,
+            pickUpInfo: pickUpInfo,
+            displayChangeButton: displayChangeButton,
+            planedDeliveryInfo: nil,
+            // TODO: Alesya Volosach | не преполагается но на всякий проверить
+            message: nil,
+            keepDateInfo: nil,
+            keepInfoLink: nil
+        )
+    }
+    
+    func cardForFinalGroup(
+        _ group: DeliveryStatusViewModel.Group,
+        _ groupDTO: OrderStatusGroupDto
+    ) -> DeliveryStatusViewModel.Card {
+        
+        let mode = deliveryTypeForCard(order.receiverDeliveryType)
+        let address = reciverAddress(for: order.senderDeliveryType)
+        let officeId = order.office?.id
+        let displayChangeButton = order.canBeChanged ?? false
+        let planedDeliveryInfo = planedDeliveryInfo()
+        
+        
+        // TODO: Alesya Volosach | уточнить откуда в итоге тянуть message
+        let message = """
+        Плановая дата доставки будет определена
+        после поступления заказа в СДЭК
+        """
+        let keepDateInfo = keepDateInfo()
+        
+        return DeliveryStatusViewModel.Card(
+            group: group,
+            mode: mode,
+            address: address,
+            officeId: officeId,
+            pickUpInfo: nil, // Еще нет признака
+            displayChangeButton: displayChangeButton,
+            planedDeliveryInfo: planedDeliveryInfo,
+            message: message,
+            keepDateInfo: keepDateInfo,
+            keepInfoLink: order.warehousingInfoUrl
+        )
+    }
+    
     func deliveryTypeForCard(
         _ type: DeliveryType?
     ) -> DeliveryStatusViewModel.Card.DeliveryType {
@@ -234,6 +231,60 @@ class StatusWidgetViewModelBuilder {
         case .postomate:
             return .postomate
         }
+    }
+    
+    func senderAddress(for senderMode: DeliveryType?) -> String {
+        let result = order.departureCity.name
+        
+        if senderMode == .home {
+            if let address = order.sender?.address, !address.isEmpty {
+                return result + "," + address
+            }
+            return result
+        }
+        
+        if let address = order.senderOffice?.address, !address.isEmpty {
+            return result + "," + address
+        }
+        
+        return result
+    }
+    
+    func reciverAddress(for reciverMode: DeliveryType?) -> String {
+        let result = order.destinationCity.name
+        
+        if reciverMode == .home {
+            if let address = order.receiver?.address, !address.isEmpty {
+                return result + "," + address
+            }
+            return result
+        }
+        
+        if let address = order.office?.address, !address.isEmpty {
+            return result + "," + address
+        }
+        
+        return result
+    }
+    
+    func planedDeliveryInfo() -> String? {
+        // TODO: Alesya Volosach | Скорей всего добавяться преобразования для даты
+        guard let dateEnd = order.plannedDeliveryDate else { return nil }
+        
+        let title = "Поступление в курьерскую службу до:"
+        return """
+                \(title)
+                \(dateEnd)
+                """
+    }
+    
+    func keepDateInfo() -> String? {
+        // TODO: Alesya Volosach | Скорей всего добавяться преобразования для даты
+        guard let keepDate = order.storageDateEnd else { return nil }
+        return """
+                Срок хранения до:
+                \(keepDate)
+                """
     }
 }
 

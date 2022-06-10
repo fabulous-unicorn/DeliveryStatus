@@ -62,14 +62,15 @@ class StatusWidgetViewModelBuilder {
         // TODO: Alesya Volosach | дописать
         
         switch group {
-        case .created: return cardForCreatedGroup(groupDTO)
+        case .created: return cardForCreatedGroup(group, groupDTO)
             // TODO: Alesya Volosach | Проверить добавлять ли другие группы?
-//        case .recived: return cardForFinalGroup(groupDTO)
+//        case .recived: return cardForFinalGroup(group, groupDTO)
         default: return nil
         }
     }
     
 //    func cardForFinalGroup(
+//        _ group: DeliveryStatusViewModel.Group,
 //        _ groupDTO: OrderStatusGroupDto,
 //    ) -> DeliveryStatusViewModel.Card {
 //
@@ -88,7 +89,8 @@ class StatusWidgetViewModelBuilder {
 //    }
     
     func cardForCreatedGroup(
-        _ groupDTO: OrderStatusGroupDto,
+        _ group: DeliveryStatusViewModel.Group,
+        _ groupDTO: OrderStatusGroupDto
     ) -> DeliveryStatusViewModel.Card {
         let mode = deliveryTypeForCard(order.senderDeliveryType)
         let address = createdAddress(for: order.senderDeliveryType)
@@ -96,7 +98,7 @@ class StatusWidgetViewModelBuilder {
         let pickUpInfo = pickUpInfo()
         let displayChangeButton = false // Для этого релиза свойство не предполагается
         
-        return DeliveryStatusViewModel.Card((
+        return DeliveryStatusViewModel.Card(
             group: group,
             // TODO: Alesya Volosach | переименновать поле в type или что-то типо того
             mode: mode,
@@ -109,7 +111,7 @@ class StatusWidgetViewModelBuilder {
             message: nil,
             keepDateInfo: nil,
             keepInfoLink: nil
-        ))
+        )
     }
     
     /// Только для отправителя

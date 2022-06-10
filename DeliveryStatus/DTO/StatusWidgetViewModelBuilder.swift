@@ -8,6 +8,7 @@
 import Foundation
 
 class StatusWidgetViewModelBuilder {
+    // TODO: Alesya Volosach | упаковать входные параметры и инициализаторы в тюплы
     
     var order: Order
     var status: [DeliveryStatusViewModel] = []
@@ -29,8 +30,8 @@ class StatusWidgetViewModelBuilder {
         let evolutionStage = configureEvolutionStage(groupDTO.evolutionStage)
         let isLastStatus = index == order.orderStatusGroups.count - 1
         
-        // Steps
-        let steps = configureSteps()
+        let steps = configureSteps(groupDTO, group, evolutionStage)
+        
         // Card
         let card = configureCard()
         
@@ -53,16 +54,7 @@ class StatusWidgetViewModelBuilder {
             steps: steps,
             card: card)
     }
-                
-    func configureSteps() -> [DeliveryStatusViewModel.Step] {
-        // TODO: Alesya Volosach | дописать
-        return []
-        //    var title: String
-        //    var type: StepType
-    }
-    
-    
-    
+                    
     func configureCard() -> DeliveryStatusViewModel.Card? {
         // TODO: Alesya Volosach | дописать
         return nil
@@ -76,7 +68,6 @@ class StatusWidgetViewModelBuilder {
         //    var keepDateInfo: String?
         //    var keepInfoLink: URL?
     }
-    
     
     func configureGroup(
         _ code: OrderStatusGroupDto.Code
@@ -120,6 +111,42 @@ class StatusWidgetViewModelBuilder {
             evolutionStage: evolutionStage,
             group: group
         )
+    }
+    
+    func configureSteps(
+        _ groupDTO: OrderStatusGroupDto,
+        _ group: DeliveryStatusViewModel.Group,
+        _ evolutionStage: DeliveryStatusViewModel.Stage
+    ) -> [DeliveryStatusViewModel.Step] {
+        let steps = groupDTO.roadMap.flatMap{ (step) -> [DeliveryStatusViewModel.Step]  in
+            
+            let nestedSteps = step.statuses.map { nestedStep in
+                return DeliveryStatusViewModel.Step(
+                    title: nestedStep.title,
+                    type: .point(date: nestedStep.date, isPrimary: step.city != nil),
+                    evolutionStage: evolutionStage,
+                    group: group
+                )
+            }
+            
+            if let city = step.city {
+                let subhead = DeliveryStatusViewModel.Step(
+                    title: city,
+                    type: .subhead,
+                    evolutionStage: evolutionStage,
+                    group: group
+                )
+
+                var result = [subhead]
+                result.append(contentsOf: nestedSteps)
+                
+                return result
+            } else {
+                return nestedSteps
+            }
+   
+        }
+        return steps
     }
 }
 

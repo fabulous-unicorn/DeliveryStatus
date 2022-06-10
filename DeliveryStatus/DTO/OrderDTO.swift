@@ -15,7 +15,7 @@ struct OrderStatusGroupDto {
     let message: String?
     let occurrence: String?
     let evolutionStage: EvolutionStage
-    let roadMap: [OrderStatusGroupDto]
+    let roadMap: [OrderDeliveryStepDto]
     
     enum Code: String {
         case initial = "INITIAL"

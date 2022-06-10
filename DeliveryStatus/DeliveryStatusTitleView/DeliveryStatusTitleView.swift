@@ -62,7 +62,7 @@ class DeliveryStatusTitleView: UIView {
     // MARK: - Actions Outlets
     
     @IBAction func tappedTitle(_ sender: Any) {
-        guard titleModel?.isAvailableExpanded == true else { return }
+        guard titleModel?.isExpandingAvailable == true else { return }
         
         showArrowAnimation()
         delegate?.tappedTitle()
@@ -105,7 +105,7 @@ class DeliveryStatusTitleView: UIView {
             titleLabel.alpha = 0.6
         }
         
-        arrowView.isHidden = !model.isAvailableExpanded
+        arrowView.isHidden = !model.isExpandingAvailable
     }
     
     func showArrowAnimation() {

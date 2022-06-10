@@ -26,34 +26,6 @@ extension UIView {
 
 // MARK: - In project
 
-enum DeliveryType: String, Codable {
-    case home = "HOME"
-    case pvz = "PVZ"
-    case postomate = "POSTOMATE"
-    
-    var index: UInt {
-        switch self {
-        case .home:
-            return 0
-        case .pvz:
-            return 1
-        case .postomate:
-            return 2
-        }
-    }
-    
-    static func fromIndex(_ index: UInt) -> DeliveryType {
-        switch index {
-        case 0:
-            return .home
-        case 1:
-            return .pvz
-        default:
-            return .postomate
-        }
-    }
-}
-
 extension UIColor {
     public static func hexStringToUIColor(hex: String) -> UIColor {
         var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

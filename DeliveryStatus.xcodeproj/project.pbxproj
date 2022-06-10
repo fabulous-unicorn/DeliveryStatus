@@ -10,6 +10,8 @@
 		608DBE49284F6BAA00A4A488 /* DeliveryStatusCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608DBE48284F6BAA00A4A488 /* DeliveryStatusCardView.xib */; };
 		608DBE4B284F787D00A4A488 /* DeliveryStatusCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4A284F787D00A4A488 /* DeliveryStatusCardView.swift */; };
 		608DBE4E284F9D2900A4A488 /* DeliveryStatusDocumentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */; };
+		608DBE512852246900A4A488 /* OrderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE502852246900A4A488 /* OrderDTO.swift */; };
+		608DBE53285239E900A4A488 /* StatusWidgetViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */; };
 		60FC9F84284100A400758ACC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F83284100A400758ACC /* AppDelegate.swift */; };
 		60FC9F86284100A400758ACC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F85284100A400758ACC /* SceneDelegate.swift */; };
 		60FC9F88284100A400758ACC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F87284100A400758ACC /* ViewController.swift */; };
@@ -29,6 +31,8 @@
 		608DBE48284F6BAA00A4A488 /* DeliveryStatusCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusCardView.xib; sourceTree = "<group>"; };
 		608DBE4A284F787D00A4A488 /* DeliveryStatusCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusCardView.swift; sourceTree = "<group>"; };
 		608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DeliveryStatusDocumentation.docc; sourceTree = "<group>"; };
+		608DBE502852246900A4A488 /* OrderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDTO.swift; sourceTree = "<group>"; };
+		608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWidgetViewModelBuilder.swift; sourceTree = "<group>"; };
 		60FC9F80284100A400758ACC /* DeliveryStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FC9F83284100A400758ACC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FC9F85284100A400758ACC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +78,15 @@
 			path = DeliveryStatusViewModels;
 			sourceTree = "<group>";
 		};
+		608DBE4F2852242100A4A488 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				608DBE502852246900A4A488 /* OrderDTO.swift */,
+				608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
 		60FC9F77284100A400758ACC = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +106,7 @@
 		60FC9F82284100A400758ACC /* DeliveryStatus */ = {
 			isa = PBXGroup;
 			children = (
+				608DBE4F2852242100A4A488 /* DTO */,
 				608DBE47284F417B00A4A488 /* DeliveryStatusCardView */,
 				60FC9FA82846275000758ACC /* DeliveryStatusView */,
 				60FC9F9828410DD600758ACC /* DeliveryStatusTitleView */,
@@ -214,10 +228,12 @@
 				60FC9FA72846204100758ACC /* Global.swift in Sources */,
 				60FC9F88284100A400758ACC /* ViewController.swift in Sources */,
 				60FC9FAC2846565600758ACC /* DeliveryStatusViewModels.swift in Sources */,
+				608DBE512852246900A4A488 /* OrderDTO.swift in Sources */,
 				60FC9FAA2846277700758ACC /* DeliveryStatusView.swift in Sources */,
 				60FC9F9A28410E9500758ACC /* DeliveryStatusStepView.swift in Sources */,
 				60FC9F9C28410EAC00758ACC /* DeliveryStatusTitleView.swift in Sources */,
 				608DBE4B284F787D00A4A488 /* DeliveryStatusCardView.swift in Sources */,
+				608DBE53285239E900A4A488 /* StatusWidgetViewModelBuilder.swift in Sources */,
 				60FC9F84284100A400758ACC /* AppDelegate.swift in Sources */,
 				608DBE4E284F9D2900A4A488 /* DeliveryStatusDocumentation.docc in Sources */,
 				60FC9F86284100A400758ACC /* SceneDelegate.swift in Sources */,

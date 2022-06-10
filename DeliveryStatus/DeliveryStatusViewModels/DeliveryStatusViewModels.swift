@@ -171,14 +171,15 @@ struct DeliveryStatusViewModel {
         }
     }
     
-    init(group: Group,
-         message: String? = nil,
-         evolutionStage: Stage,
-         isLastStatus: Bool,
-         title: String,
-         date: String?,
-         steps: [StepExample],
-         card: CardExample? = nil
+    init(
+        group: Group,
+        message: String? = nil,
+        evolutionStage: Stage,
+        isLastStatus: Bool,
+        title: String,
+        date: String?,
+        steps: [StepExample],
+        card: CardExample? = nil
     ) {
         self.message = message
         self.group = group
@@ -206,7 +207,7 @@ struct DeliveryStatusViewModel {
         self.title = Title(
             title: title,
             date: dateForTitle,
-            isAvailableExpanded: isAvailableExpanded,
+            isExpandingAvailable: isAvailableExpanded,
             evolutionStage: evolutionStage,
             group: group
         )
@@ -346,7 +347,7 @@ struct DeliveryStatusViewModel {
     struct Title {
         var title: String
         var date: String?
-        var isAvailableExpanded: Bool
+        var isExpandingAvailable: Bool
         
         var evolutionStage: DeliveryStatusViewModel.Stage
         var group: DeliveryStatusViewModel.Group

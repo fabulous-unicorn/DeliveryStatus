@@ -145,7 +145,7 @@ struct DeliveryStatusViewModel {
     }
 
     struct CardExample {
-        var mode: DeliveryType
+        var mode: Card.DeliveryType
         var address: String
         var officeId: Int?
         var pickUpInfo: String?
@@ -382,8 +382,7 @@ struct DeliveryStatusViewModel {
     /// Формируется из всей модели заказа
     struct Card {
         var group: Group
-        // TODO: Под вопросом
-        private var mode: DeliveryType
+        var mode: DeliveryType
         var address: String
         var officeId: Int?
         var pickUpInfo: String?
@@ -399,11 +398,12 @@ struct DeliveryStatusViewModel {
             case .postomate: return "Постамат"
             case .pvz: return "Пункт СДЭК"
             case .home:
-                switch group {
-                case .created: return "Курьер"
-                case .recived, .notRecived: return "Курьер привезёт"
-                default: return "Информация о доставке"
+                if group == .recived {
+                    return "Курьер привезёт"
                 }
+                return "Курьер"
+            case .unknown:
+                return ""
             }
         }
         
@@ -415,6 +415,8 @@ struct DeliveryStatusViewModel {
                 return UIImage(named: "orderDetail.roadpoint.deliveryPoint")!
             case .home:
                 return UIImage(named: "orderDetail.roadpoint.courier")!
+            case .unknown:
+                return UIImage(named: "orderDetail.roadpoint.deliveryPoint")!
             }
         }
         
@@ -440,6 +442,19 @@ struct DeliveryStatusViewModel {
             self.message = message
             self.keepDateInfo = keepDateInfo
             self.keepInfoLink = keepInfoLink
+        }
+        
+        /// Тип доставки для установки иконки и заголовка карточки
+        enum DeliveryType {
+            /// Курьер
+            case home
+            /// Пункт СДЭК
+            case pvz
+            /// Постомат
+            case postomate
+            // TODO: Alesya Volosach | В соответствии с новым кейсом адаптировать верстку
+            /// Не пришел тип или появился новые. Почти невозможный кейс на бэке дефолтно передается pvz
+            case unknown
         }
     }
 }

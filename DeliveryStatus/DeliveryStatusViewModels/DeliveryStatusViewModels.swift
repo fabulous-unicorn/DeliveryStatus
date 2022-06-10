@@ -196,9 +196,9 @@ struct DeliveryStatusViewModel {
         // Date
         var dateForTitle: String? = nil
         switch group {
-        case .created, .delivered, .notDelivered:
+        case .created, .delivered, .notDelivered, .partiallyDelivered:
             dateForTitle = nil
-        case .inProgress, .courier, .readyForPick:
+        default:
             dateForTitle = date
         }
         
@@ -254,6 +254,10 @@ struct DeliveryStatusViewModel {
         case delivered
         /// Не вручен
         case notDelivered
+        /// Частично вручен
+        case partiallyDelivered
+        /// Для обратной совместимости
+        case unknown
         
         /// Иконка для отображения в заголовке
         var icon: UIImage {
@@ -270,6 +274,10 @@ struct DeliveryStatusViewModel {
                 return UIImage(named: "orderDetail.status.delivered")!
             case .notDelivered:
                 return UIImage(named: "orderDetail.status.notDelivered")!
+            case .partiallyDelivered:
+                return UIImage(named: "orderDetail.status.delivered")!
+            case .unknown:
+                return UIImage(named: "orderDetail.status.unknown")!
             }
         }
         
@@ -288,6 +296,10 @@ struct DeliveryStatusViewModel {
                 return UIColor.hexStringToUIColor(hex: "1AB248")
             case .notDelivered:
                 return UIColor.hexStringToUIColor(hex: "FF6261")
+            case .partiallyDelivered:
+                return UIColor.hexStringToUIColor(hex: "1AB248")
+            case .unknown:
+                return UIColor.hexStringToUIColor(hex: "F08A12")
             }
         }
         
@@ -306,6 +318,10 @@ struct DeliveryStatusViewModel {
                 return UIColor.hexStringToUIColor(hex: "DDF3E4")
             case .notDelivered:
                 return UIColor.hexStringToUIColor(hex: "FEE3E3")
+            case .partiallyDelivered:
+                return UIColor.hexStringToUIColor(hex: "DDF3E4")
+            case .unknown:
+                return UIColor.hexStringToUIColor(hex: "FDEDDB")
             }
         }
         

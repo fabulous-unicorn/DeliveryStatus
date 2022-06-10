@@ -77,9 +77,9 @@ class StatusWidgetViewModelBuilder {
         case .inProgress: return .inProgress
         case .courierInProgress: return .courier
         case .readyForPickUp: return .readyForPick
-        case .delivered: return .delivered
-        case .partiallyDelivered: return .partiallyDelivered
-        case .notDelivered: return .notDelivered
+        case .recived: return .recived
+        case .partiallyRecived: return .partiallyRecived
+        case .notRecived: return .notRecived
         case .unowned: return .unknown
         }
     }
@@ -119,7 +119,6 @@ class StatusWidgetViewModelBuilder {
         _ evolutionStage: DeliveryStatusViewModel.Stage
     ) -> [DeliveryStatusViewModel.Step] {
         let steps = groupDTO.roadMap.flatMap{ (step) -> [DeliveryStatusViewModel.Step]  in
-            
             let nestedSteps = step.statuses.map { nestedStep in
                 return DeliveryStatusViewModel.Step(
                     title: nestedStep.title,

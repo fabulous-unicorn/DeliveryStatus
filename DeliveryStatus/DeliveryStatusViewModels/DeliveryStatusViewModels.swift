@@ -57,7 +57,7 @@ struct DeliveryStatusViewModel {
     /// Возможны изменения из-за карточки
     var stepForShortView: Step? {
         switch group {
-        case .created, .delivered, .notDelivered:
+        case .created, .recived, .notRecived:
             return getStepForShortViewCard()
         default:
             return getStepForShortViewTable()
@@ -197,7 +197,7 @@ struct DeliveryStatusViewModel {
         // Date
         var dateForTitle: String? = nil
         switch group {
-        case .created, .delivered, .notDelivered, .partiallyDelivered:
+        case .created, .recived, .notRecived, .partiallyRecived:
             dateForTitle = nil
         default:
             dateForTitle = date
@@ -252,11 +252,11 @@ struct DeliveryStatusViewModel {
         /// Готов к выдаче (выдача в пвз/постамат)
         case readyForPick
         /// Вручен
-        case delivered
+        case recived
         /// Не вручен
-        case notDelivered
+        case notRecived
         /// Частично вручен
-        case partiallyDelivered
+        case partiallyRecived
         /// Для обратной совместимости
         case unknown
         
@@ -271,11 +271,11 @@ struct DeliveryStatusViewModel {
                 return UIImage(named: "orderDetail.status.courierInProgress")!
             case .readyForPick:
                 return UIImage(named: "orderDetail.status.courierInProgress")!
-            case .delivered:
+            case .recived:
                 return UIImage(named: "orderDetail.status.delivered")!
-            case .notDelivered:
+            case .notRecived:
                 return UIImage(named: "orderDetail.status.notDelivered")!
-            case .partiallyDelivered:
+            case .partiallyRecived:
                 return UIImage(named: "orderDetail.status.delivered")!
             case .unknown:
                 return UIImage(named: "orderDetail.status.unknown")!
@@ -293,11 +293,11 @@ struct DeliveryStatusViewModel {
                 return UIColor.hexStringToUIColor(hex: "008C6B")
             case .readyForPick:
                 return UIColor.hexStringToUIColor(hex: "008C6B")
-            case .delivered:
+            case .recived:
                 return UIColor.hexStringToUIColor(hex: "1AB248")
-            case .notDelivered:
+            case .notRecived:
                 return UIColor.hexStringToUIColor(hex: "FF6261")
-            case .partiallyDelivered:
+            case .partiallyRecived:
                 return UIColor.hexStringToUIColor(hex: "1AB248")
             case .unknown:
                 return UIColor.hexStringToUIColor(hex: "F08A12")
@@ -315,11 +315,11 @@ struct DeliveryStatusViewModel {
                 return UIColor.hexStringToUIColor(hex: "DBEBE0")
             case .readyForPick:
                 return UIColor.hexStringToUIColor(hex: "DBEBE0")
-            case .delivered:
+            case .recived:
                 return UIColor.hexStringToUIColor(hex: "DDF3E4")
-            case .notDelivered:
+            case .notRecived:
                 return UIColor.hexStringToUIColor(hex: "FEE3E3")
-            case .partiallyDelivered:
+            case .partiallyRecived:
                 return UIColor.hexStringToUIColor(hex: "DDF3E4")
             case .unknown:
                 return UIColor.hexStringToUIColor(hex: "FDEDDB")
@@ -401,7 +401,7 @@ struct DeliveryStatusViewModel {
             case .home:
                 switch group {
                 case .created: return "Курьер"
-                case .delivered, .notDelivered: return "Курьер привезёт"
+                case .recived, .notRecived: return "Курьер привезёт"
                 default: return "Информация о доставке"
                 }
             }

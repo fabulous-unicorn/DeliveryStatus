@@ -156,7 +156,7 @@ extension ViewController {
         isLastStatus: Bool
     )  -> DeliveryStatusViewModel {
     return DeliveryStatusViewModel(
-        group: .delivered,
+        group: .recived,
                 evolutionStage: evolutionStage,
                 isLastStatus: isLastStatus,
                 title: "Вручение",

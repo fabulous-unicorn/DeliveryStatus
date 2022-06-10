@@ -22,9 +22,9 @@ struct OrderStatusGroupDto {
         case inProgress = "IN_PROGRESS"
         case courierInProgress = "COURIER_IN_PROGRESS"
         case readyForPickUp = "READY_FOR_PICK_UP"
-        case notDelivered = "NOT_DELIVERED"
-        case delivered = "DELIVERED"
-        case partiallyDelivered = "PARTIALLY_DELIVERED"
+        case notRecived = "NOT_DELIVERED"
+        case recived = "DELIVERED"
+        case partiallyRecived = "PARTIALLY_DELIVERED"
         case unowned
     }
     

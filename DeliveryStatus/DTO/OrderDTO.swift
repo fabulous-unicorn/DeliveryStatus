@@ -22,9 +22,9 @@ struct OrderStatusGroupDto {
         case inProgress = "IN_PROGRESS"
         case courierInProgress = "COURIER_IN_PROGRESS"
         case readyForPickUp = "READY_FOR_PICK_UP"
-        case notRecived = "NOT_DELIVERED"
-        case recived = "DELIVERED"
-        case partiallyRecived = "PARTIALLY_DELIVERED"
+        case notRecived = "NOT_RECIVED"
+        case recived = "RECIVED"
+        case partiallyRecived = "PARTIALLY_RECIVED"
         case unowned
     }
     
@@ -57,7 +57,7 @@ struct StatusDto {
 
 class Order {
     // MARK: Used old properties
-    let departureDate: String? //example
+//    let departureDate: String? //example
     var plannedDeliveryDate: String?
     var status: OrderStatus
     let sender: PersonShortInfo?
@@ -114,7 +114,7 @@ class Order {
 //        )
 //    }
     internal init(
-        departureDate: String?,
+//        departureDate: String?,
         plannedDeliveryDate: String? = nil,
         status: OrderStatus,
         sender: PersonShortInfo?,
@@ -133,7 +133,7 @@ class Order {
         plannedDeliveryDateNote: String?,
         plannedDeliveryNotAvailableNote: String?
     ) {
-        self.departureDate = departureDate
+//        self.departureDate = departureDate
         self.plannedDeliveryDate = plannedDeliveryDate
         self.status = status
         self.sender = sender

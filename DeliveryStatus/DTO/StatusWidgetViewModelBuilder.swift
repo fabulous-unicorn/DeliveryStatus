@@ -9,16 +9,16 @@ import Foundation
 // TODO: Alesya Volosach | Наверное будет лучше закрыть протоколом, потому что хочется написать адекватные тесты
 class StatusWidgetViewModelBuilder {
     // TODO: Alesya Volosach | упаковать входные параметры и инициализаторы в тюплы
-    // TODO: Alesya Volosach | какова будет выгода если делать имеено билдер?
+    // TODO: Alesya Volosach | какова будет выгода если делать именно билдер?
     
-    func buildStatuses(_ order: Order) -> [DeliveryStatusViewModel] {
+    static func buildStatuses(_ order: Order) -> [DeliveryStatusViewModel] {
         let groups: [DeliveryStatusViewModel] = order.orderStatusGroups.enumerated().compactMap { index, group in
             return buildStatus(order, group, at: index)
         }
         return groups
     }
     
-    private func buildStatus(
+    static private func buildStatus(
         _ order: Order,
         _ groupDTO: OrderStatusGroupDto,
         at index: Int
@@ -55,7 +55,7 @@ class StatusWidgetViewModelBuilder {
     
     // MARK: - Common
     
-    private func group(
+    static private func group(
         _ code: OrderStatusGroupDto.Code
     ) -> DeliveryStatusViewModel.Group {
         switch code {
@@ -70,7 +70,7 @@ class StatusWidgetViewModelBuilder {
         }
     }
     
-    private func configureEvolutionStage(
+    static private func configureEvolutionStage(
         _ evolutionStage: OrderStatusGroupDto.EvolutionStage
     ) -> DeliveryStatusViewModel.Stage {
         switch evolutionStage {
@@ -82,7 +82,7 @@ class StatusWidgetViewModelBuilder {
     
     // MARK: - Build Title
     
-    private func buildTitle(
+    static private func buildTitle(
         _ groupDTO: OrderStatusGroupDto,
         _ group: DeliveryStatusViewModel.Group,
         _ evolutionStage: DeliveryStatusViewModel.Stage,
@@ -103,7 +103,7 @@ class StatusWidgetViewModelBuilder {
     
     // MARK: - Build Steps
     
-    private func buildSteps(
+    static private func buildSteps(
         _ groupDTO: OrderStatusGroupDto,
         _ group: DeliveryStatusViewModel.Group,
         _ evolutionStage: DeliveryStatusViewModel.Stage
@@ -140,7 +140,7 @@ class StatusWidgetViewModelBuilder {
     
     // MARK: - Build Card
     
-    private func buildCard(
+    static private func buildCard(
         _ order: Order,
         _ groupDTO: OrderStatusGroupDto,
         _ group: DeliveryStatusViewModel.Group
@@ -152,7 +152,7 @@ class StatusWidgetViewModelBuilder {
         }
     }
     
-    private func cardForCreatedGroup(
+    static private func cardForCreatedGroup(
         _ order: Order,
         _ group: DeliveryStatusViewModel.Group,
         _ groupDTO: OrderStatusGroupDto
@@ -179,7 +179,7 @@ class StatusWidgetViewModelBuilder {
         )
     }
     
-    private func cardForFinalGroup(
+    static private func cardForFinalGroup(
         _ order: Order,
         _ group: DeliveryStatusViewModel.Group,
         _ groupDTO: OrderStatusGroupDto
@@ -209,7 +209,7 @@ class StatusWidgetViewModelBuilder {
         )
     }
     
-    private func deliveryTypeForCard(
+    static private func deliveryTypeForCard(
         _ type: DeliveryType?
     ) -> DeliveryStatusViewModel.Card.DeliveryType {
         guard let type = type else {
@@ -226,7 +226,7 @@ class StatusWidgetViewModelBuilder {
     }
     
     /// Только для отправителя
-    private func pickUpInfo(_ order: Order) -> String? {
+    static private func pickUpInfo(_ order: Order) -> String? {
         guard let pickUp = order.pickUp else { return nil }
         let time = "\(pickUp.arrivalDate) c \(pickUp.arrivalTimeFrom) по \(pickUp.arrivalTimeTo)"
         return """
@@ -235,7 +235,7 @@ class StatusWidgetViewModelBuilder {
                """
     }
     
-    private func senderAddress(_ order: Order, for senderMode: DeliveryType?) -> String {
+    static private func senderAddress(_ order: Order, for senderMode: DeliveryType?) -> String {
         let result = order.departureCity.name
         
         if senderMode == .home {
@@ -252,7 +252,7 @@ class StatusWidgetViewModelBuilder {
         return result
     }
     
-    private func reciverAddress(_ order: Order, for reciverMode: DeliveryType?) -> String {
+    static private func reciverAddress(_ order: Order, for reciverMode: DeliveryType?) -> String {
         let result = order.destinationCity.name
         
         if reciverMode == .home {
@@ -269,7 +269,7 @@ class StatusWidgetViewModelBuilder {
         return result
     }
     
-    private func planedDeliveryInfo(_ order: Order) -> String? {
+    static private func planedDeliveryInfo(_ order: Order) -> String? {
         // TODO: Alesya Volosach | Скорей всего добавяться преобразования для даты
         guard let dateEnd = order.plannedDeliveryDate else { return nil }
         
@@ -280,7 +280,7 @@ class StatusWidgetViewModelBuilder {
                 """
     }
     
-    private func keepDateInfo(_ order: Order) -> String? {
+    static private func keepDateInfo(_ order: Order) -> String? {
         // TODO: Alesya Volosach | Скорей всего добавяться преобразования для даты
         guard let keepDate = order.storageDateEnd else { return nil }
         return """

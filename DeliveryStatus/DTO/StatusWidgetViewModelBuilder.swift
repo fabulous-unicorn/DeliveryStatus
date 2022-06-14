@@ -6,34 +6,33 @@
 //
 
 import Foundation
-
+// TODO: Alesya Volosach | Наверное будет лучше закрыть протоколом, потому что хочется написать адекватные тесты
 class StatusWidgetViewModelBuilder {
     // TODO: Alesya Volosach | упаковать входные параметры и инициализаторы в тюплы
     
-    var order: Order
     var status: [DeliveryStatusViewModel] = []
-    
-    init(_ order: Order) {
-        self.order = order
-    }
     
     func buildStatuses(_ order: Order) -> [DeliveryStatusViewModel] {
         let groups: [DeliveryStatusViewModel] = order.orderStatusGroups.enumerated().compactMap { index, group in
-            return configureStatus(group, at: index)
+            return buildStatus(order, group, at: index)
         }
         return groups
     }
     
-    func configureStatus(_ groupDTO: OrderStatusGroupDto, at index: Int) -> DeliveryStatusViewModel {
-        let group = configureGroup(groupDTO.code)
+    private func buildStatus(
+        _ order: Order,
+        _ groupDTO: OrderStatusGroupDto,
+        at index: Int
+    ) -> DeliveryStatusViewModel {
+        let group = group(groupDTO.code)
         let message = groupDTO.message
         let evolutionStage = configureEvolutionStage(groupDTO.evolutionStage)
         let isLastStatus = index == order.orderStatusGroups.count - 1
         
-        let steps = stepsViewModels(groupDTO, group, evolutionStage)
+        let steps = buildSteps(groupDTO, group, evolutionStage)
         
         // Card
-        let card = configureCard(groupDTO, group)
+        let card = buildCard(order, groupDTO, group)
         
         // Title
         // TODO: Alesya Volosach | тут для теста карточки можно будет комментить
@@ -43,7 +42,7 @@ class StatusWidgetViewModelBuilder {
         } else {
             isExpandingAvailable = !steps.isEmpty || card != nil
         }
-        let title = titleViewModel(groupDTO, group, evolutionStage, isExpandingAvailable: isExpandingAvailable)
+        let title = buildTitle(groupDTO, group, evolutionStage, isExpandingAvailable: isExpandingAvailable)
         
         return DeliveryStatusViewModel(
             group: group,
@@ -54,32 +53,10 @@ class StatusWidgetViewModelBuilder {
             steps: steps,
             card: card)
     }
-                    
-    func configureCard(
-        _ groupDTO: OrderStatusGroupDto,
-        _ group: DeliveryStatusViewModel.Group
-    ) -> DeliveryStatusViewModel.Card? {
-        // TODO: Alesya Volosach | дописать
-        
-        switch group {
-        case .created: return cardForCreatedGroup(group, groupDTO)
-            // TODO: Alesya Volosach | Проверить добавлять ли другие группы?
-        case .recived: return cardForFinalGroup(group, groupDTO)
-        default: return nil
-        }
-    }
     
-    /// Только для отправителя
-    func pickUpInfo() -> String? {
-        guard let pickUp = order.pickUp else { return nil }
-        let time = "\(pickUp.arrivalDate) c \(pickUp.arrivalTimeFrom) по \(pickUp.arrivalTimeTo)"
-        return """
-               Дата и время забора:
-               \(time)
-               """
-    }
+    // MARK: - Common
     
-    func configureGroup(
+    private func group(
         _ code: OrderStatusGroupDto.Code
     ) -> DeliveryStatusViewModel.Group {
         switch code {
@@ -94,7 +71,7 @@ class StatusWidgetViewModelBuilder {
         }
     }
     
-    func configureEvolutionStage(
+    private func configureEvolutionStage(
         _ evolutionStage: OrderStatusGroupDto.EvolutionStage
     ) -> DeliveryStatusViewModel.Stage {
         switch evolutionStage {
@@ -104,7 +81,9 @@ class StatusWidgetViewModelBuilder {
         }
     }
     
-    func titleViewModel(
+    // MARK: - Build Title
+    
+    private func buildTitle(
         _ groupDTO: OrderStatusGroupDto,
         _ group: DeliveryStatusViewModel.Group,
         _ evolutionStage: DeliveryStatusViewModel.Stage,
@@ -123,7 +102,9 @@ class StatusWidgetViewModelBuilder {
         )
     }
     
-    func stepsViewModels(
+    // MARK: - Build Steps
+    
+    private func buildSteps(
         _ groupDTO: OrderStatusGroupDto,
         _ group: DeliveryStatusViewModel.Group,
         _ evolutionStage: DeliveryStatusViewModel.Stage
@@ -158,14 +139,29 @@ class StatusWidgetViewModelBuilder {
         return steps
     }
     
-    func cardForCreatedGroup(
+    // MARK: - Build Card
+    
+    private func buildCard(
+        _ order: Order,
+        _ groupDTO: OrderStatusGroupDto,
+        _ group: DeliveryStatusViewModel.Group
+    ) -> DeliveryStatusViewModel.Card? {
+        switch group {
+        case .created: return cardForCreatedGroup(order, group, groupDTO)
+        case .recived: return cardForFinalGroup(order, group, groupDTO)
+        default: return nil
+        }
+    }
+    
+    private func cardForCreatedGroup(
+        _ order: Order,
         _ group: DeliveryStatusViewModel.Group,
         _ groupDTO: OrderStatusGroupDto
     ) -> DeliveryStatusViewModel.Card {
         let mode = deliveryTypeForCard(order.senderDeliveryType)
-        let address = senderAddress(for: order.senderDeliveryType)
+        let address = senderAddress(order, for: order.senderDeliveryType)
         let officeId = order.senderOffice?.id
-        let pickUpInfo = pickUpInfo()
+        let pickUpInfo = pickUpInfo(order)
         let displayChangeButton = false // Для этого релиза свойство не предполагается
         
         return DeliveryStatusViewModel.Card(
@@ -177,23 +173,24 @@ class StatusWidgetViewModelBuilder {
             pickUpInfo: pickUpInfo,
             displayChangeButton: displayChangeButton,
             planedDeliveryInfo: nil,
-            // TODO: Alesya Volosach | не преполагается но на всякий проверить
+            // TODO: Alesya Volosach | не преполагается но на всякий проверить откуда тянуть 
             message: nil,
             keepDateInfo: nil,
             keepInfoLink: nil
         )
     }
     
-    func cardForFinalGroup(
+    private func cardForFinalGroup(
+        _ order: Order,
         _ group: DeliveryStatusViewModel.Group,
         _ groupDTO: OrderStatusGroupDto
     ) -> DeliveryStatusViewModel.Card {
         
         let mode = deliveryTypeForCard(order.receiverDeliveryType)
-        let address = reciverAddress(for: order.senderDeliveryType)
+        let address = reciverAddress(order, for: order.senderDeliveryType)
         let officeId = order.office?.id
         let displayChangeButton = order.canBeChanged ?? false
-        let planedDeliveryInfo = planedDeliveryInfo()
+        let planedDeliveryInfo = planedDeliveryInfo(order)
         
         
         // TODO: Alesya Volosach | уточнить откуда в итоге тянуть message
@@ -201,7 +198,7 @@ class StatusWidgetViewModelBuilder {
         Плановая дата доставки будет определена
         после поступления заказа в СДЭК
         """
-        let keepDateInfo = keepDateInfo()
+        let keepDateInfo = keepDateInfo(order)
         
         return DeliveryStatusViewModel.Card(
             group: group,
@@ -217,7 +214,7 @@ class StatusWidgetViewModelBuilder {
         )
     }
     
-    func deliveryTypeForCard(
+    private func deliveryTypeForCard(
         _ type: DeliveryType?
     ) -> DeliveryStatusViewModel.Card.DeliveryType {
         guard let type = type else {
@@ -233,7 +230,17 @@ class StatusWidgetViewModelBuilder {
         }
     }
     
-    func senderAddress(for senderMode: DeliveryType?) -> String {
+    /// Только для отправителя
+    private func pickUpInfo(_ order: Order) -> String? {
+        guard let pickUp = order.pickUp else { return nil }
+        let time = "\(pickUp.arrivalDate) c \(pickUp.arrivalTimeFrom) по \(pickUp.arrivalTimeTo)"
+        return """
+               Дата и время забора:
+               \(time)
+               """
+    }
+    
+    private func senderAddress(_ order: Order, for senderMode: DeliveryType?) -> String {
         let result = order.departureCity.name
         
         if senderMode == .home {
@@ -250,7 +257,7 @@ class StatusWidgetViewModelBuilder {
         return result
     }
     
-    func reciverAddress(for reciverMode: DeliveryType?) -> String {
+    private func reciverAddress(_ order: Order, for reciverMode: DeliveryType?) -> String {
         let result = order.destinationCity.name
         
         if reciverMode == .home {
@@ -267,7 +274,7 @@ class StatusWidgetViewModelBuilder {
         return result
     }
     
-    func planedDeliveryInfo() -> String? {
+    private func planedDeliveryInfo(_ order: Order) -> String? {
         // TODO: Alesya Volosach | Скорей всего добавяться преобразования для даты
         guard let dateEnd = order.plannedDeliveryDate else { return nil }
         
@@ -278,7 +285,7 @@ class StatusWidgetViewModelBuilder {
                 """
     }
     
-    func keepDateInfo() -> String? {
+    private func keepDateInfo(_ order: Order) -> String? {
         // TODO: Alesya Volosach | Скорей всего добавяться преобразования для даты
         guard let keepDate = order.storageDateEnd else { return nil }
         return """

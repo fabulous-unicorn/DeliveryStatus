@@ -192,12 +192,11 @@ class StatusWidgetViewModelBuilder {
         let displayChangeButton = order.canBeChanged ?? false
         let planedDeliveryInfo = planedDeliveryInfo(order)
         
-        
-        // TODO: Alesya Volosach | уточнить откуда в итоге тянуть message
-        let message = """
-        Плановая дата доставки будет определена
-        после поступления заказа в СДЭК
-        """
+//        """
+//        Плановая дата доставки будет определена
+//        после поступления заказа в СДЭК
+//        """
+        let message = order.plannedDeliveryNotAvailableNote
         let keepDateInfo = keepDateInfo(order)
         
         return DeliveryStatusViewModel.Card(
@@ -278,7 +277,7 @@ class StatusWidgetViewModelBuilder {
         // TODO: Alesya Volosach | Скорей всего добавяться преобразования для даты
         guard let dateEnd = order.plannedDeliveryDate else { return nil }
         
-        let title = "Поступление в курьерскую службу до:"
+        let title = order.plannedDeliveryDateNote ?? "Поступление до:"
         return """
                 \(title)
                 \(dateEnd)

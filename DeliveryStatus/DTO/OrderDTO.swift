@@ -75,6 +75,8 @@ class Order {
     
     // MARK: New properties
     let orderStatusGroups: [OrderStatusGroupDto]
+    let plannedDeliveryDateNote: String?
+    let plannedDeliveryNotAvailableNote: String?
     
     
     private enum Constant {
@@ -127,7 +129,9 @@ class Order {
         storageDateEnd: String?,
         warehousingInfoUrl: URL?,
         pickUp: PickUp?,
-        orderStatusGroups: [OrderStatusGroupDto]
+        orderStatusGroups: [OrderStatusGroupDto],
+        plannedDeliveryDateNote: String?,
+        plannedDeliveryNotAvailableNote: String?
     ) {
         self.departureDate = departureDate
         self.plannedDeliveryDate = plannedDeliveryDate
@@ -145,6 +149,8 @@ class Order {
         self.warehousingInfoUrl = warehousingInfoUrl
         self.pickUp = pickUp
         self.orderStatusGroups = orderStatusGroups
+        self.plannedDeliveryDateNote = plannedDeliveryDateNote
+        self.plannedDeliveryNotAvailableNote = plannedDeliveryNotAvailableNote
     }
 }
 

@@ -66,7 +66,7 @@ class StatusWidgetViewModelBuilder {
         case .recived: return .recived
         case .partiallyRecived: return .partiallyRecived
         case .notRecived: return .notRecived
-        case .unowned: return .unknown
+        case .unknowned: return .unknown
         }
     }
     

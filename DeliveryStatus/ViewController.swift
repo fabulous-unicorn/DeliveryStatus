@@ -24,7 +24,7 @@ class ViewController: UIViewController {
 //        }
         
         // ReadyForPickUp
-        let order = getOrder()
+        let order = getOrderWithNewStatus()
         let steps = StatusWidgetViewModelBuilder.buildStatuses(order)
         
         steps.forEach { step in
@@ -112,6 +112,83 @@ extension ViewController {
             sender: nil,
             senderDeliveryType: .pvz,
             receiver: nil,
+            receiverDeliveryType: .postomate,
+            departureCity: City(name: "Москва"),
+            destinationCity: City(name: "Новосибирск"),
+            senderOffice: Office(id: 0, address: "ул. Ленина 234"),
+            office: Office(id: 1, address: "ул. Лен 200"),
+            canBeChanged: true,
+            storageDateEnd: "27.04.2020",
+            warehousingInfoUrl: URL(string: "https://www.cdek.ru/ru"),
+            pickUp: nil,
+            orderStatusGroups: [
+                OrderStatusGroupDto(
+                    name: "Создан заказ",
+                    code: .initial,
+                    message: nil,
+                    occurrence: "17.04.2020",
+                    evolutionStage: .past,
+                    roadMap: []
+                ),
+                OrderStatusGroupDto(
+                    name: "Посылка в пути",
+                    code: .inProgress,
+                    message: nil,
+                    occurrence: "20.04.2020",
+                    evolutionStage: .past,
+                    roadMap: [
+                        OrderDeliveryStepDto(
+                            city: "Москва",
+                            statuses: [
+                                StatusDto(title: "Принято на доставку", date: "21.04.2020"),
+                                StatusDto(title: "Отправлено в город назначения", date: "21.04.2020")
+                            ]
+                        ),
+                        OrderDeliveryStepDto(
+                            city: "Новосибирск",
+                            statuses: [
+                                StatusDto(title: "Готов  к выдаче", date: "22.04.2020")
+                            ]
+                        )
+                    ]
+                ),
+                OrderStatusGroupDto(
+                    name: "Готов к выдаче",
+                    code: .readyForPickUp,
+                    message: nil,
+                    occurrence: "21.04.2020",
+                    evolutionStage: .present,
+                    roadMap: [
+                        OrderDeliveryStepDto(
+                            city: nil,
+                            statuses: [
+                                StatusDto(title: "Готов  к выдаче", date: "22.04.2020")
+                            ]
+                        )
+                    ]
+                ),
+                OrderStatusGroupDto(
+                    name: "Вручение",
+                    code: .recived,
+                    message: nil,
+                    occurrence: nil,
+                    evolutionStage: .future,
+                    roadMap: []
+                )
+            ],
+            plannedDeliveryDateNote: "Поступление в пункт СДЭК до:",
+            plannedDeliveryNotAvailableNote: nil
+        )
+    }
+    
+    // ПВЗ -> Постамат
+    func getOrderWithUnknowDeliveryType() -> Order {
+        return Order(
+            plannedDeliveryDate: "22 апреля 2020",
+            status: OrderStatus.init(code: "READY_FOR_RECEIPT", name: "Готово к выдаче"),
+            sender: nil,
+            senderDeliveryType: .pvz,
+            receiver: nil,
             receiverDeliveryType: nil,
             departureCity: City(name: "Москва"),
             destinationCity: City(name: "Новосибирск"),
@@ -133,6 +210,107 @@ extension ViewController {
                 OrderStatusGroupDto(
                     name: "Посылка в пути",
                     code: .inProgress,
+                    message: nil,
+                    occurrence: "20.04.2020",
+                    evolutionStage: .past,
+                    roadMap: [
+                        OrderDeliveryStepDto(
+                            city: "Москва",
+                            statuses: [
+                                StatusDto(title: "Принято на доставку", date: "21.04.2020"),
+                                StatusDto(title: "Отправлено в город назначения", date: "21.04.2020")
+                            ]
+                        ),
+                        OrderDeliveryStepDto(
+                            city: "Новосибирск",
+                            statuses: [
+                                StatusDto(title: "Готов  к выдаче", date: "22.04.2020")
+                            ]
+                        )
+                    ]
+                ),
+                OrderStatusGroupDto(
+                    name: "Готов к выдаче",
+                    code: .readyForPickUp,
+                    message: nil,
+                    occurrence: "21.04.2020",
+                    evolutionStage: .present,
+                    roadMap: [
+                        OrderDeliveryStepDto(
+                            city: nil,
+                            statuses: [
+                                StatusDto(title: "Готов  к выдаче", date: "22.04.2020")
+                            ]
+                        )
+                    ]
+                ),
+                OrderStatusGroupDto(
+                    name: "Вручение",
+                    code: .recived,
+                    message: nil,
+                    occurrence: nil,
+                    evolutionStage: .future,
+                    roadMap: []
+                )
+            ],
+            plannedDeliveryDateNote: "Поступление в пункт СДЭК до:",
+            plannedDeliveryNotAvailableNote: nil
+        )
+    }
+    
+    
+    
+    // ПВЗ -> Постамат
+    func getOrderWithNewStatus() -> Order {
+        return Order(
+            plannedDeliveryDate: "22 апреля 2020",
+            status: OrderStatus.init(code: "READY_FOR_RECEIPT", name: "Готово к выдаче"),
+            sender: nil,
+            senderDeliveryType: .pvz,
+            receiver: nil,
+            receiverDeliveryType: .postomate,
+            departureCity: City(name: "Москва"),
+            destinationCity: City(name: "Новосибирск"),
+            senderOffice: Office(id: 0, address: "ул. Ленина 234"),
+            office: Office(id: 1, address: "ул. Лен 200"),
+            canBeChanged: true,
+            storageDateEnd: "27.04.2020",
+            warehousingInfoUrl: URL(string: "https://www.cdek.ru/ru"),
+            pickUp: nil,
+            orderStatusGroups: [
+                OrderStatusGroupDto(
+                    name: "Создан заказ",
+                    code: .initial,
+                    message: nil,
+                    occurrence: "17.04.2020",
+                    evolutionStage: .past,
+                    roadMap: []
+                ),
+                OrderStatusGroupDto(
+                    name: "Посылка в пути",
+                    code: .inProgress,
+                    message: nil,
+                    occurrence: "20.04.2020",
+                    evolutionStage: .past,
+                    roadMap: [
+                        OrderDeliveryStepDto(
+                            city: "Москва",
+                            statuses: [
+                                StatusDto(title: "Принято на доставку", date: "21.04.2020"),
+                                StatusDto(title: "Отправлено в город назначения", date: "21.04.2020")
+                            ]
+                        ),
+                        OrderDeliveryStepDto(
+                            city: "Новосибирск",
+                            statuses: [
+                                StatusDto(title: "Готов  к выдаче", date: "22.04.2020")
+                            ]
+                        )
+                    ]
+                ),
+                OrderStatusGroupDto(
+                    name: "Посылка на таможне",
+                    code: .unknowned,
                     message: nil,
                     occurrence: "20.04.2020",
                     evolutionStage: .past,

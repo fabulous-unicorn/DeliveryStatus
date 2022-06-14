@@ -25,7 +25,7 @@ struct OrderStatusGroupDto {
         case notRecived = "NOT_RECIVED"
         case recived = "RECIVED"
         case partiallyRecived = "PARTIALLY_RECIVED"
-        case unowned
+        case unknowned
     }
     
     enum EvolutionStage: String {

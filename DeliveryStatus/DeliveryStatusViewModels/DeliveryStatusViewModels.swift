@@ -158,7 +158,7 @@ struct DeliveryStatusViewModel {
         func getCard(group: Group) -> Card {
             return Card(
                 group: group,
-                mode: self.mode,
+                deliveryType: self.mode,
                 address: self.address,
                 officeId: self.officeId,
                 pickUpInfo: self.pickUpInfo,
@@ -382,7 +382,7 @@ struct DeliveryStatusViewModel {
     /// Формируется из всей модели заказа
     struct Card {
         var group: Group
-        var mode: DeliveryType
+        var deliveryType: DeliveryType
         var address: String
         var officeId: Int?
         var pickUpInfo: String?
@@ -393,7 +393,7 @@ struct DeliveryStatusViewModel {
         var keepInfoLink: URL?
         
         var title: String {
-            switch mode {
+            switch deliveryType {
                 // TODO: Alesya Volosach | локализованные ресурсы
             case .postomate: return "Постамат"
             case .pvz: return "Пункт СДЭК"
@@ -408,7 +408,7 @@ struct DeliveryStatusViewModel {
         }
         
         var icon: UIImage {
-            switch mode {
+            switch deliveryType {
             case .postomate:
                 return UIImage(named: "orderDetail.roadpoint.postomate")!
             case .pvz:
@@ -422,7 +422,7 @@ struct DeliveryStatusViewModel {
         
         internal init(
             group: DeliveryStatusViewModel.Group,
-            mode: DeliveryType,
+            deliveryType: DeliveryType,
             address: String,
             officeId: Int? = nil,
             pickUpInfo: String? = nil,
@@ -433,7 +433,7 @@ struct DeliveryStatusViewModel {
             keepInfoLink: URL? = nil
         ) {
             self.group = group
-            self.mode = mode
+            self.deliveryType = deliveryType
             self.address = address
             self.officeId = officeId
             self.pickUpInfo = pickUpInfo

@@ -9,8 +9,7 @@ import Foundation
 // TODO: Alesya Volosach | Наверное будет лучше закрыть протоколом, потому что хочется написать адекватные тесты
 class StatusWidgetViewModelBuilder {
     // TODO: Alesya Volosach | упаковать входные параметры и инициализаторы в тюплы
-    
-    var status: [DeliveryStatusViewModel] = []
+    // TODO: Alesya Volosach | какова будет выгода если делать имеено билдер?
     
     func buildStatuses(_ order: Order) -> [DeliveryStatusViewModel] {
         let groups: [DeliveryStatusViewModel] = order.orderStatusGroups.enumerated().compactMap { index, group in
@@ -158,7 +157,7 @@ class StatusWidgetViewModelBuilder {
         _ group: DeliveryStatusViewModel.Group,
         _ groupDTO: OrderStatusGroupDto
     ) -> DeliveryStatusViewModel.Card {
-        let mode = deliveryTypeForCard(order.senderDeliveryType)
+        let deliveryType = deliveryTypeForCard(order.senderDeliveryType)
         let address = senderAddress(order, for: order.senderDeliveryType)
         let officeId = order.senderOffice?.id
         let pickUpInfo = pickUpInfo(order)
@@ -167,7 +166,7 @@ class StatusWidgetViewModelBuilder {
         return DeliveryStatusViewModel.Card(
             group: group,
             // TODO: Alesya Volosach | переименновать поле в type или что-то типо того
-            mode: mode,
+            deliveryType: deliveryType,
             address: address,
             officeId: officeId,
             pickUpInfo: pickUpInfo,
@@ -186,7 +185,7 @@ class StatusWidgetViewModelBuilder {
         _ groupDTO: OrderStatusGroupDto
     ) -> DeliveryStatusViewModel.Card {
         
-        let mode = deliveryTypeForCard(order.receiverDeliveryType)
+        let deliveryType = deliveryTypeForCard(order.receiverDeliveryType)
         let address = reciverAddress(order, for: order.senderDeliveryType)
         let officeId = order.office?.id
         let displayChangeButton = order.canBeChanged ?? false
@@ -197,7 +196,7 @@ class StatusWidgetViewModelBuilder {
         
         return DeliveryStatusViewModel.Card(
             group: group,
-            mode: mode,
+            deliveryType: deliveryType,
             address: address,
             officeId: officeId,
             // Еще нет признака

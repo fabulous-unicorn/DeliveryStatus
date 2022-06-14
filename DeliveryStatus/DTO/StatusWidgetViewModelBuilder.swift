@@ -39,7 +39,7 @@ class StatusWidgetViewModelBuilder {
         if group == .created && evolutionStage == .past {
             isExpandingAvailable = false
         } else {
-            isExpandingAvailable = !steps.isEmpty || card != nil
+            isExpandingAvailable = (steps.count > 1) || card != nil
         }
         let title = buildTitle(groupDTO, group, evolutionStage, isExpandingAvailable: isExpandingAvailable)
         
@@ -112,7 +112,7 @@ class StatusWidgetViewModelBuilder {
             let nestedSteps = step.statuses.map { nestedStep in
                 return DeliveryStatusViewModel.Step(
                     title: nestedStep.title,
-                    type: .point(date: nestedStep.date, isPrimary: step.city != nil),
+                    type: .point(date: nestedStep.date, isPrimary: step.city == nil),
                     evolutionStage: evolutionStage,
                     group: group
                 )

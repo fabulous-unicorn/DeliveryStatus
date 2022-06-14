@@ -160,7 +160,7 @@ extension ViewController {
                     evolutionStage: .present,
                     roadMap: [
                         OrderDeliveryStepDto(
-                            city: "Новосибирск",
+                            city: nil,
                             statuses: [
                                 StatusDto(title: "Готов  к выдаче", date: "22.04.2020")
                             ]

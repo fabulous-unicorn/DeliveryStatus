@@ -59,7 +59,7 @@ class DeliveryStatusStepView: UIView {
             animations: {
                 self.titleLabel.text = stepModel.title
                 self.titleLabel.font = .systemFont(ofSize: 12)
-                self.titleLabel.textColor = stepModel.evolutionStage == .future ? .lightGray : .black
+                self.titleLabel.textColor = stepModel.evolutionStage == .future ? .gray : .black
             },
             completion: nil
         )
@@ -99,7 +99,7 @@ class DeliveryStatusStepView: UIView {
             animations: {
                 self.titleLabel.text = stepModel.title
                 self.titleLabel.font = .systemFont(ofSize: 12)
-                self.titleLabel.textColor = isPrimary ? .black : .lightGray
+                self.titleLabel.textColor = isPrimary ? .black : .gray
             },
             completion: nil
         )

@@ -112,7 +112,7 @@ extension ViewController {
             sender: nil,
             senderDeliveryType: .pvz,
             receiver: nil,
-            receiverDeliveryType: .postomate,
+            receiverDeliveryType: nil,
             departureCity: City(name: "Москва"),
             destinationCity: City(name: "Новосибирск"),
             senderOffice: Office(id: 0, address: "ул. Ленина 234"),

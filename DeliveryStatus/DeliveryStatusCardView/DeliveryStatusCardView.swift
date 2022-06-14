@@ -21,8 +21,9 @@ class DeliveryStatusCardView: UIStackView {
     // Only version before iOS 14
     private let mainInfoBackgroundView = UIView()
     
+    @IBOutlet private weak var deliveryTypeContainer: UIView!
     @IBOutlet private weak var iconView: UIImageView!
-    @IBOutlet private weak var modeTitleLabel: UILabel!
+    @IBOutlet private weak var deliveryTypeTitleLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
     
     @IBOutlet private weak var addressContainer: UIStackView!
@@ -118,7 +119,7 @@ class DeliveryStatusCardView: UIStackView {
         self.cardModel = cardModel
         
         iconView.image = cardModel.icon
-        modeTitleLabel.text = cardModel.title
+        deliveryTypeTitleLabel.text = cardModel.title
         addressLabel.text = cardModel.address
         
         if cardModel.officeId != nil {
@@ -141,6 +142,20 @@ class DeliveryStatusCardView: UIStackView {
         
         keepInfoContainer.isHidden = cardModel.keepDateInfo == nil
         keepInfoLabel.text = cardModel.keepDateInfo
+        
+        hiddenUnknowned()
+    }
+    
+    /// Для обратной совместимости
+    private func hiddenUnknowned() {
+        guard self.cardModel?.deliveryType == .unknown else { return }
+            
+        self.deliveryTypeContainer.isHidden = true
+        self.changeButton.isHidden = true
+        
+        // TODO: Alesya Volosach | Предполагаю что это тоже имеет смысл скрыть
+        self.openMapLabel.isHidden = true
+        self.transparentOpenMapButton?.isHidden = true
     }
     
     private func configureTransparentOpenMapButton() {

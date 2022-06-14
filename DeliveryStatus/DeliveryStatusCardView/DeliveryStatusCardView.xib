@@ -15,13 +15,14 @@
                 <outlet property="addressLabel" destination="IkY-C4-Ihw" id="3zG-5m-7Qq"/>
                 <outlet property="changeButton" destination="L40-F5-DAO" id="7D3-ty-gAN"/>
                 <outlet property="contentView" destination="Z3V-F7-JuC" id="Qec-Aq-qgL"/>
+                <outlet property="deliveryTypeContainer" destination="FGo-cs-dLh" id="vZk-m4-rpG"/>
+                <outlet property="deliveryTypeTitleLabel" destination="qhv-xU-RtJ" id="iRs-pX-ILE"/>
                 <outlet property="iconView" destination="aab-Cu-74c" id="DLn-Md-hgd"/>
                 <outlet property="keepInfoButton" destination="n5O-OC-Xfc" id="Qsw-fl-qxR"/>
                 <outlet property="keepInfoContainer" destination="aNe-XY-HmI" id="qJJ-aj-L7o"/>
                 <outlet property="keepInfoLabel" destination="vVu-OM-6QH" id="hIl-ro-G3x"/>
                 <outlet property="mainInfoContainer" destination="jlU-It-WOO" id="TrR-47-mKJ"/>
                 <outlet property="messageLabel" destination="w5A-Hn-BG5" id="3bH-1I-4hI"/>
-                <outlet property="modeTitleLabel" destination="qhv-xU-RtJ" id="iRs-pX-ILE"/>
                 <outlet property="openMapLabel" destination="zzV-xC-LIB" id="rlG-8I-0YT"/>
                 <outlet property="pickUpInfoLabel" destination="uhU-Mf-KeS" id="PUN-gb-6q1"/>
                 <outlet property="planneDeliveryInfoLabel" destination="d2I-9e-5fG" id="Imc-8a-dNK"/>

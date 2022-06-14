@@ -38,7 +38,7 @@ class DeliveryStatusStepView: UIView {
     
     // MARK: - Configure
     
-    func configure(_ stepModel: DeliveryStatusViewModel.Step) {
+    func configure(withModel stepModel: DeliveryStatusViewModel.Step) {
         self.stepModel = stepModel
         
         switch stepModel.type {

@@ -119,7 +119,6 @@ struct DeliveryStatusViewModel {
         )
     }
     
-    // TODO: Alesya Volosach | прост временное упрощение
     init(
         group: Group,
         message: String? = nil,
@@ -364,7 +363,6 @@ struct DeliveryStatusViewModel {
             case pvz
             /// Постомат
             case postomate
-            // TODO: Alesya Volosach | В соответствии с новым кейсом адаптировать верстку
             /// Не пришел тип или появился новые. Почти невозможный кейс на бэке дефолтно передается pvz
             case unknown
         }

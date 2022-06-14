@@ -46,8 +46,8 @@
             filePath = "DeliveryStatus/DTO/StatusWidgetViewModelBuilder.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "group(_:)"
             landmarkType = "7">
          </BreakpointContent>

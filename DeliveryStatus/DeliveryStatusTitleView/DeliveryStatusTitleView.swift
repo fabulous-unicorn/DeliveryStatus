@@ -71,41 +71,40 @@ class DeliveryStatusTitleView: UIView {
     // MARK: - Configure
     
     func configure(
-        _ model: DeliveryStatusViewModel.Title,
-        _ delegate: DeliveryStatusTitleDelegate
+        withModel titleModel: DeliveryStatusViewModel.Title,
+        delegate: DeliveryStatusTitleDelegate
     ) {
-        self.titleModel = model
+        self.titleModel = titleModel
         self.delegate = delegate
         
-        titleLabel.text = model.title
-        iconView.image = model.group.icon
+        titleLabel.text = titleModel.title
+        iconView.image = titleModel.group.icon
         
-        setStyles(model)
+        setStyles(titleModel)
     }
     
     // MARK: - Other
     
-    // TODO: Alesya Volosach | Может вывести где-то правило, где передается в методы view модель, а где напрямую тянем из свойств
-    private func setStyles(_ model: DeliveryStatusViewModel.Title) {
-        switch model.evolutionStage {
+    private func setStyles(_ titleModel: DeliveryStatusViewModel.Title) {
+        switch titleModel.evolutionStage {
         case .past:
-            iconView.tintColor = model.group.tintColor
-            iconContainerView.backgroundColor = model.group.backgroundColor
+            iconView.tintColor = titleModel.group.tintColor
+            iconContainerView.backgroundColor = titleModel.group.backgroundColor
             titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
             titleLabel.alpha = 1
         case .present:
-            iconView.tintColor = model.group.tintColor
-            iconContainerView.backgroundColor = model.group.backgroundColor
+            iconView.tintColor = titleModel.group.tintColor
+            iconContainerView.backgroundColor = titleModel.group.backgroundColor
             titleLabel.font = .systemFont(ofSize: 24, weight: .semibold)
             titleLabel.alpha = 1
         case .future:
-            iconView.tintColor = model.group.inactiveTintColor
-            iconContainerView.backgroundColor = model.group.inactiveBackgroundColor
+            iconView.tintColor = titleModel.group.inactiveTintColor
+            iconContainerView.backgroundColor = titleModel.group.inactiveBackgroundColor
             titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
             titleLabel.alpha = 0.6
         }
         
-        arrowView.isHidden = !model.isExpandingAvailable
+        arrowView.isHidden = !titleModel.isExpandingAvailable
     }
     
     func showArrowAnimation() {

@@ -17,14 +17,12 @@ View: Группа-статуса для заказа
 Визуально включает в себя:
 - Заголовок статуса ``DeliveryStatusTitleView``, который позволяет раскрывать статус
 - Линию прогресса, если это не последний шаг
-
 - В свернутом состоянии:
- - Краткое описание ``DeliveryStatusStepView``
-
+    - Краткое описание ``DeliveryStatusStepView``
 - В развернутом:
- - Описание
- - Либо таблицу с промежуточными шагами, ячейки: ``DeliveryStatusStepView``
- - Либо карточку: ``DeliveryStatusCardView``
+    - Описание
+    - Либо таблицу с промежуточными шагами, ячейки: ``DeliveryStatusStepView``
+    - Либо карточку: ``DeliveryStatusCardView``
  
  */
 class DeliveryStatusView: UIStackView {
@@ -35,10 +33,6 @@ class DeliveryStatusView: UIStackView {
     
     private var messageContainer: UIView?
     private var messageLabel: UILabel?
-    
-    // TODO: Alesya Volosach | Нужно ли их удерживать полями? - // Save
-    private var backgroundLine: UIView?
-    private var progressLine: UIView?
     
     private var isExpanded = true
     
@@ -71,30 +65,28 @@ class DeliveryStatusView: UIStackView {
         self.layoutMargins = .init(top: 0, left: 0, bottom: 20, right: 0)
     }
     
-    func configure(_ statusModel: DeliveryStatusViewModel) {
+    func configure(withModel statusModel: DeliveryStatusViewModel) {
         self.statusModel = statusModel
         
-        self.titleView.configure(statusModel.title, self)
+        self.titleView.configure(withModel: statusModel.title, delegate: self)
         
         if let message = statusModel.message {
             configureMessage(text: message)
         }
-        
-        // TODO: Alesya Volosach | Оставшееся под вопросом: какие статусы будут приходить в первом и последнем шаге(там где есть карточка)
-        
+                
         if let cardModel = statusModel.card {
-            configureCard(model: cardModel)
+            configureCard(status: statusModel, card: cardModel)
         } else {
             statusModel.steps.forEach { step in
                 let view = DeliveryStatusStepView()
-                view.configure(step)
+                view.configure(withModel: step)
                 self.stepsViews.append(view)
                 self.stepsContainerView.addArrangedSubview(view)
             }
         }
         
         if !statusModel.isLastStatus {
-            configureProgressLine()
+            configureProgressLine(status: statusModel)
         }
         
         configureInitialExpandedState()
@@ -132,11 +124,12 @@ class DeliveryStatusView: UIStackView {
         self.addArrangedSubview(messageContainer)
     }
     
-    private func configureCard(model cardModel:  DeliveryStatusViewModel.Card) {
-        guard let model = statusModel else { return }
-        
+    private func configureCard(
+        status statusModel: DeliveryStatusViewModel,
+        card cardModel:  DeliveryStatusViewModel.Card
+    ) {
         let cardView = DeliveryStatusCardView()
-        cardView.configure(cardModel)
+        cardView.configure(withModel:cardModel)
         
         cardView.isLayoutMarginsRelativeArrangement = true
         cardView.layoutMargins = .init(top: 8, left: 26, bottom: 0, right: 0)
@@ -147,23 +140,23 @@ class DeliveryStatusView: UIStackView {
         self.cardView = cardView
         
         // Short Info (Table)
-        if let shortInfoModel = model.stepForShortView {
+        if let shortInfoModel = statusModel.stepForShortView {
             let shortInfoViews = DeliveryStatusStepView()
-            shortInfoViews.configure(shortInfoModel)
+            shortInfoViews.configure(withModel: shortInfoModel)
             
             self.stepsViews.append(shortInfoViews)
             self.stepsContainerView.addArrangedSubview(shortInfoViews)
         }
     }
     
-    private func configureProgressLine() {
-        guard let model = statusModel else { return }
-        
+    private func configureProgressLine(
+        status statusModel: DeliveryStatusViewModel
+    ) {
         let backgroundLine = UIView()
         let accentLine = UIView()
         
         // Set progress
-        accentLine.backgroundColor = model.title.group.tintColor
+        accentLine.backgroundColor = statusModel.title.group.tintColor
         
         accentLine.translatesAutoresizingMaskIntoConstraints = false
         self.insertSubview(accentLine, at: 0)
@@ -174,7 +167,7 @@ class DeliveryStatusView: UIStackView {
             accentLine.topAnchor.constraint(equalTo: self.topAnchor)
         ])
         
-        switch model.evolutionStage {
+        switch statusModel.evolutionStage {
         case .past:
             accentLine.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         case .present:
@@ -199,10 +192,6 @@ class DeliveryStatusView: UIStackView {
             backgroundLine.topAnchor.constraint(equalTo: self.topAnchor),
             backgroundLine.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
-        
-        // Save
-        self.backgroundLine = backgroundLine
-        self.progressLine = accentLine
     }
     
     func configureInitialExpandedState(){
@@ -253,7 +242,7 @@ extension DeliveryStatusView {
     private func expandStatusForTable() {
         stepsViews.enumerated().forEach { index, view in
             guard let model = statusModel else { return }
-            view.configure(model.steps[index])
+            view.configure(withModel: model.steps[index])
         }
         stepsViews.forEach { view in
                 view.alpha = 1
@@ -272,15 +261,15 @@ extension DeliveryStatusView {
     private func commpressStatusForTable() {
         guard let model = statusModel else { return }
         
+        // TODO: Alesya Volosach | По идее невозможный кейс
         guard let stepForShortView = model.stepForShortView else {
-            // TODO: Alesya Volosach | По идее невозможный кейс
             stepsViews.enumerated().forEach { index, view in
                 view.isHidden = true
             }
             return
         }
 
-        stepsViews.last?.configure(stepForShortView)
+        stepsViews.last?.configure(withModel: stepForShortView)
         
         stepsViews.enumerated().forEach { index, view in
             view.isHidden = index == stepsViews.count - 1 ? false : true

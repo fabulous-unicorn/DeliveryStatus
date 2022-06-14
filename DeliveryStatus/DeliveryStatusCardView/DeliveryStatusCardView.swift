@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-// TODO: Alesya Volosach | Доработать установку стилей текста в didSet
 
 /**
 View: Карточка для группы-статуса
@@ -18,8 +17,6 @@ class DeliveryStatusCardView: UIStackView {
     @IBOutlet private var contentView: UIStackView!
     
     @IBOutlet private weak var mainInfoContainer: UIStackView!
-    // Only version before iOS 14
-    private let mainInfoBackgroundView = UIView()
     
     @IBOutlet private weak var deliveryTypeContainer: UIView!
     @IBOutlet private weak var iconView: UIImageView!
@@ -58,7 +55,6 @@ class DeliveryStatusCardView: UIStackView {
     }
     
     func commonInit() {
-        // TODO: Alesya Volosach | В проекте поменять логику встраивания subviews
         Bundle.main.loadNibNamed("DeliveryStatusCardView", owner: self, options: nil)
         self.addArrangedSubview(contentView)
         self.axis = .vertical
@@ -72,6 +68,7 @@ class DeliveryStatusCardView: UIStackView {
             mainInfoContainer.borderColor = UIColor(named: "borderSurface")
             mainInfoContainer.borderWidth = 1
         } else {
+            let mainInfoBackgroundView = UIView()
             mainInfoBackgroundView.translatesAutoresizingMaskIntoConstraints = false
             mainInfoContainer.insertSubview(mainInfoBackgroundView, at: 0)
             NSLayoutConstraint.activate([
@@ -115,7 +112,7 @@ class DeliveryStatusCardView: UIStackView {
     
     // MARK: - Configure
     
-    func configure(_ cardModel: DeliveryStatusViewModel.Card) {
+    func configure(withModel cardModel: DeliveryStatusViewModel.Card) {
         self.cardModel = cardModel
         
         iconView.image = cardModel.icon
@@ -143,17 +140,15 @@ class DeliveryStatusCardView: UIStackView {
         keepInfoContainer.isHidden = cardModel.keepDateInfo == nil
         keepInfoLabel.text = cardModel.keepDateInfo
         
-        hiddenUnknowned()
+        hideUnknown(cardModel)
     }
     
     /// Для обратной совместимости
-    private func hiddenUnknowned() {
-        guard self.cardModel?.deliveryType == .unknown else { return }
+    private func hideUnknown(_ cardModel: DeliveryStatusViewModel.Card) {
+        guard cardModel.deliveryType == .unknown else { return }
             
         self.deliveryTypeContainer.isHidden = true
         self.changeButton.isHidden = true
-        
-        // TODO: Alesya Volosach | Предполагаю что это тоже имеет смысл скрыть
         self.openMapLabel.isHidden = true
         self.transparentOpenMapButton?.isHidden = true
     }

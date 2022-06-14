@@ -6,11 +6,9 @@
 //
 
 import Foundation
-// TODO: Alesya Volosach | Наверное будет лучше закрыть протоколом, потому что хочется написать адекватные тесты
+
 class StatusWidgetViewModelBuilder {
-    // TODO: Alesya Volosach | упаковать входные параметры и инициализаторы в тюплы
-    // TODO: Alesya Volosach | какова будет выгода если делать именно билдер?
-    
+    // TODO: Alesya Volosach | Тестировать как черный ящик
     static func buildStatuses(_ order: Order) -> [DeliveryStatusViewModel] {
         let groups: [DeliveryStatusViewModel] = order.orderStatusGroups.enumerated().compactMap { index, group in
             return buildStatus(order, group, at: index)
@@ -25,7 +23,7 @@ class StatusWidgetViewModelBuilder {
     ) -> DeliveryStatusViewModel {
         let group = group(groupDTO.code)
         let message = groupDTO.message
-        let evolutionStage = configureEvolutionStage(groupDTO.evolutionStage)
+        let evolutionStage = evolutionStage(groupDTO.evolutionStage)
         let isLastStatus = index == order.orderStatusGroups.count - 1
         
         let steps = buildSteps(groupDTO, group, evolutionStage)
@@ -70,7 +68,7 @@ class StatusWidgetViewModelBuilder {
         }
     }
     
-    static private func configureEvolutionStage(
+    static private func evolutionStage(
         _ evolutionStage: OrderStatusGroupDto.EvolutionStage
     ) -> DeliveryStatusViewModel.Stage {
         switch evolutionStage {
@@ -165,7 +163,6 @@ class StatusWidgetViewModelBuilder {
         
         return DeliveryStatusViewModel.Card(
             group: group,
-            // TODO: Alesya Volosach | переименновать поле в type или что-то типо того
             deliveryType: deliveryType,
             address: address,
             officeId: officeId,

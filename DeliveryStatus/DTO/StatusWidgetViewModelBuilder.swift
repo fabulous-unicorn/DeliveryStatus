@@ -173,7 +173,7 @@ class StatusWidgetViewModelBuilder {
             pickUpInfo: pickUpInfo,
             displayChangeButton: displayChangeButton,
             planedDeliveryInfo: nil,
-            // TODO: Alesya Volosach | не преполагается но на всякий проверить откуда тянуть 
+            // Общего message для всех карточек на данный момент нет
             message: nil,
             keepDateInfo: nil,
             keepInfoLink: nil
@@ -192,10 +192,6 @@ class StatusWidgetViewModelBuilder {
         let displayChangeButton = order.canBeChanged ?? false
         let planedDeliveryInfo = planedDeliveryInfo(order)
         
-//        """
-//        Плановая дата доставки будет определена
-//        после поступления заказа в СДЭК
-//        """
         let message = order.plannedDeliveryNotAvailableNote
         let keepDateInfo = keepDateInfo(order)
         
@@ -204,7 +200,8 @@ class StatusWidgetViewModelBuilder {
             mode: mode,
             address: address,
             officeId: officeId,
-            pickUpInfo: nil, // Еще нет признака
+            // Еще нет признака
+            pickUpInfo: nil,
             displayChangeButton: displayChangeButton,
             planedDeliveryInfo: planedDeliveryInfo,
             message: message,

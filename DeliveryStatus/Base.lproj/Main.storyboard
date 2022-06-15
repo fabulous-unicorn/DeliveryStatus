@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-g3-5ns">
-                                <rect key="frame" x="20" y="64" width="374" height="100"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="100"/>
                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="20" right="0.0"/>
                             </stackView>
                         </subviews>
@@ -25,9 +25,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pBY-g3-5ns" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="23F-Vw-iWF"/>
-                            <constraint firstItem="pBY-g3-5ns" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3Lf-yn-6dg"/>
+                            <constraint firstItem="pBY-g3-5ns" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3Lf-yn-6dg"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pBY-g3-5ns" secondAttribute="bottom" priority="999" id="FLB-wy-T27"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pBY-g3-5ns" secondAttribute="trailing" constant="20" id="qhr-x5-npy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pBY-g3-5ns" secondAttribute="trailing" id="qhr-x5-npy"/>
                         </constraints>
                     </view>
                     <connections>

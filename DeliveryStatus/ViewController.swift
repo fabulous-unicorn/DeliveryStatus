@@ -15,23 +15,20 @@ class ViewController: UIViewController {
         
         // Created
 //        let order = getCreatedOrder()
-//        let steps = StatusWidgetViewModelBuilder.buildStatuses(order)
-//
-//        steps.forEach { step in
-//            let view = DeliveryStatusView()
-//            view.configure(withModel: step)
-//            self.containerStackView.addArrangedSubview(view)
-//        }
-        
+
         // ReadyForPickUp
         let order = getOrderWithNewStatus()
         
+        // StatusWidget
+        let statusWidget = DeliveryStatusWidgetView()
         let steps = StatusWidgetViewModelBuilder.buildStatuses(order)
-        steps.forEach { step in
-            let view = DeliveryStatusView()
-            view.configure(withModel: step)
-            self.containerStackView.addArrangedSubview(view)
-        }
+        statusWidget.configure(with: steps)
+        
+        // StatusWidget
+        let orderDetailInfoWidget = OrderDetailInfoV2Widget()
+        
+        self.containerStackView.addArrangedSubview(statusWidget)
+        self.containerStackView.addArrangedSubview(orderDetailInfoWidget)
     }
 }
 

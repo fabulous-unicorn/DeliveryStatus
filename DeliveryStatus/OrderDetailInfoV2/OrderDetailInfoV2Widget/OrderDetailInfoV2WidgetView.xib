@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrderDetailInfoV2Widget" customModule="DeliveryStatus" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="s3w-M4-q6J"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IJh-gF-NuC">
+                    <rect key="frame" x="16" y="0.0" width="568" height="56"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderDetail.package" translatesAutoresizingMaskIntoConstraints="NO" id="dzS-3X-qsc">
+                            <rect key="frame" x="16" y="16" width="24" height="24"/>
+                            <color key="tintColor" red="0.1019607843" green="0.69803921570000005" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="4gm-pk-eEM"/>
+                                <constraint firstAttribute="height" constant="24" id="x7b-jd-YrY"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderDetail.arrowRight" translatesAutoresizingMaskIntoConstraints="NO" id="goR-C3-XOq">
+                            <rect key="frame" x="528" y="16" width="24" height="24"/>
+                            <color key="tintColor" red="0.5568627451" green="0.56862745100000001" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="SWv-QB-bAl"/>
+                                <constraint firstAttribute="width" constant="24" id="TlP-4v-bvu"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Данные посылки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3J-nO-agb">
+                            <rect key="frame" x="56" y="17.5" width="456" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="goR-C3-XOq" secondAttribute="trailing" constant="16" id="BFh-q6-cDR"/>
+                        <constraint firstAttribute="bottom" secondItem="goR-C3-XOq" secondAttribute="bottom" constant="16" id="Cm4-aM-J2W"/>
+                        <constraint firstItem="goR-C3-XOq" firstAttribute="top" secondItem="IJh-gF-NuC" secondAttribute="top" constant="16" id="G8N-L7-w6c"/>
+                        <constraint firstItem="goR-C3-XOq" firstAttribute="leading" secondItem="D3J-nO-agb" secondAttribute="trailing" constant="16" id="OZI-jP-saE"/>
+                        <constraint firstAttribute="bottom" secondItem="dzS-3X-qsc" secondAttribute="bottom" constant="16" id="Oag-Ur-mhq"/>
+                        <constraint firstItem="D3J-nO-agb" firstAttribute="centerY" secondItem="IJh-gF-NuC" secondAttribute="centerY" id="Sh1-g4-0nB"/>
+                        <constraint firstItem="D3J-nO-agb" firstAttribute="leading" secondItem="dzS-3X-qsc" secondAttribute="trailing" constant="16" id="d2M-1A-83h"/>
+                        <constraint firstItem="dzS-3X-qsc" firstAttribute="top" secondItem="IJh-gF-NuC" secondAttribute="top" constant="16" id="ekY-gk-QUJ"/>
+                        <constraint firstItem="dzS-3X-qsc" firstAttribute="leading" secondItem="IJh-gF-NuC" secondAttribute="leading" constant="16" id="lBQ-N0-f5f"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="12"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="point" keyPath="shadowOffset">
+                            <point key="value" x="0.0" y="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.10000000000000001"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="IJh-gF-NuC" secondAttribute="bottom" id="13f-pq-Zar"/>
+                <constraint firstAttribute="trailing" secondItem="IJh-gF-NuC" secondAttribute="trailing" constant="16" id="3Ed-h0-ew3"/>
+                <constraint firstItem="IJh-gF-NuC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="b1m-vm-H93"/>
+                <constraint firstItem="IJh-gF-NuC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="k0y-Q9-4XQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="Vqc-aB-V6l" appends="YES" id="IW6-H3-URU"/>
+            </connections>
+            <point key="canvasLocation" x="288.40579710144931" y="-82.366071428571431"/>
+        </view>
+        <tapGestureRecognizer id="Vqc-aB-V6l">
+            <connections>
+                <action selector="tappedWidget:" destination="-1" id="773-Tt-Q85"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="orderDetail.arrowRight" width="24" height="24"/>
+        <image name="orderDetail.package" width="24" height="24"/>
+    </resources>
+</document>

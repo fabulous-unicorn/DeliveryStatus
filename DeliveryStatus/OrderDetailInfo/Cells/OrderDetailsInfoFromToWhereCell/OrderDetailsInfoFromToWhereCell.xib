@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderDetailsInfoFromToWhereCell" id="KGk-i7-Jjw" customClass="OrderDetailsInfoFromToWhereCell" customModule="DeliveryStatus" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderDetailInfo.mapPin" translatesAutoresizingMaskIntoConstraints="NO" id="s3m-EG-jIT">
+                        <rect key="frame" x="0.0" y="8" width="24" height="24"/>
+                        <color key="tintColor" red="0.1019607843" green="0.69803921570000005" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="jfW-C4-yJh"/>
+                            <constraint firstAttribute="width" constant="24" id="n78-L6-4Ih"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderDetailInfo.copy" translatesAutoresizingMaskIntoConstraints="NO" id="I8l-pr-mqv">
+                        <rect key="frame" x="296" y="8" width="24" height="24"/>
+                        <color key="tintColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="dfx-JJ-Rv3"/>
+                            <constraint firstAttribute="width" constant="24" id="osP-tX-wIC"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GzV-Ih-6iY">
+                        <rect key="frame" x="40" y="10" width="232" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s3m-EG-jIT" secondAttribute="bottom" constant="8" id="Bbd-NY-cWR"/>
+                    <constraint firstItem="s3m-EG-jIT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="CXE-Wa-HoV"/>
+                    <constraint firstItem="GzV-Ih-6iY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="EAM-qV-4DM"/>
+                    <constraint firstItem="I8l-pr-mqv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="KF8-Aq-jWt"/>
+                    <constraint firstAttribute="trailing" secondItem="I8l-pr-mqv" secondAttribute="trailing" id="PoS-fO-tky"/>
+                    <constraint firstItem="I8l-pr-mqv" firstAttribute="leading" secondItem="GzV-Ih-6iY" secondAttribute="trailing" constant="24" id="TYz-jL-C2V"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="I8l-pr-mqv" secondAttribute="bottom" constant="8" id="Z8Z-3X-E94"/>
+                    <constraint firstItem="GzV-Ih-6iY" firstAttribute="leading" secondItem="s3m-EG-jIT" secondAttribute="trailing" constant="16" id="cmw-1Q-udx"/>
+                    <constraint firstItem="s3m-EG-jIT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="mqT-23-zpg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="leftIconView" destination="s3m-EG-jIT" id="Cb7-na-4NB"/>
+                <outlet property="rightIconView" destination="I8l-pr-mqv" id="UVr-L8-VLA"/>
+                <outlet property="titleLabel" destination="GzV-Ih-6iY" id="CuT-DU-FBQ"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="82.366071428571431"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="orderDetailInfo.copy" width="24" height="24"/>
+        <image name="orderDetailInfo.mapPin" width="24" height="24"/>
+    </resources>
+</document>

@@ -1,5 +1,5 @@
 //
-//  OrderDetailInfoV2ViewController.swift
+//  OrderDetailInfoViewController.swift
 //  DeliveryStatus
 //
 //  Created by Alesya Volosach on 15.06.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrderDetailInfoV2ViewController: UITableViewController {
+class OrderDetailInfoViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

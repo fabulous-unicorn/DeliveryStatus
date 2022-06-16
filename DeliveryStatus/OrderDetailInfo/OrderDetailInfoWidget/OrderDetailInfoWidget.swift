@@ -1,5 +1,5 @@
 //
-//  InfoDepartureWidget.swift
+//  OrderDetailInfoWidget.swift
 //  DeliveryStatus
 //
 //  Created by Alesya Volosach on 15.06.2022.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class OrderDetailInfoV2Widget: UIView {
+class OrderDetailInfoWidget: UIView {
     // TODO: Alesya Volosach | можно и из контейнера вытащить
     @IBOutlet private weak var contentView: UIView!
     
@@ -25,7 +25,7 @@ class OrderDetailInfoV2Widget: UIView {
     }
     
     private func commonInit() {
-        Bundle.main.loadNibNamed("OrderDetailInfoV2WidgetView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("OrderDetailInfoWidgetView", owner: self, options: nil)
         contentView.fixInView(self)
     }
     

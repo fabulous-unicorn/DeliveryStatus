@@ -12,6 +12,8 @@ class OrderDetailsInfoOrderActorCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var rightIconView: UIImageView!
     
+    var infoModel: OrderDetailsInfoViewModel.OrderActor.Item?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,6 +24,25 @@ class OrderDetailsInfoOrderActorCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configure(
+        with infoModel: OrderDetailsInfoViewModel.OrderActor.Item
+    ) {
+        self.infoModel = infoModel
+        
+        self.leftIconView.image = infoModel.icon
+        self.titleLabel.text = infoModel.title
+        
+        switch infoModel.behavior {
+        case .copy:
+            self.accessoryType = .none
+            self.rightIconView.image = UIImage(named: "orderDetailInfo.copy")
+            self.rightIconView.isHidden = false
+        case .contact:
+            self.rightIconView.isHidden = true
+            self.accessoryType = .disclosureIndicator
+        }
     }
     
 }

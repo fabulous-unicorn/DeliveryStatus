@@ -74,18 +74,60 @@ struct OrderDetailsInfoViewModel {
         var type: ParcelInfoType
     }
     
-    enum ParcelInfoType: Equatable {
+    enum ParcelInfoType {
         case `default`(nestedItems: [ParcelInfo])
         case nested
-        
-        /// Сравнение только на тип, не более
-        static func == (lhs: OrderDetailsInfoViewModel.ParcelInfoType, rhs: OrderDetailsInfoViewModel.ParcelInfoType) -> Bool {
-            switch (lhs, rhs) {
-            case (.nested, .nested): return true
-            case let (.`default`(nestedItemsLhs), .`default`(nestedItemsRhs)):
-                return true
-            default: return false
-            }
+    }
+}
+
+// MARK: - Equatable & Hashable
+extension OrderDetailsInfoViewModel.OrderActorRole: Equatable {}
+
+extension OrderDetailsInfoViewModel.OrderActor: Hashable {}
+
+extension OrderDetailsInfoViewModel.AdditionalService: Hashable {}
+
+extension OrderDetailsInfoViewModel.ParcelInfo: Hashable {}
+
+extension OrderDetailsInfoViewModel.ParcelInfoType: Hashable {
+    /// Сравнение только на тип, не более
+    static func == (lhs: OrderDetailsInfoViewModel.ParcelInfoType, rhs: OrderDetailsInfoViewModel.ParcelInfoType) -> Bool {
+        switch (lhs, rhs) {
+        case (.nested, .nested): return true
+        case (.`default`(_), .`default`(_)):
+            return true
+        default: return false
+        }
+    }
+}
+
+extension OrderDetailsInfoViewModel.ContentGroup: Hashable {
+    // TODO: Alesya Volosach | проверить
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case let .actor(role, _):
+            hasher.combine("actor\(role.hashValue)")
+        case .additionalServices:
+            hasher.combine("additionalServices")
+        case .parcelInfo:
+            hasher.combine("parcelInfo")
+        }
+    }
+    
+    /// Проверка только на тип
+    static func == (
+        lhs: OrderDetailsInfoViewModel.ContentGroup,
+        rhs: OrderDetailsInfoViewModel.ContentGroup
+    ) -> Bool {
+        switch (lhs, rhs) {
+        case let (.actor(roleLhs, _), .actor(roleRhs, _)):
+            return roleLhs == roleRhs
+        case (.additionalServices, .additionalServices):
+            return true
+        case (.parcelInfo, .parcelInfo):
+            return true
+        default:
+            return false
         }
     }
 }

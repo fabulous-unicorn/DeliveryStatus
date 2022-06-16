@@ -65,7 +65,7 @@ class DeliveryStatusCardView: UIStackView {
         // BackgroundView for mainContainer
         if #available(iOS 14, *) {
             mainInfoContainer.cornerRadius = Constant.surfaceCornerRadius
-            mainInfoContainer.borderColor = UIColor(named: "borderSurface")
+            mainInfoContainer.borderColor = UIColor(named: "Surface Border")
             mainInfoContainer.borderWidth = 1
         } else {
             let mainInfoBackgroundView = UIView()
@@ -80,12 +80,12 @@ class DeliveryStatusCardView: UIStackView {
             
             mainInfoBackgroundView.backgroundColor = .white
             mainInfoBackgroundView.cornerRadius = Constant.surfaceCornerRadius
-            mainInfoBackgroundView.borderColor = UIColor(named: "borderSurface")
+            mainInfoBackgroundView.borderColor = UIColor(named: "Surface Border")
             mainInfoBackgroundView.borderWidth = 1
         }
         
         keepInfoContainer.cornerRadius = Constant.surfaceCornerRadius
-        keepInfoContainer.borderColor = UIColor(named: "borderSurface")
+        keepInfoContainer.borderColor = UIColor(named: "Surface Border")
         keepInfoContainer.borderWidth = 1
         
         // Button

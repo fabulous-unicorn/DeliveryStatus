@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,7 +34,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.99215686274509807" green="0.92941176470588238" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" name="Surface Background"/>
                     <constraints>
                         <constraint firstItem="8BZ-hn-tOx" firstAttribute="top" secondItem="FKZ-Nq-iQR" secondAttribute="top" id="1SE-9N-Pai"/>
                         <constraint firstItem="8BZ-hn-tOx" firstAttribute="centerX" secondItem="FKZ-Nq-iQR" secondAttribute="centerX" id="GwO-2i-x6A"/>
@@ -46,7 +47,7 @@
                             <real key="value" value="14"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="value" name="Surface Background"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                             <real key="value" value="2"/>
@@ -55,7 +56,7 @@
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orderDetail.arrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="gjy-IK-0Cm">
                     <rect key="frame" x="273.5" y="2" width="24" height="24"/>
-                    <color key="tintColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" name="Tint Icon Default"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="UqB-DD-X33"/>
                         <constraint firstAttribute="width" constant="24" id="YFx-PZ-BjN"/>
@@ -67,11 +68,11 @@
                         <constraint firstAttribute="height" constant="28" id="GFU-dP-RMa"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" name="Text Primary"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="Surface Background"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="FKZ-Nq-iQR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3fP-1C-IFH"/>
@@ -100,5 +101,14 @@
     <resources>
         <image name="orderDetail.arrowDown" width="24" height="24"/>
         <image name="orderDetail.status.InProgress" width="28" height="28"/>
+        <namedColor name="Surface Background">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Text Primary">
+            <color red="0.11372549019607843" green="0.11372549019607843" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Tint Icon Default">
+            <color red="0.11372549019607843" green="0.11372549019607843" blue="0.10588235294117647" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

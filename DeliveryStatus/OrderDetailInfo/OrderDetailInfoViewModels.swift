@@ -11,33 +11,40 @@ import UIKit
 struct OrderDetailsInfoViewModel {
     var title: String
     var description: String
-    var sender: OrderActor
-    var receiver: OrderActor
-    var additionalServices: AdditionalService
-    var parcelInfo: ParcelInfo
+    var groups: [ContentGroup]
+    
+    // MARK: - ContentGroup
+    
+    enum ContentGroup {
+        case actor(role: OrderActorRole, items: [OrderActor])
+        case additionalServices(services: [AdditionalService])
+        case parcelInfo(items: [ParcelInfo])
+        
+        var title: String {
+            switch self {
+            case let .actor(role, _):
+                switch role {
+                case .sender: return "Откуда"
+                case .receiver: return "Куда"
+                }
+            case .additionalServices(_):
+                return "Дополнительные услуги"
+            case .parcelInfo(_):
+                return "Данные"
+            }
+        }
+    }
     
     // MARK: - OrderActor
     
     struct OrderActor {
-        var role: ActorRole
-        var items: Item
-                
-        struct Item {
-            var title: String
-            var icon: UIImage
-            var behavior: ItemBehavior
-        }
+        var title: String
+        var icon: UIImage
+        var behavior: ItemBehavior
     }
     
-    enum ActorRole {
+    enum OrderActorRole {
         case sender, receiver
-        
-        var title: String {
-            switch self {
-            case .sender: return "Откуда"
-            case .receiver: return "Куда"
-            }
-        }
         
         var modalTitle: String {
             switch self {
@@ -54,29 +61,21 @@ struct OrderDetailsInfoViewModel {
     // MARK: - AdditionalService
     
     struct AdditionalService {
-        var services: [Service]
-        
-        struct Service {
-            var title: String
-            var description: [String]
-        }
+        var title: String
+        var description: [String]
     }
     
     // MARK: - ParcelInfo
     
     struct ParcelInfo {
-        var items: [Item]
-        
-        struct Item {
-            var title: String
-            var description: String
-            var additionalInfo: String?
-            var type: ItemType
-        }
-        
-        enum ItemType {
-            case `default`(nestedItems: [Item])
-            case nested
-        }
+        var title: String
+        var description: String
+        var additionalInfo: String?
+        var type: ParcelInfoType
+    }
+    
+    enum ParcelInfoType {
+        case `default`(nestedItems: [ParcelInfo])
+        case nested
     }
 }

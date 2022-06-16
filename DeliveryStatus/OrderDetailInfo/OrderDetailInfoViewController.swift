@@ -18,9 +18,6 @@ class OrderDetailInfoViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.titleGroupCellIdentifier)
-//        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.actorCellIdentifier)
         
         tableView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forCellReuseIdentifier: Constants.titleGroupCellIdentifier)
 

@@ -7,8 +7,7 @@
 
 import UIKit
 
-class OrderDetailsInfoFromToWhereCell: UITableViewCell {
-
+class OrderDetailsInfoOrderActorCell: UITableViewCell {
     @IBOutlet weak var leftIconView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var rightIconView: UIImageView!
@@ -16,7 +15,6 @@ class OrderDetailsInfoFromToWhereCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
         
     }
 

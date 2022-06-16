@@ -20,8 +20,8 @@
 		6098C94A285A0BC900F30C9B /* DeliveryStatusWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C949285A0BC900F30C9B /* DeliveryStatusWidgetView.swift */; };
 		6098C94E285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C94C285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.swift */; };
 		6098C94F285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6098C94D285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.xib */; };
-		6098C954285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C952285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.swift */; };
-		6098C955285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6098C953285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.xib */; };
+		6098C954285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C952285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift */; };
+		6098C955285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6098C953285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib */; };
 		60FC9F84284100A400758ACC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F83284100A400758ACC /* AppDelegate.swift */; };
 		60FC9F86284100A400758ACC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F85284100A400758ACC /* SceneDelegate.swift */; };
 		60FC9F88284100A400758ACC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F87284100A400758ACC /* ViewController.swift */; };
@@ -51,8 +51,8 @@
 		6098C949285A0BC900F30C9B /* DeliveryStatusWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusWidgetView.swift; sourceTree = "<group>"; };
 		6098C94C285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsInfoTitleGroupCell.swift; sourceTree = "<group>"; };
 		6098C94D285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsInfoTitleGroupCell.xib; sourceTree = "<group>"; };
-		6098C952285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsInfoFromToWhereCell.swift; sourceTree = "<group>"; };
-		6098C953285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsInfoFromToWhereCell.xib; sourceTree = "<group>"; };
+		6098C952285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsInfoOrderActorCell.swift; sourceTree = "<group>"; };
+		6098C953285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsInfoOrderActorCell.xib; sourceTree = "<group>"; };
 		60FC9F80284100A400758ACC /* DeliveryStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FC9F83284100A400758ACC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FC9F85284100A400758ACC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +81,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		600E1B02285B28DF00F3C16C /* OrderDetailsInfoParcelInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OrderDetailsInfoParcelInfoCell;
+			sourceTree = "<group>";
+		};
 		608DBE47284F417B00A4A488 /* DeliveryStatusCardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,8 +151,9 @@
 		6098C9442859FE0100F30C9B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				600E1B02285B28DF00F3C16C /* OrderDetailsInfoParcelInfoCell */,
 				6098C951285A0F9000F30C9B /* OrderDetailsInfoServiceCell */,
-				6098C950285A0F3200F30C9B /* OrderDetailsInfoFromToWhereCell */,
+				6098C950285A0F3200F30C9B /* OrderDetailsInfoOrderActorCell */,
 				6098C94B285A0E7E00F30C9B /* OrderDetailsInfoTitleGroupCell */,
 			);
 			path = Cells;
@@ -160,13 +168,13 @@
 			path = OrderDetailsInfoTitleGroupCell;
 			sourceTree = "<group>";
 		};
-		6098C950285A0F3200F30C9B /* OrderDetailsInfoFromToWhereCell */ = {
+		6098C950285A0F3200F30C9B /* OrderDetailsInfoOrderActorCell */ = {
 			isa = PBXGroup;
 			children = (
-				6098C952285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.swift */,
-				6098C953285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.xib */,
+				6098C952285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift */,
+				6098C953285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib */,
 			);
-			path = OrderDetailsInfoFromToWhereCell;
+			path = OrderDetailsInfoOrderActorCell;
 			sourceTree = "<group>";
 		};
 		6098C951285A0F9000F30C9B /* OrderDetailsInfoServiceCell */ = {
@@ -297,7 +305,7 @@
 			files = (
 				6098C94F285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.xib in Resources */,
 				6098C93F2859E48300F30C9B /* OrderDetailInfoWidgetView.xib in Resources */,
-				6098C955285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.xib in Resources */,
+				6098C955285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib in Resources */,
 				60FC9F90284100A500758ACC /* LaunchScreen.storyboard in Resources */,
 				6098C9432859FD8E00F30C9B /* OrderDetailInfoScene.storyboard in Resources */,
 				60FC9F9E2841148D00758ACC /* DeliveryStatusTitleView.xib in Resources */,
@@ -321,7 +329,7 @@
 				6098C9412859F3B300F30C9B /* OrderDetailInfoWidget.swift in Sources */,
 				60FC9FAC2846565600758ACC /* DeliveryStatusViewModels.swift in Sources */,
 				6098C94E285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.swift in Sources */,
-				6098C954285A0FC100F30C9B /* OrderDetailsInfoFromToWhereCell.swift in Sources */,
+				6098C954285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift in Sources */,
 				6098C93A2859E0E700F30C9B /* OrderDetailInfoViewModels.swift in Sources */,
 				608DBE512852246900A4A488 /* OrderDTO.swift in Sources */,
 				6098C948285A075400F30C9B /* OrderDetailInfoViewController.swift in Sources */,

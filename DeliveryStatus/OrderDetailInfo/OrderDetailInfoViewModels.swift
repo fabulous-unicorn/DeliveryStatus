@@ -74,8 +74,18 @@ struct OrderDetailsInfoViewModel {
         var type: ParcelInfoType
     }
     
-    enum ParcelInfoType {
+    enum ParcelInfoType: Equatable {
         case `default`(nestedItems: [ParcelInfo])
         case nested
+        
+        /// Сравнение только на тип, не более
+        static func == (lhs: OrderDetailsInfoViewModel.ParcelInfoType, rhs: OrderDetailsInfoViewModel.ParcelInfoType) -> Bool {
+            switch (lhs, rhs) {
+            case (.nested, .nested): return true
+            case let (.`default`(nestedItemsLhs), .`default`(nestedItemsRhs)):
+                return true
+            default: return false
+            }
+        }
     }
 }

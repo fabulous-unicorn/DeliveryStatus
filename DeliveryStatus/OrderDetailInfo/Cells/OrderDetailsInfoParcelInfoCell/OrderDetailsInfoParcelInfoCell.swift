@@ -8,7 +8,12 @@
 import UIKit
 
 class OrderDetailsInfoParcelInfoCell: UITableViewCell {
-
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var iconView: UIImageView!
+    
+    var parcelInfoModel: OrderDetailsInfoViewModel.ParcelInfo?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,5 +24,38 @@ class OrderDetailsInfoParcelInfoCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func configure(with parcelInfoModel: OrderDetailsInfoViewModel.ParcelInfo) {
+        self.parcelInfoModel = parcelInfoModel
+        
+        // Content
+        
+        self.titleLabel.text = parcelInfoModel.title
+        self.descriptionLabel.text = parcelInfoModel.description
+        
+        self.iconView.isHidden = false
+        
+        if parcelInfoModel.additionalInfo != nil {
+            self.iconView.image = UIImage(named: "orderDetailInfo.alertCircle")
+            self.iconView.isHidden = false
+        }
+        
+        if
+            case let .default(nestedItems) = parcelInfoModel.type,
+            !nestedItems.isEmpty
+        {
+            self.iconView.image = UIImage(named: "orderDetail.arrowDown")
+            self.iconView.isHidden = false
+        }
+
+        // Styles
+        
+        self.descriptionLabel.font = .systemFont(
+            ofSize: self.descriptionLabel.font.pointSize,
+            weight: parcelInfoModel.type == .nested ? .regular : .semibold
+        )
+    }
+    
+    // TODO: Alesya Volosach | Где-то должна быть анимация поворота стрелки
     
 }

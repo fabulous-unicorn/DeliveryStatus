@@ -55,6 +55,7 @@ class OrderDetailInfoViewController: UITableViewController {
         tableView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forCellReuseIdentifier: Constants.titleGroupCellIdentifier)
         tableView.register(UINib(nibName: "OrderDetailsInfoOrderActorCell", bundle: nil), forCellReuseIdentifier: Constants.actorCellIdentifier)
         tableView.register(UINib(nibName: "OrderDetailsInfoServiceCell", bundle: nil), forCellReuseIdentifier: Constants.serviceCellIdentifier)
+        tableView.register(UINib(nibName: "OrderDetailsInfoParcelInfoCell", bundle: nil), forCellReuseIdentifier: Constants.parcelInfocellIdentifier)
     }
 
     // MARK: - Table view data source

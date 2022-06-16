@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		600E1B05285B41EA00F3C16C /* OrderDetailsInfoServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600E1B03285B41EA00F3C16C /* OrderDetailsInfoServiceCell.swift */; };
+		600E1B06285B41EA00F3C16C /* OrderDetailsInfoServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 600E1B04285B41EA00F3C16C /* OrderDetailsInfoServiceCell.xib */; };
 		608DBE49284F6BAA00A4A488 /* DeliveryStatusCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608DBE48284F6BAA00A4A488 /* DeliveryStatusCardView.xib */; };
 		608DBE4B284F787D00A4A488 /* DeliveryStatusCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4A284F787D00A4A488 /* DeliveryStatusCardView.swift */; };
 		608DBE4E284F9D2900A4A488 /* DeliveryStatusDocumentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */; };
@@ -38,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		600E1B03285B41EA00F3C16C /* OrderDetailsInfoServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsInfoServiceCell.swift; sourceTree = "<group>"; };
+		600E1B04285B41EA00F3C16C /* OrderDetailsInfoServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsInfoServiceCell.xib; sourceTree = "<group>"; };
 		608DBE48284F6BAA00A4A488 /* DeliveryStatusCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusCardView.xib; sourceTree = "<group>"; };
 		608DBE4A284F787D00A4A488 /* DeliveryStatusCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusCardView.swift; sourceTree = "<group>"; };
 		608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DeliveryStatusDocumentation.docc; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		6098C951285A0F9000F30C9B /* OrderDetailsInfoServiceCell */ = {
 			isa = PBXGroup;
 			children = (
+				600E1B03285B41EA00F3C16C /* OrderDetailsInfoServiceCell.swift */,
+				600E1B04285B41EA00F3C16C /* OrderDetailsInfoServiceCell.xib */,
 			);
 			path = OrderDetailsInfoServiceCell;
 			sourceTree = "<group>";
@@ -303,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				600E1B06285B41EA00F3C16C /* OrderDetailsInfoServiceCell.xib in Resources */,
 				6098C94F285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.xib in Resources */,
 				6098C93F2859E48300F30C9B /* OrderDetailInfoWidgetView.xib in Resources */,
 				6098C955285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib in Resources */,
@@ -340,6 +347,7 @@
 				608DBE53285239E900A4A488 /* StatusWidgetViewModelBuilder.swift in Sources */,
 				60FC9F84284100A400758ACC /* AppDelegate.swift in Sources */,
 				608DBE4E284F9D2900A4A488 /* DeliveryStatusDocumentation.docc in Sources */,
+				600E1B05285B41EA00F3C16C /* OrderDetailsInfoServiceCell.swift in Sources */,
 				60FC9F86284100A400758ACC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

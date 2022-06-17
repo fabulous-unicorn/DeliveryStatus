@@ -7,13 +7,14 @@
 
 import UIKit
 
-class OrderDetailInfoViewController: UITableViewController {
+class OrderDetailInfoViewController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
     
     enum Constants {
         static let titleGroupCellIdentifier = "orderDetailsInfoTitleGroupCell"
         static let actorCellIdentifier = "orderDetailsInfoOrderActorCell"
         static let serviceCellIdentifier = "orderDetailsInfoServiceCell"
-        static let parcelInfocellIdentifier = "orderDetailsInfoParcelInfoCell"
+        static let parcelInfoСellIdentifier = "orderDetailsInfoParcelInfoCell"
     }
     
     private typealias DataSource = UITableViewDiffableDataSource<OrderDetailsInfoViewModel.ContentGroup, AnyHashable>
@@ -26,28 +27,21 @@ class OrderDetailInfoViewController: UITableViewController {
         tableView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forCellReuseIdentifier: Constants.titleGroupCellIdentifier)
         tableView.register(UINib(nibName: "OrderDetailsInfoOrderActorCell", bundle: nil), forCellReuseIdentifier: Constants.actorCellIdentifier)
         tableView.register(UINib(nibName: "OrderDetailsInfoServiceCell", bundle: nil), forCellReuseIdentifier: Constants.serviceCellIdentifier)
-        tableView.register(UINib(nibName: "OrderDetailsInfoParcelInfoCell", bundle: nil), forCellReuseIdentifier: Constants.parcelInfocellIdentifier)
+        tableView.register(UINib(nibName: "OrderDetailsInfoParcelInfoCell", bundle: nil), forCellReuseIdentifier: Constants.parcelInfoСellIdentifier)
         
+        self.tableView.dataSource = dataSource
         self.dataSource = makeDataSource()
         self.initialConfigureGroups(self.mainModel)
         self.setStyles()
     }
     
     // MARK: Set styles
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 8
-    }
-
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 8
-    }
     
     func setStyles() {
-//        tableView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
-//        tableView.layer.shadowRadius = 8.0
-//        tableView.layer.shadowOffset = CGSize(width: 0, height: 1)
-//        tableView.layer.shadowOpacity = 1.0
+        tableView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+        tableView.layer.shadowRadius = 8.0
+        tableView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        tableView.layer.shadowOpacity = 1.0
     }
     
     
@@ -81,7 +75,7 @@ class OrderDetailInfoViewController: UITableViewController {
             }
             
             if let parcelInfo = item as? OrderDetailsInfoViewModel.ParcelInfo {
-                let identifier = Constants.parcelInfocellIdentifier
+                let identifier = Constants.parcelInfoСellIdentifier
                 let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! OrderDetailsInfoParcelInfoCell
                 cell.configure(with: parcelInfo)
                 return cell

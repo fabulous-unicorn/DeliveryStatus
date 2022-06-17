@@ -30,7 +30,27 @@ class OrderDetailInfoViewController: UITableViewController {
         
         self.dataSource = makeDataSource()
         self.initialConfigureGroups(self.mainModel)
+        self.setStyles()
     }
+    
+    // MARK: Set styles
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 8
+    }
+    
+    func setStyles() {
+//        tableView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
+//        tableView.layer.shadowRadius = 8.0
+//        tableView.layer.shadowOffset = CGSize(width: 0, height: 1)
+//        tableView.layer.shadowOpacity = 1.0
+    }
+    
+    
 
     // MARK: - Table view data source
     
@@ -38,7 +58,7 @@ class OrderDetailInfoViewController: UITableViewController {
         let dataSource = DataSource(
             tableView: tableView
         ) { tableView, indexPath, item in
-
+            // TODO: Alesya Volosach | Обдумать врапер
             if let titleGroup = item as? String {
                 let identifier = Constants.titleGroupCellIdentifier
                 let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! OrderDetailsInfoTitleGroupCell
@@ -95,9 +115,11 @@ class OrderDetailInfoViewController: UITableViewController {
         }
         
         dataSource.apply(snapshot, animatingDifferences: true)
+        
     }
     
-    // MARK: - for test
+    // MARK: - For test
+    // TODO: Alesya Volosach | Мем при совпадении ячейк
     let mainModel = OrderDetailsInfoViewModel(
         title: "Посылочка, размер S",
         description: "Супер-экспресс, доставит курьер до 16:00",
@@ -136,7 +158,7 @@ class OrderDetailInfoViewController: UITableViewController {
                         behavior: .copy
                     ),
                     OrderDetailsInfoViewModel.OrderActor(
-                        title: "+7 (000) 000-00-00",
+                        title: "+7 (000) 000-00-01",
                         icon: UIImage(named: "orderDetailInfo.messageCircle")!,
                         behavior: .contact
                     )

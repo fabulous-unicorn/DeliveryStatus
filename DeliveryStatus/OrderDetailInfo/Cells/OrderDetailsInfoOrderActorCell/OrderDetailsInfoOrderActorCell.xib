@@ -60,7 +60,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" name="Surface Background"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="leftIconView" destination="s3m-EG-jIT" id="Cb7-na-4NB"/>
                 <outlet property="rightIconView" destination="I8l-pr-mqv" id="UVr-L8-VLA"/>
@@ -72,17 +72,14 @@
     <resources>
         <image name="orderDetailInfo.copy" width="24" height="24"/>
         <image name="orderDetailInfo.mapPin" width="24" height="24"/>
-        <namedColor name="Surface Background">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Text Primary">
-            <color red="0.11372549019607843" green="0.11372549019607843" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.11400000005960464" green="0.11400000005960464" blue="0.10599999874830246" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Tint Icon Accent">
-            <color red="0.10196078431372549" green="0.69803921568627447" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.10199999809265137" green="0.69800001382827759" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Tint Icon Default">
-            <color red="0.11372549019607843" green="0.11372549019607843" blue="0.10588235294117647" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.11400000005960464" green="0.11400000005960464" blue="0.10599999874830246" alpha="0.30000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

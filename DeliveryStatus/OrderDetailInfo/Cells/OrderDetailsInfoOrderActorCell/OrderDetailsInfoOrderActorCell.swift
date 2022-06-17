@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrderDetailsInfoOrderActorCell: UITableViewCell {
+class OrderDetailsInfoOrderActorCell: UICollectionViewCell {
     @IBOutlet weak var leftIconView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var rightIconView: UIImageView!
@@ -20,11 +20,11 @@ class OrderDetailsInfoOrderActorCell: UITableViewCell {
         
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
     
     func configure(
         with infoModel: OrderDetailsInfoViewModel.OrderActor
@@ -36,12 +36,13 @@ class OrderDetailsInfoOrderActorCell: UITableViewCell {
         
         switch infoModel.behavior {
         case .copy:
-            self.accessoryType = .none
+//            self.accessoryType = .none
             self.rightIconView.image = UIImage(named: "orderDetailInfo.copy")
-            self.rightIconView.isHidden = false
+//            self.rightIconView.isHidden = false
         case .contact:
-            self.rightIconView.isHidden = true
-            self.accessoryType = .disclosureIndicator
+            self.rightIconView.image = UIImage(named: "orderDetailInfo.arrowRight")
+//            self.rightIconView.isHidden = true
+//            self.accessoryType = .disclosureIndicator
         }
     }
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrderDetailsInfoTitleGroupCell: UITableViewCell {
+class OrderDetailsInfoTitleGroupCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
@@ -15,11 +15,11 @@ class OrderDetailsInfoTitleGroupCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
     
     func configure(title: String) {
         self.titleLabel.text = title

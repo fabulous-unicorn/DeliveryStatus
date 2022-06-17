@@ -8,75 +8,69 @@
 import UIKit
 
 class OrderDetailInfoViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     enum Constants {
         static let titleGroupCellIdentifier = "orderDetailsInfoTitleGroupCell"
         static let actorCellIdentifier = "orderDetailsInfoOrderActorCell"
         static let serviceCellIdentifier = "orderDetailsInfoServiceCell"
         static let parcelInfoСellIdentifier = "orderDetailsInfoParcelInfoCell"
+        
+        static let decorationItemIdentifier = "orderDetailInfoDecorationItem"
     }
     
-    private typealias DataSource = UITableViewDiffableDataSource<OrderDetailsInfoViewModel.ContentGroup, AnyHashable>
+    private typealias DataSource = UICollectionViewDiffableDataSource<OrderDetailsInfoViewModel.ContentGroup, AnyHashable>
     
     private var dataSource: DataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forCellReuseIdentifier: Constants.titleGroupCellIdentifier)
-        tableView.register(UINib(nibName: "OrderDetailsInfoOrderActorCell", bundle: nil), forCellReuseIdentifier: Constants.actorCellIdentifier)
-        tableView.register(UINib(nibName: "OrderDetailsInfoServiceCell", bundle: nil), forCellReuseIdentifier: Constants.serviceCellIdentifier)
-        tableView.register(UINib(nibName: "OrderDetailsInfoParcelInfoCell", bundle: nil), forCellReuseIdentifier: Constants.parcelInfoСellIdentifier)
+        collectionView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forCellWithReuseIdentifier: Constants.titleGroupCellIdentifier)
+        collectionView.register(UINib(nibName: "OrderDetailsInfoOrderActorCell", bundle: nil), forCellWithReuseIdentifier: Constants.actorCellIdentifier)
+        collectionView.register(UINib(nibName: "OrderDetailsInfoServiceCell", bundle: nil), forCellWithReuseIdentifier: Constants.serviceCellIdentifier)
+        collectionView.register(UINib(nibName: "OrderDetailsInfoParcelInfoCell", bundle: nil), forCellWithReuseIdentifier: Constants.parcelInfoСellIdentifier)
         
-        self.tableView.dataSource = dataSource
+        
+        self.collectionView.dataSource = dataSource
         self.dataSource = makeDataSource()
         self.initialConfigureGroups(self.mainModel)
-        self.setStyles()
+        
+        collectionView.collectionViewLayout = self.createBasicListLayout()
+        collectionView.collectionViewLayout.register(UINib(nibName: "OrderDetailInfoDecorationItem", bundle: nil), forDecorationViewOfKind: Constants.decorationItemIdentifier)
     }
-    
-    // MARK: Set styles
-    
-    func setStyles() {
-        tableView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).cgColor
-        tableView.layer.shadowRadius = 8.0
-        tableView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        tableView.layer.shadowOpacity = 1.0
-    }
-    
-    
 
     // MARK: - Table view data source
     
     private func makeDataSource() -> DataSource? {
         let dataSource = DataSource(
-            tableView: tableView
-        ) { tableView, indexPath, item in
+            collectionView: collectionView
+        ) { collectionView, indexPath, item in
             // TODO: Alesya Volosach | Обдумать врапер
             if let titleGroup = item as? String {
                 let identifier = Constants.titleGroupCellIdentifier
-                let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! OrderDetailsInfoTitleGroupCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoTitleGroupCell
                 cell.configure(title: titleGroup)
                 return cell
             }
             
             if let actor = item as? OrderDetailsInfoViewModel.OrderActor {
                 let identifier = Constants.actorCellIdentifier
-                let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! OrderDetailsInfoOrderActorCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoOrderActorCell
                 cell.configure(with: actor)
                 return cell
             }
             
             if let service = item as? OrderDetailsInfoViewModel.AdditionalService {
                 let identifier = Constants.serviceCellIdentifier
-                let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! OrderDetailsInfoServiceCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoServiceCell
                 cell.configure(with: service)
                 return cell
             }
             
             if let parcelInfo = item as? OrderDetailsInfoViewModel.ParcelInfo {
                 let identifier = Constants.parcelInfoСellIdentifier
-                let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! OrderDetailsInfoParcelInfoCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoParcelInfoCell
                 cell.configure(with: parcelInfo)
                 return cell
             }
@@ -84,6 +78,13 @@ class OrderDetailInfoViewController: UIViewController {
       }
         
         return dataSource
+    }
+    
+    func getSpaceView() -> UIView {
+        let spaceConstant = 16
+        let spaceView = UIView()
+        spaceView.frame = .init(x: 0, y: 0, width: 0, height: spaceConstant)
+        return spaceView
     }
     
     func initialConfigureGroups(_ mainModel: OrderDetailsInfoViewModel) {
@@ -278,4 +279,32 @@ class OrderDetailInfoViewController: UIViewController {
             type: .default(nestedItems: [])
         )
     ]
+}
+
+// MARK: - UICollectionViewLayout
+
+extension OrderDetailInfoViewController {
+    func createBasicListLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+      
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(46)
+        )
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.decorationItems = [NSCollectionLayoutDecorationItem.background(elementKind: Constants.decorationItemIdentifier)]
+        section.contentInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
 }

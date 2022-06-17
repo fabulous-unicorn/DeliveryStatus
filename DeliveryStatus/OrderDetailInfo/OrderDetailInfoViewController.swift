@@ -40,6 +40,7 @@ class OrderDetailInfoViewController: UIViewController {
         dataSource = makeDataSource()
         initialConfigureGroups(self.mainModel)
         
+        
         collectionView.collectionViewLayout = self.createBasicListLayout()
         collectionView.collectionViewLayout.register(UINib(nibName: "OrderDetailInfoDecorationItem", bundle: nil), forDecorationViewOfKind: Constants.decorationItemIdentifier)
     }
@@ -81,6 +82,7 @@ class OrderDetailInfoViewController: UIViewController {
             return nil
       }
         
+        
         dataSource.supplementaryViewProvider = { collectionView, elementKind, indexPath in
 
             if indexPath.section == 0 {
@@ -94,10 +96,10 @@ class OrderDetailInfoViewController: UIViewController {
                 return header
             }
 
-            let emptyHeader = UICollectionReusableView()
-            emptyHeader.frame = .zero
-            return emptyHeader
-
+//            let emptyHeader = UICollectionReusableView()
+//            emptyHeader.frame = .zero
+//            return emptyHeader
+            return nil
         }
         
         return dataSource
@@ -138,7 +140,6 @@ class OrderDetailInfoViewController: UIViewController {
     
     // MARK: - For test
     // TODO: Alesya Volosach | Мем при совпадении ячейк
-    
     let mainModel = OrderDetailsInfoViewModel(
         title: "Посылочка, размер S",
         description: "Супер-экспресс, доставит курьер до 16:00",
@@ -162,108 +163,80 @@ class OrderDetailInfoViewController: UIViewController {
                         behavior: .contact
                     )
                 ]
+            ),
+            .actor(
+                role: .receiver,
+                items: [
+                    OrderDetailsInfoViewModel.OrderActor(
+                        title: "Новосибирск, ул. Писарева 136, кв. 152",
+                        icon: UIImage(named: "orderDetailInfo.mapPin")!,
+                        behavior: .copy
+                    ),
+                    OrderDetailsInfoViewModel.OrderActor(
+                        title: "Иванов Сергей Алексеевич",
+                        icon: UIImage(named: "orderDetailInfo.userCircle")!,
+                        behavior: .copy
+                    ),
+                    OrderDetailsInfoViewModel.OrderActor(
+                        title: "+7 (000) 000-00-01",
+                        icon: UIImage(named: "orderDetailInfo.messageCircle")!,
+                        behavior: .contact
+                    )
+                ]
+            ),
+            .additionalServices(
+                services: [
+                    OrderDetailsInfoViewModel.AdditionalService(
+                        title: "Страхование",
+                        description: ["Объявленная стоимость: 1 000 ₽"]
+                    ),
+                    OrderDetailsInfoViewModel.AdditionalService(
+                        title: "Коробка",
+                        description: ["10 кг. 40×35×28 см. / 10 шт.", "30 кг. 69×39×42 см. / 5 шт."]
+                    ),
+                    OrderDetailsInfoViewModel.AdditionalService(
+                        title: "Доп. упаковочные материалы",
+                        description: ["Макулатурная бумага / 10 м."]
+                    )
+                ]
+            ),
+            .parcelInfo(
+                items: [
+                    OrderDetailsInfoViewModel.ParcelInfo(
+                        title: "Характер груза",
+                        description: "Бытовая техника, обувь",
+                        additionalInfo: nil,
+                        type: .default(nestedItems: [])
+                    ),
+                    OrderDetailsInfoViewModel.ParcelInfo(
+                        title: "Габариты места 1 (ДхШхВ)",
+                        description: "48×42×42 см.",
+                        additionalInfo: nil,
+                        type: .default(nestedItems: [
+                            OrderDetailsInfoViewModel.ParcelInfo(
+                                title: "Артикул: 435342112",
+                                description: "Майка Adidas Fusion Sport Max II / 2 шт.",
+                                additionalInfo: nil,
+                                type: .nested
+                            ),
+                            OrderDetailsInfoViewModel.ParcelInfo(
+                                title: "Артикул: 955342111",
+                                description: "Баскетбольный мяч Nike Classic / 1 шт.",
+                                additionalInfo: nil,
+                                type: .nested
+                            )
+                        ])
+                    ),
+                    OrderDetailsInfoViewModel.ParcelInfo(
+                        title: "Физический вес",
+                        description: "9,8 кг",
+                        additionalInfo: "Физический вес. Дополнительное описание для модалки",
+                        type: .default(nestedItems: [])
+                    )
+                ]
             )
         ]
     )
-    
-    
-//    let mainModel = OrderDetailsInfoViewModel(
-//        title: "Посылочка, размер S",
-//        description: "Супер-экспресс, доставит курьер до 16:00",
-//        groups: [
-//            .actor(
-//                role: .sender,
-//                items: [
-//                    OrderDetailsInfoViewModel.OrderActor(
-//                        title: "Москва, ул. Ленина 234, кв. 56",
-//                        icon: UIImage(named: "orderDetailInfo.mapPin")!,
-//                        behavior: .copy
-//                    ),
-//                    OrderDetailsInfoViewModel.OrderActor(
-//                        title: "Иванов Алексей Евгеньевич",
-//                        icon: UIImage(named: "orderDetailInfo.userCircle")!,
-//                        behavior: .copy
-//                    ),
-//                    OrderDetailsInfoViewModel.OrderActor(
-//                        title: "+7 (000) 000-00-00",
-//                        icon: UIImage(named: "orderDetailInfo.messageCircle")!,
-//                        behavior: .contact
-//                    )
-//                ]
-//            ),
-//            .actor(
-//                role: .receiver,
-//                items: [
-//                    OrderDetailsInfoViewModel.OrderActor(
-//                        title: "Новосибирск, ул. Писарева 136, кв. 152",
-//                        icon: UIImage(named: "orderDetailInfo.mapPin")!,
-//                        behavior: .copy
-//                    ),
-//                    OrderDetailsInfoViewModel.OrderActor(
-//                        title: "Иванов Сергей Алексеевич",
-//                        icon: UIImage(named: "orderDetailInfo.userCircle")!,
-//                        behavior: .copy
-//                    ),
-//                    OrderDetailsInfoViewModel.OrderActor(
-//                        title: "+7 (000) 000-00-01",
-//                        icon: UIImage(named: "orderDetailInfo.messageCircle")!,
-//                        behavior: .contact
-//                    )
-//                ]
-//            ),
-//            .additionalServices(
-//                services: [
-//                    OrderDetailsInfoViewModel.AdditionalService(
-//                        title: "Страхование",
-//                        description: ["Объявленная стоимость: 1 000 ₽"]
-//                    ),
-//                    OrderDetailsInfoViewModel.AdditionalService(
-//                        title: "Коробка",
-//                        description: ["10 кг. 40×35×28 см. / 10 шт.", "30 кг. 69×39×42 см. / 5 шт."]
-//                    ),
-//                    OrderDetailsInfoViewModel.AdditionalService(
-//                        title: "Доп. упаковочные материалы",
-//                        description: ["Макулатурная бумага / 10 м."]
-//                    )
-//                ]
-//            ),
-//            .parcelInfo(
-//                items: [
-//                    OrderDetailsInfoViewModel.ParcelInfo(
-//                        title: "Характер груза",
-//                        description: "Бытовая техника, обувь",
-//                        additionalInfo: nil,
-//                        type: .default(nestedItems: [])
-//                    ),
-//                    OrderDetailsInfoViewModel.ParcelInfo(
-//                        title: "Габариты места 1 (ДхШхВ)",
-//                        description: "48×42×42 см.",
-//                        additionalInfo: nil,
-//                        type: .default(nestedItems: [
-//                            OrderDetailsInfoViewModel.ParcelInfo(
-//                                title: "Артикул: 435342112",
-//                                description: "Майка Adidas Fusion Sport Max II / 2 шт.",
-//                                additionalInfo: nil,
-//                                type: .nested
-//                            ),
-//                            OrderDetailsInfoViewModel.ParcelInfo(
-//                                title: "Артикул: 955342111",
-//                                description: "Баскетбольный мяч Nike Classic / 1 шт.",
-//                                additionalInfo: nil,
-//                                type: .nested
-//                            )
-//                        ])
-//                    ),
-//                    OrderDetailsInfoViewModel.ParcelInfo(
-//                        title: "Физический вес",
-//                        description: "9,8 кг",
-//                        additionalInfo: "Физический вес. Дополнительное описание для модалки",
-//                        type: .default(nestedItems: [])
-//                    )
-//                ]
-//            )
-//        ]
-//    )
     
     let actorCellModels = [
         OrderDetailsInfoViewModel.OrderActor(
@@ -336,7 +309,40 @@ class OrderDetailInfoViewController: UIViewController {
 // MARK: - UICollectionViewLayout
 
 extension OrderDetailInfoViewController {
+    
+    
     func createBasicListLayout() -> UICollectionViewLayout {
+//        let headerFooterSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth (1.0), heightDimension: .estimated(44))
+//        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+//                    layoutSize: headerFooterSize,
+//                    elementKind: Constants.headerIdentifier, alignment: .top)
+//        section.boundarySupplementaryItems = [sectionHeader]
+//
+        
+//        section.boundarySupplementaryItems = [NSCollectionLayoutBoundarySupplementaryItem(
+//            layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(24)),
+//            elementKind: Constants.headerIdentifier,
+//            alignment: .top,
+//            absoluteOffset: CGPoint(x: 0, y: -24)
+//        )]
+        
+//        let layout = UICollectionViewCompositionalLayout(section: section)
+
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnv in
+            
+            if sectionIndex == 0 {
+                return self.create1()
+            }
+                
+            return self.create2()
+        }
+        
+        
+        
+        return layout
+    }
+    
+    private func create1() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)
@@ -353,10 +359,6 @@ extension OrderDetailInfoViewController {
         )
         
         let section = NSCollectionLayoutSection(group: group)
-        section.decorationItems = [NSCollectionLayoutDecorationItem.background(elementKind: Constants.decorationItemIdentifier)]
-        
-        section.contentInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
-        
         
         let headerItemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
@@ -365,27 +367,54 @@ extension OrderDetailInfoViewController {
                 
         let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerItemSize,
-            elementKind: Constants.headerIdentifier,
+            elementKind: Constants.headerIdentifier,//Constants.headerIdentifier
             alignment: .top
         )
         section.boundarySupplementaryItems = [headerItem]
         
+//        let backgroundView = NSCollectionLayoutDecorationItem(
+//            layoutSize: NSCollectionLayoutSize(
+//                widthDimension: .fractionalWidth(1),
+//                heightDimension: .estimated(section.accessibilityFrame.height - ))
+//        )
+        section.decorationItems = [NSCollectionLayoutDecorationItem.background(elementKind: Constants.decorationItemIdentifier)]
         
-//        let headerFooterSize = NSCollectionLayoutSize (widthDimension: .fractionalWidth (1.0), heightDimension: .estimated(44))
-//        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-//                    layoutSize: headerFooterSize,
-//                    elementKind: Constants.headerIdentifier, alignment: .top)
-//        section.boundarySupplementaryItems = [sectionHeader]
-//
+        section.contentInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
         
-//        section.boundarySupplementaryItems = [NSCollectionLayoutBoundarySupplementaryItem(
-//            layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(24)),
-//            elementKind: Constants.headerIdentifier,
-//            alignment: .top,
-//            absoluteOffset: CGPoint(x: 0, y: -24)
-//        )]
+        return section
+//        let layout = UICollectionViewCompositionalLayout(section: section)
+//        return layout
+    }
+    
+    private func create2() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+      
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(46)
+        )
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
         
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
+        let section = NSCollectionLayoutSection(group: group)
+        
+//        let backgroundView = NSCollectionLayoutDecorationItem(
+//            layoutSize: NSCollectionLayoutSize(
+//                widthDimension: .fractionalWidth(1),
+//                heightDimension: .estimated(section.accessibilityFrame.height - ))
+//        )
+        section.decorationItems = [NSCollectionLayoutDecorationItem.background(elementKind: Constants.decorationItemIdentifier)]
+        
+        section.contentInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
+        
+        return section
+//        let layout = UICollectionViewCompositionalLayout(section: section)
+//        return layout
     }
 }

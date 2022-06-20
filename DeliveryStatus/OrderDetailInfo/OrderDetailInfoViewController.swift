@@ -54,45 +54,32 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
         didSelectItemAt indexPath: IndexPath
     ) {
         guard
-            let selectedItem = dataSource?.itemIdentifier(for: indexPath),
-            let group =
-            dataSource?.snapshot().sectionIdentifier(containingItem: selectedItem)
-        else { return }
+            let selectedItem = dataSource?.itemIdentifier(for: indexPath)
+            else { return }
         
-        
-        
-                
         switch selectedItem {
         case let actorItem as OrderDetailInfoViewModel.OrderActor:
-            // TODO: Alesya Volosach | модель можно вернутьи основываться на группе
-            didSelectActorItem(group, actorItem)
+            didSelectActorItem(actorItem)
         case let parcelInfo as OrderDetailInfoViewModel.ParcelInfo:
-            didSelectParcelInfoItem(group, parcelInfo)
+            didSelectParcelInfoItem(parcelInfo)
         default:
             return
         }
     }
     
     private func didSelectActorItem(
-        _ group: OrderDetailInfoViewModel.ContentGroup,
         _ selectedItem: OrderDetailInfoViewModel.OrderActor
     ) {
         switch selectedItem.behavior {
         case .copy:
             print("| Log | copy: \(selectedItem.title)")
-        case .contact:
+        case let .contact(modalTitle):
             // TODO: Alesya Volosach | должен быть так же вызов проверки доступности
-            if case let .actor(role, _) = group {
-                let modalTitle = role.modalTitle
-                print("| Log | open contact model title: \(modalTitle), info: \(modalTitle)")
-            }
-            // TODO: Alesya Volosach | способ все еще под вопросом
-//            print("| Log | open contact model title: \(modalTitle), info: \(selectedItem.title)")
+            print("| Log | open contact model title: \(modalTitle), info: \(selectedItem.title)")
         }
     }
         
     private func didSelectParcelInfoItem(
-        _ group: OrderDetailInfoViewModel.ContentGroup,
         _ parcelInfo: OrderDetailInfoViewModel.ParcelInfo
      ) {
         switch parcelInfo.type {
@@ -113,7 +100,6 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
             } else {
                 hideNeestedItems(nestedItems)
             }
-//            print("| Log | add nestedItems: \(nestedItems)")
         }
     }
     

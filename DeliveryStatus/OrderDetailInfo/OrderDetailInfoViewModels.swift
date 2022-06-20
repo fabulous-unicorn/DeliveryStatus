@@ -52,6 +52,13 @@ struct OrderDetailInfoViewModel {
     
     enum OrderActorRole {
         case sender, receiver
+        
+        var modalTitle: String {
+            switch self {
+            case .sender: return "Связаться с отправителем"
+            case .receiver: return "Связаться с получателем"
+            }
+        }
     }
     
     enum ItemBehavior {

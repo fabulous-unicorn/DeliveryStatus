@@ -49,31 +49,52 @@ class OrderDetailInfoViewController: UIViewController {
 }
 
 extension OrderDetailInfoViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedItem = dataSource?.itemIdentifier(for: indexPath)
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        guard
+            let selectedItem = dataSource?.itemIdentifier(for: indexPath),
+            let group =
+            dataSource?.snapshot().sectionIdentifier(containingItem: selectedItem)
         else { return }
         
+        
+        
+                
         switch selectedItem {
         case let actorItem as OrderDetailInfoViewModel.OrderActor:
-            didSelectActorItem(actorItem)
+            // TODO: Alesya Volosach | модель можно вернутьи основываться на группе
+            didSelectActorItem(group, actorItem)
         case let parcelInfo as OrderDetailInfoViewModel.ParcelInfo:
-            didSelectParcelInfoItem(parcelInfo)
+            didSelectParcelInfoItem(group, parcelInfo)
         default:
             return
         }
     }
     
-    private func didSelectActorItem(_ selectedItem: OrderDetailInfoViewModel.OrderActor) {
+    private func didSelectActorItem(
+        _ group: OrderDetailInfoViewModel.ContentGroup,
+        _ selectedItem: OrderDetailInfoViewModel.OrderActor
+    ) {
         switch selectedItem.behavior {
         case .copy:
             print("| Log | copy: \(selectedItem.title)")
-        case let .contact(modalTitle):
+        case .contact:
             // TODO: Alesya Volosach | должен быть так же вызов проверки доступности
-            print("| Log | open contact model title: \(modalTitle), info: \(selectedItem.title)")
+            if case let .actor(role, _) = group {
+                let modalTitle = role.modalTitle
+                print("| Log | open contact model title: \(modalTitle), info: \(modalTitle)")
+            }
+            // TODO: Alesya Volosach | способ все еще под вопросом
+//            print("| Log | open contact model title: \(modalTitle), info: \(selectedItem.title)")
         }
     }
         
-    private func didSelectParcelInfoItem(_ parcelInfo: OrderDetailInfoViewModel.ParcelInfo) {
+    private func didSelectParcelInfoItem(
+        _ group: OrderDetailInfoViewModel.ContentGroup,
+        _ parcelInfo: OrderDetailInfoViewModel.ParcelInfo
+     ) {
         switch parcelInfo.type {
         case .nested:
             if let additionalInfo = parcelInfo.additionalInfo {
@@ -87,8 +108,34 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
                 return
             }
             
-            print("| Log | add nestedItems: \(nestedItems)")
+            if dataSource?.snapshot().indexOfItem(nestedItems.first) == nil {
+                showNeestedItems(parcelInfo, nestedItems)
+            } else {
+                hideNeestedItems(nestedItems)
+            }
+//            print("| Log | add nestedItems: \(nestedItems)")
         }
+    }
+    
+    func showNeestedItems(
+        _ item: OrderDetailInfoViewModel.ParcelInfo,
+        _ nestedItems: [OrderDetailInfoViewModel.ParcelInfo]
+     ) {
+        guard let dataSource = self.dataSource else { return }
+        
+        var snapshot = dataSource.snapshot()
+         snapshot.insertItems(nestedItems, afterItem: item)
+         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    func hideNeestedItems(
+      _ nestedItems: [OrderDetailInfoViewModel.ParcelInfo]
+    ) {
+        guard let dataSource = self.dataSource else { return }
+        
+        var snapshot = dataSource.snapshot()
+         snapshot.deleteItems(nestedItems)
+         dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
 

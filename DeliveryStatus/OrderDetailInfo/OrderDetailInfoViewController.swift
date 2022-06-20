@@ -137,6 +137,20 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
             let selectedItem = dataSource?.itemIdentifier(for: indexPath)
             else { return }
         
+        
+        let cellTest = collectionView.cellForItem(at: indexPath)
+        
+        // TODO: Alesya Volosach | Перенести куда нужно 
+        UIView.animate(
+            withDuration: 0.15,
+            animations: {
+                cellTest?.alpha = 0.7
+            },
+            completion: {_ in
+                UIView.animate(withDuration: 0.15) { cellTest?.alpha = 1 }
+            })
+        
+        
         switch selectedItem {
         case let actorItem as OrderDetailInfoViewModel.OrderActor:
             didSelectActorItem(actorItem)

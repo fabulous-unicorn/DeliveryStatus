@@ -55,32 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "473C1665-161D-430D-BC63-BFE83B64F207"
+            uuid = "B4389E2A-B1A8-4616-8EF1-0D8B7D154405"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DeliveryStatus/OrderDetailInfo/OrderDetailInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "didSelectParcelInfoItem(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "083418D2-D5DA-4667-A4CF-7E69727DC313"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DeliveryStatus/OrderDetailInfo/OrderDetailInfoViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "didSelectParcelInfoItem(_:)"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "initialConfigureGroups(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

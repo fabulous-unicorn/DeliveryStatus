@@ -12,15 +12,17 @@ class OrderDetailInfoViewController: UIViewController {
     
     let mainModel = FakeData.mainModel
     
-    enum Constants {
-        static let headerIdentifier = "orderDetailInfoHeader"
+    enum CellIdentifier {
+        static let header = "orderDetailInfoHeader"
         
-        static let titleGroupCellIdentifier = "orderDetailsInfoTitleGroupCell"
-        static let actorCellIdentifier = "orderDetailsInfoOrderActorCell"
-        static let serviceCellIdentifier = "orderDetailsInfoServiceCell"
-        static let parcelInfoСellIdentifier = "orderDetailsInfoParcelInfoCell"
-        
-        static let decorationItemIdentifier = "orderDetailInfoDecorationItem"
+        static let titleGroup = "orderDetailsInfoTitleGroupCell"
+        static let actor = "orderDetailsInfoOrderActorCell"
+        static let service = "orderDetailsInfoServiceCell"
+        static let parcel = "orderDetailsInfoParcelInfoCell"
+    }
+    
+    struct ElementKind {
+        static let background = "orderDetailInfoDecorationItem"
     }
     
     private typealias DataSource = UICollectionViewDiffableDataSource<OrderDetailInfoViewModel.ContentGroup, AnyHashable>
@@ -36,18 +38,95 @@ class OrderDetailInfoViewController: UIViewController {
         initialConfigureGroups(self.mainModel)
         
         collectionView.collectionViewLayout = self.createLayout()
-        collectionView.collectionViewLayout.register(UINib(nibName: "OrderDetailInfoDecorationItem", bundle: nil), forDecorationViewOfKind: Constants.decorationItemIdentifier)
+        collectionView.collectionViewLayout.register(UINib(nibName: "OrderDetailInfoDecorationItem", bundle: nil), forDecorationViewOfKind: ElementKind.background)
         
     }
     
-    func registerCells() {
-        collectionView.register(UINib(nibName: "OrderDetailInfoHeader", bundle: nil), forCellWithReuseIdentifier: Constants.headerIdentifier)
-        collectionView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forCellWithReuseIdentifier: Constants.titleGroupCellIdentifier)
-        collectionView.register(UINib(nibName: "OrderDetailsInfoOrderActorCell", bundle: nil), forCellWithReuseIdentifier: Constants.actorCellIdentifier)
-        collectionView.register(UINib(nibName: "OrderDetailsInfoServiceCell", bundle: nil), forCellWithReuseIdentifier: Constants.serviceCellIdentifier)
-        collectionView.register(UINib(nibName: "OrderDetailsInfoParcelInfoCell", bundle: nil), forCellWithReuseIdentifier: Constants.parcelInfoСellIdentifier)
+    private func registerCells() {
+        collectionView.register(UINib(nibName: "OrderDetailInfoHeader", bundle: nil), forCellWithReuseIdentifier: CellIdentifier.header)
+        collectionView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forCellWithReuseIdentifier: CellIdentifier.titleGroup)
+        collectionView.register(UINib(nibName: "OrderDetailsInfoOrderActorCell", bundle: nil), forCellWithReuseIdentifier: CellIdentifier.actor)
+        collectionView.register(UINib(nibName: "OrderDetailsInfoServiceCell", bundle: nil), forCellWithReuseIdentifier: CellIdentifier.service)
+        collectionView.register(UINib(nibName: "OrderDetailsInfoParcelInfoCell", bundle: nil), forCellWithReuseIdentifier: CellIdentifier.parcel)
     }
 }
+
+// MARK: - DataSource
+
+extension OrderDetailInfoViewController {
+    private func makeDataSource() -> DataSource? {
+        let dataSource = DataSource(
+            collectionView: collectionView
+        ) { collectionView, indexPath, item in
+            if let header = item as? OrderDetailInfoViewModel.HeaderItem {
+                let identifier = CellIdentifier.header
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailInfoHeader
+                cell.configure(title: header.title, description: header.description)
+                return cell
+            }
+
+            if let titleGroup = item as? String {
+                let identifier = CellIdentifier.titleGroup
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoTitleGroupCell
+                cell.configure(title: titleGroup)
+                return cell
+            }
+            
+            if let actor = item as? OrderDetailInfoViewModel.OrderActor {
+                let identifier = CellIdentifier.actor
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoOrderActorCell
+                cell.configure(with: actor)
+                return cell
+            }
+            
+            if let service = item as? OrderDetailInfoViewModel.AdditionalService {
+                let identifier = CellIdentifier.service
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoServiceCell
+                cell.configure(with: service)
+                return cell
+            }
+            
+            if let parcelInfo = item as? OrderDetailInfoViewModel.ParcelInfo {
+                let identifier = CellIdentifier.parcel
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoParcelInfoCell
+                cell.configure(with: parcelInfo)
+                return cell
+            }
+            return nil
+      }
+        
+        return dataSource
+    }
+        
+    private func initialConfigureGroups(_ mainModel: OrderDetailInfoViewModel) {
+        guard let dataSource = self.dataSource else { return }
+        
+        var snapshot = dataSource.snapshot()
+        snapshot.deleteAllItems()
+        
+        snapshot.appendSections(mainModel.groups)
+        
+        mainModel.groups.forEach{ group in
+            switch group {
+            case let .header(item):
+                snapshot.appendItems([item], toSection: group)
+            case let .actor(_, items):
+                snapshot.appendItems([group.title], toSection: group)
+                snapshot.appendItems(items, toSection: group)
+            case let .additionalServices(services):
+                snapshot.appendItems([group.title], toSection: group)
+                snapshot.appendItems(services, toSection: group)
+            case let .parcelInfo(items):
+                snapshot.appendItems([group.title], toSection: group)
+                snapshot.appendItems(items, toSection: group)
+            }
+        }
+        
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+}
+
+// MARK: - UICollectionViewDelegate
 
 extension OrderDetailInfoViewController: UICollectionViewDelegate {
     func collectionView(
@@ -98,7 +177,6 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
                 return
             }
             
-//            showIconAnimation
             if dataSource?.snapshot().indexOfItem(nestedItems.first) == nil {
                 showNeestedItems(parcelInfo, nestedItems)
             } else {
@@ -107,7 +185,7 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
         }
     }
     
-    func showNeestedItems(
+    private func showNeestedItems(
         _ item: OrderDetailInfoViewModel.ParcelInfo,
         _ nestedItems: [OrderDetailInfoViewModel.ParcelInfo]
      ) {
@@ -118,7 +196,7 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
          dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    func hideNeestedItems(
+    private func hideNeestedItems(
       _ nestedItems: [OrderDetailInfoViewModel.ParcelInfo]
     ) {
         guard let dataSource = self.dataSource else { return }
@@ -129,85 +207,11 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
     }
 }
 
-// MARK: - Table view data source
-
-extension OrderDetailInfoViewController {
-    private func makeDataSource() -> DataSource? {
-        let dataSource = DataSource(
-            collectionView: collectionView
-        ) { collectionView, indexPath, item in
-            if let header = item as? OrderDetailInfoViewModel.HeaderItem {
-                let identifier = Constants.headerIdentifier
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailInfoHeader
-                cell.configure(title: header.title, description: header.description)
-                return cell
-            }
-
-            if let titleGroup = item as? String {
-                let identifier = Constants.titleGroupCellIdentifier
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoTitleGroupCell
-                cell.configure(title: titleGroup)
-                return cell
-            }
-            
-            if let actor = item as? OrderDetailInfoViewModel.OrderActor {
-                let identifier = Constants.actorCellIdentifier
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoOrderActorCell
-                cell.configure(with: actor)
-                return cell
-            }
-            
-            if let service = item as? OrderDetailInfoViewModel.AdditionalService {
-                let identifier = Constants.serviceCellIdentifier
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoServiceCell
-                cell.configure(with: service)
-                return cell
-            }
-            
-            if let parcelInfo = item as? OrderDetailInfoViewModel.ParcelInfo {
-                let identifier = Constants.parcelInfoСellIdentifier
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoParcelInfoCell
-                cell.configure(with: parcelInfo)
-                return cell
-            }
-            return nil
-      }
-        
-        return dataSource
-    }
-        
-    func initialConfigureGroups(_ mainModel: OrderDetailInfoViewModel) {
-        guard let dataSource = self.dataSource else { return }
-        
-        var snapshot = dataSource.snapshot()
-        snapshot.deleteAllItems()
-        
-        snapshot.appendSections(mainModel.groups)
-        
-        mainModel.groups.forEach{ group in
-            switch group {
-            case let .header(item):
-                snapshot.appendItems([item], toSection: group)
-            case let .actor(_, items):
-                snapshot.appendItems([group.title], toSection: group)
-                snapshot.appendItems(items, toSection: group)
-            case let .additionalServices(services):
-                snapshot.appendItems([group.title], toSection: group)
-                snapshot.appendItems(services, toSection: group)
-            case let .parcelInfo(items):
-                snapshot.appendItems([group.title], toSection: group)
-                snapshot.appendItems(items, toSection: group)
-            }
-        }
-        
-        dataSource.apply(snapshot, animatingDifferences: true)
-    }
-}
 
 // MARK: - UICollectionViewLayout
 
 extension OrderDetailInfoViewController {
-    func createLayout() -> UICollectionViewLayout {
+    private func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnv in
             if sectionIndex == 0 {
                 return self.createHeaderLayout()
@@ -220,7 +224,7 @@ extension OrderDetailInfoViewController {
     private func createHeaderLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+            heightDimension: .estimated(62)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
       
@@ -244,7 +248,7 @@ extension OrderDetailInfoViewController {
     private func createBasicLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)
+            heightDimension: .estimated(44)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
       
@@ -257,9 +261,12 @@ extension OrderDetailInfoViewController {
             subitems: [item]
         )
         
+        let backgroundItem = NSCollectionLayoutDecorationItem.background(elementKind: ElementKind.background)
+        backgroundItem.contentInsets = .init(top: 8, leading: 16, bottom: 8, trailing: 16)
+        
         let section = NSCollectionLayoutSection(group: group)
-        section.decorationItems = [NSCollectionLayoutDecorationItem.background(elementKind: Constants.decorationItemIdentifier)]
-        section.contentInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
+        section.decorationItems = [backgroundItem]
+        section.contentInsets = .init(top: 24, leading: 16, bottom: 24, trailing: 16)
         
         return section
     }

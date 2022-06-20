@@ -15,6 +15,10 @@ class OrderDetailsInfoParcelInfoCell: UICollectionViewCell {
     var parcelInfoModel: OrderDetailInfoViewModel.ParcelInfo?
     private var isRotate = false
     
+//    override var isHighlighted: Bool {
+//        
+//    }
+    
     enum TurnArrowConstant {
         static let `default`: CGFloat = 0
         static let rotate = -CGFloat.pi * 99 / 100

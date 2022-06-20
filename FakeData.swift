@@ -12,7 +12,7 @@ enum FakeData {
     static let mainModel = OrderDetailInfoViewModel(
         groups: [
             .header(item: OrderDetailInfoViewModel.HeaderItem(
-                title: "Посылочка, размер S",
+                title: "Посылочка, размер S.",
                 description: "Супер-экспресс, доставит курьер до 16:00."
             )),
             .actor(

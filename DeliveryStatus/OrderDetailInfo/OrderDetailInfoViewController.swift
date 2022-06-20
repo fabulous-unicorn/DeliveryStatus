@@ -37,6 +37,7 @@ class OrderDetailInfoViewController: UIViewController {
         
         collectionView.collectionViewLayout = self.createLayout()
         collectionView.collectionViewLayout.register(UINib(nibName: "OrderDetailInfoDecorationItem", bundle: nil), forDecorationViewOfKind: Constants.decorationItemIdentifier)
+        
     }
     
     func registerCells() {
@@ -61,6 +62,8 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
         case let actorItem as OrderDetailInfoViewModel.OrderActor:
             didSelectActorItem(actorItem)
         case let parcelInfo as OrderDetailInfoViewModel.ParcelInfo:
+            let cell = collectionView.cellForItem(at: indexPath) as? OrderDetailsInfoParcelInfoCell
+            cell?.showIconAnimation()
             didSelectParcelInfoItem(parcelInfo)
         default:
             return
@@ -95,6 +98,7 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
                 return
             }
             
+//            showIconAnimation
             if dataSource?.snapshot().indexOfItem(nestedItems.first) == nil {
                 showNeestedItems(parcelInfo, nestedItems)
             } else {

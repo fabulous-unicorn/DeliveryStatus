@@ -16,15 +16,7 @@ class OrderDetailsInfoOrderActorCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
     
     func configure(
         with infoModel: OrderDetailInfoViewModel.OrderActor
@@ -36,13 +28,9 @@ class OrderDetailsInfoOrderActorCell: UICollectionViewCell {
         
         switch infoModel.behavior {
         case .copy:
-//            self.accessoryType = .none
             self.rightIconView.image = UIImage(named: "orderDetailInfo.copy")
-//            self.rightIconView.isHidden = false
         case .contact:
             self.rightIconView.image = UIImage(named: "orderDetailInfo.arrowRight")
-//            self.rightIconView.isHidden = true
-//            self.accessoryType = .disclosureIndicator
         }
     }
     

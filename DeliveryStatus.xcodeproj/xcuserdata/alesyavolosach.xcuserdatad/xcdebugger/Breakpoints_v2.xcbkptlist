@@ -62,9 +62,9 @@
             filePath = "DeliveryStatus/OrderDetailInfo/OrderDetailInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "didSelectParcelInfoItem(_:_:)"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "didSelectParcelInfoItem(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,9 +78,9 @@
             filePath = "DeliveryStatus/OrderDetailInfo/OrderDetailInfoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "didSelectParcelInfoItem(_:_:)"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "didSelectParcelInfoItem(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

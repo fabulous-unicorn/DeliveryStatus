@@ -13,17 +13,16 @@ class OrderDetailsInfoParcelInfoCell: UICollectionViewCell {
     @IBOutlet weak var iconView: UIImageView!
     
     var parcelInfoModel: OrderDetailInfoViewModel.ParcelInfo?
+    private var isRotate = false
+    
+    enum TurnArrowConstant {
+        static let `default`: CGFloat = 0
+        static let rotate = -CGFloat.pi * 99 / 100
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
     
     func configure(with parcelInfoModel: OrderDetailInfoViewModel.ParcelInfo) {
         self.parcelInfoModel = parcelInfoModel
@@ -56,6 +55,17 @@ class OrderDetailsInfoParcelInfoCell: UICollectionViewCell {
         )
     }
     
-    // TODO: Alesya Volosach | Где-то должна быть анимация поворота стрелки
+    func showIconAnimation() {
+        guard
+            case let .default(nestedItems) = parcelInfoModel?.type,
+            !nestedItems.isEmpty
+        else { return }
+        
+        UIView.animate(withDuration: GlobalConstant.statusChangeStateAnimationDuration) {
+            self.iconView.transform = CGAffineTransform(
+                rotationAngle: self.isRotate ? TurnArrowConstant.default :  TurnArrowConstant.rotate)
+        }
+        isRotate.toggle()
+    }
     
 }

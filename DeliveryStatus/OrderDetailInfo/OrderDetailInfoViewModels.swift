@@ -9,19 +9,19 @@ import Foundation
 import UIKit
 
 struct OrderDetailsInfoViewModel {
-    var title: String
-    var description: String
     var groups: [ContentGroup]
     
     // MARK: - ContentGroup
     
     enum ContentGroup {
+        case header(item: HeaderItem)
         case actor(role: OrderActorRole, items: [OrderActor])
         case additionalServices(services: [AdditionalService])
         case parcelInfo(items: [ParcelInfo])
         
         var title: String {
             switch self {
+            case .header: return ""
             case let .actor(role, _):
                 switch role {
                 case .sender: return "Откуда"
@@ -33,6 +33,13 @@ struct OrderDetailsInfoViewModel {
                 return "Данные"
             }
         }
+    }
+    
+    // MARK: - HeaderItem
+    
+    struct HeaderItem {
+        var title: String
+        var description: String
     }
     
     // MARK: - OrderActor
@@ -81,6 +88,8 @@ struct OrderDetailsInfoViewModel {
 }
 
 // MARK: - Equatable & Hashable
+extension OrderDetailsInfoViewModel.HeaderItem: Hashable {}
+
 extension OrderDetailsInfoViewModel.OrderActorRole: Equatable {}
 
 extension OrderDetailsInfoViewModel.OrderActor: Hashable {}
@@ -105,6 +114,8 @@ extension OrderDetailsInfoViewModel.ContentGroup: Hashable {
     // TODO: Alesya Volosach | проверить
     func hash(into hasher: inout Hasher) {
         switch self {
+        case .header:
+            hasher.combine("header")
         case let .actor(role, _):
             hasher.combine("actor\(role.hashValue)")
         case .additionalServices:
@@ -120,6 +131,8 @@ extension OrderDetailsInfoViewModel.ContentGroup: Hashable {
         rhs: OrderDetailsInfoViewModel.ContentGroup
     ) -> Bool {
         switch (lhs, rhs) {
+        case (.header, .header):
+            return true
         case let (.actor(roleLhs, _), .actor(roleRhs, _)):
             return roleLhs == roleRhs
         case (.additionalServices, .additionalServices):

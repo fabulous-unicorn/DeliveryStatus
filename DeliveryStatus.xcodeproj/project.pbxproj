@@ -14,6 +14,7 @@
 		600E1B0C285C957900F3C16C /* OrderDetailInfoDecorationItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 600E1B0B285C957900F3C16C /* OrderDetailInfoDecorationItem.xib */; };
 		600E1B14285CA63700F3C16C /* OrderDetailInfoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 600E1B12285CA63700F3C16C /* OrderDetailInfoHeader.swift */; };
 		600E1B15285CA63700F3C16C /* OrderDetailInfoHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 600E1B13285CA63700F3C16C /* OrderDetailInfoHeader.xib */; };
+		6029D94F28605DD70082A985 /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6029D94E28605DD70082A985 /* FakeData.swift */; };
 		608DBE49284F6BAA00A4A488 /* DeliveryStatusCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608DBE48284F6BAA00A4A488 /* DeliveryStatusCardView.xib */; };
 		608DBE4B284F787D00A4A488 /* DeliveryStatusCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4A284F787D00A4A488 /* DeliveryStatusCardView.swift */; };
 		608DBE4E284F9D2900A4A488 /* DeliveryStatusDocumentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */; };
@@ -52,6 +53,7 @@
 		600E1B0B285C957900F3C16C /* OrderDetailInfoDecorationItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailInfoDecorationItem.xib; sourceTree = "<group>"; };
 		600E1B12285CA63700F3C16C /* OrderDetailInfoHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoHeader.swift; sourceTree = "<group>"; };
 		600E1B13285CA63700F3C16C /* OrderDetailInfoHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderDetailInfoHeader.xib; sourceTree = "<group>"; };
+		6029D94E28605DD70082A985 /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		608DBE48284F6BAA00A4A488 /* DeliveryStatusCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusCardView.xib; sourceTree = "<group>"; };
 		608DBE4A284F787D00A4A488 /* DeliveryStatusCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusCardView.swift; sourceTree = "<group>"; };
 		608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DeliveryStatusDocumentation.docc; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		60FC9F77284100A400758ACC = {
 			isa = PBXGroup;
 			children = (
+				6029D94E28605DD70082A985 /* FakeData.swift */,
 				60FC9F82284100A400758ACC /* DeliveryStatus */,
 				60FC9F81284100A400758ACC /* Products */,
 			);
@@ -376,6 +379,7 @@
 				60FC9F84284100A400758ACC /* AppDelegate.swift in Sources */,
 				608DBE4E284F9D2900A4A488 /* DeliveryStatusDocumentation.docc in Sources */,
 				600E1B05285B41EA00F3C16C /* OrderDetailsInfoServiceCell.swift in Sources */,
+				6029D94F28605DD70082A985 /* FakeData.swift in Sources */,
 				60FC9F86284100A400758ACC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

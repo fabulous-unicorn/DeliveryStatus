@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="duO-Zu-fDP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ehd-ol-orb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Order Detail Info View Controller-->
+        <!--Данные посылки-->
         <scene sceneID="tUq-nk-UGi">
             <objects>
                 <viewController id="duO-Zu-fDP" customClass="OrderDetailInfoViewController" customModule="DeliveryStatus" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lvp-Gc-dDi">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9Vi-Qg-h33">
                                     <size key="itemSize" width="128" height="128"/>
@@ -38,13 +38,32 @@
                             <constraint firstItem="rO1-Hw-TmY" firstAttribute="bottom" secondItem="Lvp-Gc-dDi" secondAttribute="bottom" id="m7h-fP-o1f"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Данные посылки" id="n3S-5R-faO"/>
                     <connections>
                         <outlet property="collectionView" destination="Lvp-Gc-dDi" id="IDX-2Q-x55"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSC-KF-tqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-851" y="39"/>
+            <point key="canvasLocation" x="57.971014492753625" y="38.839285714285715"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gKK-We-XjN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ehd-ol-orb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZUR-sR-qoY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="duO-Zu-fDP" kind="relationship" relationship="rootViewController" id="Pso-At-fxc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HVM-ZN-8XR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-852.17391304347836" y="38.839285714285715"/>
         </scene>
     </scenes>
     <resources>

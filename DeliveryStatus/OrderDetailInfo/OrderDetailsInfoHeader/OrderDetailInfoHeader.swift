@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrderDetailInfoHeader: UICollectionReusableView {
+class OrderDetailInfoHeader: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
         

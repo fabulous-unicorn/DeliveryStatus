@@ -67,9 +67,9 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
         switch selectedItem.behavior {
         case .copy:
             print("| Log | copy: \(selectedItem.title)")
-        case .contact:
-            // TODO: Alesya Volosach | переделать модели
-            print("| Log | open contact model title: notRealize, item: \(selectedItem)")
+        case let .contact(modalTitle):
+            // TODO: Alesya Volosach | должен быть так же вызов проверки доступности
+            print("| Log | open contact model title: \(modalTitle), info: \(selectedItem.title)")
         }
     }
         

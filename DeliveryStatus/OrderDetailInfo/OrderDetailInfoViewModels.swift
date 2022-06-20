@@ -52,17 +52,11 @@ struct OrderDetailInfoViewModel {
     
     enum OrderActorRole {
         case sender, receiver
-        
-        var modalTitle: String {
-            switch self {
-            case .sender: return "Связаться с отправителем"
-            case .receiver: return "Связаться с получателем"
-            }
-        }
     }
     
     enum ItemBehavior {
-        case copy, contact
+        case copy
+        case contact(modalTitle: String)
     }
     
     // MARK: - AdditionalService
@@ -93,6 +87,17 @@ extension OrderDetailInfoViewModel.HeaderItem: Hashable {}
 extension OrderDetailInfoViewModel.OrderActorRole: Equatable {}
 
 extension OrderDetailInfoViewModel.OrderActor: Hashable {}
+
+extension OrderDetailInfoViewModel.ItemBehavior: Hashable {
+    static func == (lhs: OrderDetailInfoViewModel.ItemBehavior, rhs: OrderDetailInfoViewModel.ItemBehavior) -> Bool {
+        switch (lhs, rhs) {
+        case (.copy, .copy): return true
+        case let (.contact(titleLhs), .contact(titleRhs)):
+            return titleLhs == titleRhs
+        default: return false
+        }
+    }
+}
 
 extension OrderDetailInfoViewModel.AdditionalService: Hashable {}
 

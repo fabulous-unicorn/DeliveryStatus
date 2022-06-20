@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 
 enum FakeData {
-
-    // TODO: Alesya Volosach | Мем при совпадении ячейк
     static let mainModel = OrderDetailInfoViewModel(
         groups: [
             .header(item: OrderDetailInfoViewModel.HeaderItem(
@@ -33,7 +31,9 @@ enum FakeData {
                     OrderDetailInfoViewModel.OrderActor(
                         title: "+7 (000) 000-00-00",
                         icon: UIImage(named: "orderDetailInfo.messageCircle")!,
-                        behavior: .contact
+                        behavior: .contact(
+                            modalTitle: "Связаться с отправителем"
+                        )
                     )
                 ]
             ),
@@ -51,9 +51,11 @@ enum FakeData {
                         behavior: .copy
                     ),
                     OrderDetailInfoViewModel.OrderActor(
-                        title: "+7 (000) 000-00-01",
+                        title: "+7 (000) 000-00-00",
                         icon: UIImage(named: "orderDetailInfo.messageCircle")!,
-                        behavior: .contact
+                        behavior: .contact(
+                            modalTitle: "Связаться с получателем"
+                        )
                     )
                 ]
             ),

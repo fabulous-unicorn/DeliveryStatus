@@ -16,6 +16,7 @@ class OrderDetailInfoViewController: UIViewController {
         static let headerIdentifier = "orderDetailInfoHeader"
         
         static let titleGroupCellIdentifier = "orderDetailsInfoTitleGroupCell"
+        
         static let actorCellIdentifier = "orderDetailsInfoOrderActorCell"
         static let serviceCellIdentifier = "orderDetailsInfoServiceCell"
         static let parcelInfoСellIdentifier = "orderDetailsInfoParcelInfoCell"
@@ -42,7 +43,9 @@ class OrderDetailInfoViewController: UIViewController {
     
     func registerCells() {
         collectionView.register(UINib(nibName: "OrderDetailInfoHeader", bundle: nil), forCellWithReuseIdentifier: Constants.headerIdentifier)
-        collectionView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forCellWithReuseIdentifier: Constants.titleGroupCellIdentifier)
+        
+        collectionView.register(UINib(nibName: "OrderDetailsInfoTitleGroupCell", bundle: nil), forSupplementaryViewOfKind: "header", withReuseIdentifier: Constants.titleGroupCellIdentifier)
+        
         collectionView.register(UINib(nibName: "OrderDetailsInfoOrderActorCell", bundle: nil), forCellWithReuseIdentifier: Constants.actorCellIdentifier)
         collectionView.register(UINib(nibName: "OrderDetailsInfoServiceCell", bundle: nil), forCellWithReuseIdentifier: Constants.serviceCellIdentifier)
         collectionView.register(UINib(nibName: "OrderDetailsInfoParcelInfoCell", bundle: nil), forCellWithReuseIdentifier: Constants.parcelInfoСellIdentifier)
@@ -171,7 +174,21 @@ extension OrderDetailInfoViewController {
                 return cell
             }
             return nil
-      }
+        }
+                
+        dataSource.supplementaryViewProvider = { collectionView, elementKind, indexPath in
+            guard indexPath.section != 0  else { return nil }
+            
+            let identifier = Constants.titleGroupCellIdentifier
+            let headerSection = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: "header",
+                    withReuseIdentifier:  identifier,
+                    for: indexPath) as! OrderDetailsInfoTitleGroupCell
+            let title = self.mainModel.groups[indexPath.section].title
+            headerSection.configure(title: title)
+
+            return headerSection
+        }
         
         return dataSource
     }
@@ -189,13 +206,13 @@ extension OrderDetailInfoViewController {
             case let .header(item):
                 snapshot.appendItems([item], toSection: group)
             case let .actor(_, items):
-                snapshot.appendItems([group.title], toSection: group)
+//                snapshot.appendItems([group.title], toSection: group)
                 snapshot.appendItems(items, toSection: group)
             case let .additionalServices(services):
-                snapshot.appendItems([group.title], toSection: group)
+//                snapshot.appendItems([group.title], toSection: group)
                 snapshot.appendItems(services, toSection: group)
             case let .parcelInfo(items):
-                snapshot.appendItems([group.title], toSection: group)
+//                snapshot.appendItems([group.title], toSection: group)
                 snapshot.appendItems(items, toSection: group)
             }
         }
@@ -257,9 +274,26 @@ extension OrderDetailInfoViewController {
             subitems: [item]
         )
         
+        let headerItemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(44)
+        )
+                
+        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerItemSize,
+            elementKind: "header",
+            alignment: .top
+            
+        )
+        headerItem.extendsBoundary = true
+        
+        let decorationItems = [NSCollectionLayoutDecorationItem.background(elementKind: Constants.decorationItemIdentifier)]
+        
         let section = NSCollectionLayoutSection(group: group)
-        section.decorationItems = [NSCollectionLayoutDecorationItem.background(elementKind: Constants.decorationItemIdentifier)]
-        section.contentInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
+        section.decorationItems = decorationItems
+        section.boundarySupplementaryItems = [headerItem]
+        
+        section.contentInsets = .init(top: 0, leading: 16, bottom: 16, trailing: 16)
         
         return section
     }

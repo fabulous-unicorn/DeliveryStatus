@@ -11,7 +11,7 @@ class OrderDetailsInfoServiceCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var service: OrderDetailsInfoViewModel.AdditionalService?
+    var service: OrderDetailInfoViewModel.AdditionalService?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +25,7 @@ class OrderDetailsInfoServiceCell: UICollectionViewCell {
 //    }
     
     func configure(
-        with service: OrderDetailsInfoViewModel.AdditionalService
+        with service: OrderDetailInfoViewModel.AdditionalService
     ) {
         self.service = service
         

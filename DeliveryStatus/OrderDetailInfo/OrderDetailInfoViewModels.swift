@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct OrderDetailsInfoViewModel {
+struct OrderDetailInfoViewModel {
     var groups: [ContentGroup]
     
     // MARK: - ContentGroup
@@ -88,19 +88,19 @@ struct OrderDetailsInfoViewModel {
 }
 
 // MARK: - Equatable & Hashable
-extension OrderDetailsInfoViewModel.HeaderItem: Hashable {}
+extension OrderDetailInfoViewModel.HeaderItem: Hashable {}
 
-extension OrderDetailsInfoViewModel.OrderActorRole: Equatable {}
+extension OrderDetailInfoViewModel.OrderActorRole: Equatable {}
 
-extension OrderDetailsInfoViewModel.OrderActor: Hashable {}
+extension OrderDetailInfoViewModel.OrderActor: Hashable {}
 
-extension OrderDetailsInfoViewModel.AdditionalService: Hashable {}
+extension OrderDetailInfoViewModel.AdditionalService: Hashable {}
 
-extension OrderDetailsInfoViewModel.ParcelInfo: Hashable {}
+extension OrderDetailInfoViewModel.ParcelInfo: Hashable {}
 
-extension OrderDetailsInfoViewModel.ParcelInfoType: Hashable {
+extension OrderDetailInfoViewModel.ParcelInfoType: Hashable {
     /// Сравнение только на тип, не более
-    static func == (lhs: OrderDetailsInfoViewModel.ParcelInfoType, rhs: OrderDetailsInfoViewModel.ParcelInfoType) -> Bool {
+    static func == (lhs: OrderDetailInfoViewModel.ParcelInfoType, rhs: OrderDetailInfoViewModel.ParcelInfoType) -> Bool {
         switch (lhs, rhs) {
         case (.nested, .nested): return true
         case (.`default`(_), .`default`(_)):
@@ -110,7 +110,7 @@ extension OrderDetailsInfoViewModel.ParcelInfoType: Hashable {
     }
 }
 
-extension OrderDetailsInfoViewModel.ContentGroup: Hashable {
+extension OrderDetailInfoViewModel.ContentGroup: Hashable {
     // TODO: Alesya Volosach | проверить
     func hash(into hasher: inout Hasher) {
         switch self {
@@ -127,8 +127,8 @@ extension OrderDetailsInfoViewModel.ContentGroup: Hashable {
     
     /// Проверка только на тип
     static func == (
-        lhs: OrderDetailsInfoViewModel.ContentGroup,
-        rhs: OrderDetailsInfoViewModel.ContentGroup
+        lhs: OrderDetailInfoViewModel.ContentGroup,
+        rhs: OrderDetailInfoViewModel.ContentGroup
     ) -> Bool {
         switch (lhs, rhs) {
         case (.header, .header):

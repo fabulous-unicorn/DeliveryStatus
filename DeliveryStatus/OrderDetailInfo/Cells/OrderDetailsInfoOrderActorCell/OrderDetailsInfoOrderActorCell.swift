@@ -12,7 +12,7 @@ class OrderDetailsInfoOrderActorCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var rightIconView: UIImageView!
     
-    var infoModel: OrderDetailsInfoViewModel.OrderActor?
+    var infoModel: OrderDetailInfoViewModel.OrderActor?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +27,7 @@ class OrderDetailsInfoOrderActorCell: UICollectionViewCell {
 //    }
     
     func configure(
-        with infoModel: OrderDetailsInfoViewModel.OrderActor
+        with infoModel: OrderDetailInfoViewModel.OrderActor
     ) {
         self.infoModel = infoModel
         

@@ -115,6 +115,14 @@
 			path = OrderDetailsInfoHeader;
 			sourceTree = "<group>";
 		};
+		6029D950286060200082A985 /* Decoration */ = {
+			isa = PBXGroup;
+			children = (
+				600E1B0B285C957900F3C16C /* OrderDetailInfoDecorationItem.xib */,
+			);
+			path = Decoration;
+			sourceTree = "<group>";
+		};
 		608DBE47284F417B00A4A488 /* DeliveryStatusCardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,13 +152,13 @@
 		6098C9372859DE1F00F30C9B /* OrderDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				6029D950286060200082A985 /* Decoration */,
 				600E1B11285CA63700F3C16C /* OrderDetailsInfoHeader */,
 				6098C9442859FE0100F30C9B /* Cells */,
-				6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */,
 				6098C93B2859E45500F30C9B /* OrderDetailInfoWidget */,
+				6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */,
 				6098C9422859FD8E00F30C9B /* OrderDetailInfoScene.storyboard */,
 				6098C947285A075400F30C9B /* OrderDetailInfoViewController.swift */,
-				600E1B0B285C957900F3C16C /* OrderDetailInfoDecorationItem.xib */,
 			);
 			path = OrderDetailInfo;
 			sourceTree = "<group>";

@@ -12,7 +12,7 @@ class OrderDetailsInfoParcelInfoCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     
-    var parcelInfoModel: OrderDetailsInfoViewModel.ParcelInfo?
+    var parcelInfoModel: OrderDetailInfoViewModel.ParcelInfo?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +25,7 @@ class OrderDetailsInfoParcelInfoCell: UICollectionViewCell {
 //        // Configure the view for the selected state
 //    }
     
-    func configure(with parcelInfoModel: OrderDetailsInfoViewModel.ParcelInfo) {
+    func configure(with parcelInfoModel: OrderDetailInfoViewModel.ParcelInfo) {
         self.parcelInfoModel = parcelInfoModel
         
         // Content
@@ -33,7 +33,7 @@ class OrderDetailsInfoParcelInfoCell: UICollectionViewCell {
         self.titleLabel.text = parcelInfoModel.title
         self.descriptionLabel.text = parcelInfoModel.description
         
-        self.iconView.isHidden = false
+        self.iconView.isHidden = true
         
         if parcelInfoModel.additionalInfo != nil {
             self.iconView.image = UIImage(named: "orderDetailInfo.alertCircle")

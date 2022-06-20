@@ -23,14 +23,14 @@ class OrderDetailInfoViewController: UIViewController {
         static let decorationItemIdentifier = "orderDetailInfoDecorationItem"
     }
     
-    private typealias DataSource = UICollectionViewDiffableDataSource<OrderDetailsInfoViewModel.ContentGroup, AnyHashable>
+    private typealias DataSource = UICollectionViewDiffableDataSource<OrderDetailInfoViewModel.ContentGroup, AnyHashable>
     
     private var dataSource: DataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCells()
-        
+        collectionView.delegate = self
         collectionView.dataSource = dataSource
         dataSource = makeDataSource()
         initialConfigureGroups(self.mainModel)
@@ -48,6 +48,46 @@ class OrderDetailInfoViewController: UIViewController {
     }
 }
 
+extension OrderDetailInfoViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedItem = dataSource?.itemIdentifier(for: indexPath) else {
+            return
+        }
+        
+        if let orderActorItem = selectedItem as? OrderDetailInfoViewModel.OrderActor {
+            switch orderActorItem.behavior {
+            case .copy:
+                print("| Log | copy: \(orderActorItem.title)")
+            case .contact:
+                // TODO: Alesya Volosach | переделать модели
+                print("| Log | open contact model title: notRealize, item: \(orderActorItem)")
+            }
+            return
+        }
+        
+        if let parcelInfo = selectedItem as? OrderDetailInfoViewModel.ParcelInfo {
+            switch parcelInfo.type {
+            case .nested:
+                if let additionalInfo = parcelInfo.additionalInfo {
+                    print("| Log | parcelIfo showModalInfo with text: \(additionalInfo)")
+                }
+            case let .default(nestedItems):
+                if nestedItems.isEmpty {
+                    if let additionalInfo = parcelInfo.additionalInfo {
+                        print("| Log | parcelIfo showModalInfo with text: \(additionalInfo)")
+                    }
+                    return
+                }
+                
+                print("| Log | add nestedItems: \(nestedItems)")
+            }
+            return
+        }
+        
+        return
+    }
+}
+
 // MARK: - Table view data source
 
 extension OrderDetailInfoViewController {
@@ -55,7 +95,7 @@ extension OrderDetailInfoViewController {
         let dataSource = DataSource(
             collectionView: collectionView
         ) { collectionView, indexPath, item in
-            if let header = item as? OrderDetailsInfoViewModel.HeaderItem {
+            if let header = item as? OrderDetailInfoViewModel.HeaderItem {
                 let identifier = Constants.headerIdentifier
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailInfoHeader
                 cell.configure(title: header.title, description: header.description)
@@ -69,21 +109,21 @@ extension OrderDetailInfoViewController {
                 return cell
             }
             
-            if let actor = item as? OrderDetailsInfoViewModel.OrderActor {
+            if let actor = item as? OrderDetailInfoViewModel.OrderActor {
                 let identifier = Constants.actorCellIdentifier
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoOrderActorCell
                 cell.configure(with: actor)
                 return cell
             }
             
-            if let service = item as? OrderDetailsInfoViewModel.AdditionalService {
+            if let service = item as? OrderDetailInfoViewModel.AdditionalService {
                 let identifier = Constants.serviceCellIdentifier
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoServiceCell
                 cell.configure(with: service)
                 return cell
             }
             
-            if let parcelInfo = item as? OrderDetailsInfoViewModel.ParcelInfo {
+            if let parcelInfo = item as? OrderDetailInfoViewModel.ParcelInfo {
                 let identifier = Constants.parcelInfoСellIdentifier
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! OrderDetailsInfoParcelInfoCell
                 cell.configure(with: parcelInfo)
@@ -95,7 +135,7 @@ extension OrderDetailInfoViewController {
         return dataSource
     }
         
-    func initialConfigureGroups(_ mainModel: OrderDetailsInfoViewModel) {
+    func initialConfigureGroups(_ mainModel: OrderDetailInfoViewModel) {
         guard let dataSource = self.dataSource else { return }
         
         var snapshot = dataSource.snapshot()

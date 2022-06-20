@@ -50,41 +50,45 @@ class OrderDetailInfoViewController: UIViewController {
 
 extension OrderDetailInfoViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedItem = dataSource?.itemIdentifier(for: indexPath) else {
+        guard let selectedItem = dataSource?.itemIdentifier(for: indexPath)
+        else { return }
+        
+        switch selectedItem {
+        case let actorItem as OrderDetailInfoViewModel.OrderActor:
+            didSelectActorItem(actorItem)
+        case let parcelInfo as OrderDetailInfoViewModel.ParcelInfo:
+            didSelectParcelInfoItem(parcelInfo)
+        default:
             return
         }
+    }
+    
+    private func didSelectActorItem(_ selectedItem: OrderDetailInfoViewModel.OrderActor) {
+        switch selectedItem.behavior {
+        case .copy:
+            print("| Log | copy: \(selectedItem.title)")
+        case .contact:
+            // TODO: Alesya Volosach | переделать модели
+            print("| Log | open contact model title: notRealize, item: \(selectedItem)")
+        }
+    }
         
-        if let orderActorItem = selectedItem as? OrderDetailInfoViewModel.OrderActor {
-            switch orderActorItem.behavior {
-            case .copy:
-                print("| Log | copy: \(orderActorItem.title)")
-            case .contact:
-                // TODO: Alesya Volosach | переделать модели
-                print("| Log | open contact model title: notRealize, item: \(orderActorItem)")
+    private func didSelectParcelInfoItem(_ parcelInfo: OrderDetailInfoViewModel.ParcelInfo) {
+        switch parcelInfo.type {
+        case .nested:
+            if let additionalInfo = parcelInfo.additionalInfo {
+                print("| Log | parcelIfo showModalInfo with text: \(additionalInfo)")
             }
-            return
-        }
-        
-        if let parcelInfo = selectedItem as? OrderDetailInfoViewModel.ParcelInfo {
-            switch parcelInfo.type {
-            case .nested:
+        case let .default(nestedItems):
+            if nestedItems.isEmpty {
                 if let additionalInfo = parcelInfo.additionalInfo {
                     print("| Log | parcelIfo showModalInfo with text: \(additionalInfo)")
                 }
-            case let .default(nestedItems):
-                if nestedItems.isEmpty {
-                    if let additionalInfo = parcelInfo.additionalInfo {
-                        print("| Log | parcelIfo showModalInfo with text: \(additionalInfo)")
-                    }
-                    return
-                }
-                
-                print("| Log | add nestedItems: \(nestedItems)")
+                return
             }
-            return
+            
+            print("| Log | add nestedItems: \(nestedItems)")
         }
-        
-        return
     }
 }
 

@@ -31,6 +31,7 @@
 		6098C954285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C952285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift */; };
 		6098C955285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6098C953285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib */; };
 		60B859AC2861B06E006F01BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B859AB2861B06E006F01BF /* ViewController.swift */; };
+		60B859AE2861B0F4006F01BF /* OrderDetailInfoWidgetViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60B859AD2861B0F4006F01BF /* OrderDetailInfoWidgetViewModelBuilder.swift */; };
 		60FC9F84284100A400758ACC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F83284100A400758ACC /* AppDelegate.swift */; };
 		60FC9F86284100A400758ACC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60FC9F85284100A400758ACC /* SceneDelegate.swift */; };
 		60FC9F8B284100A400758ACC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60FC9F89284100A400758ACC /* Main.storyboard */; };
@@ -70,6 +71,7 @@
 		6098C952285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailsInfoOrderActorCell.swift; sourceTree = "<group>"; };
 		6098C953285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsInfoOrderActorCell.xib; sourceTree = "<group>"; };
 		60B859AB2861B06E006F01BF /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		60B859AD2861B0F4006F01BF /* OrderDetailInfoWidgetViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoWidgetViewModelBuilder.swift; sourceTree = "<group>"; };
 		60FC9F80284100A400758ACC /* DeliveryStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FC9F83284100A400758ACC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FC9F85284100A400758ACC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				608DBE502852246900A4A488 /* OrderDTO.swift */,
-				608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */,
 			);
 			path = DTO;
 			sourceTree = "<group>";
@@ -159,6 +160,7 @@
 				6098C93B2859E45500F30C9B /* Widget */,
 				6098C9422859FD8E00F30C9B /* OrderDetailInfoScene.storyboard */,
 				6098C947285A075400F30C9B /* OrderDetailInfoViewController.swift */,
+				60B859AD2861B0F4006F01BF /* OrderDetailInfoWidgetViewModelBuilder.swift */,
 			);
 			path = OrderDetailInfo;
 			sourceTree = "<group>";
@@ -166,6 +168,7 @@
 		6098C9382859E06700F30C9B /* DeliveryStatus */ = {
 			isa = PBXGroup;
 			children = (
+				608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */,
 				60B859AA2861B01E006F01BF /* Widget */,
 				608DBE47284F417B00A4A488 /* DeliveryStatusCardView */,
 				60FC9FA82846275000758ACC /* DeliveryStatusView */,
@@ -393,6 +396,7 @@
 				600E1B14285CA63700F3C16C /* OrderDetailInfoHeader.swift in Sources */,
 				6098C93A2859E0E700F30C9B /* OrderDetailInfoViewModels.swift in Sources */,
 				600E1B09285B5C0200F3C16C /* OrderDetailsInfoParcelInfoCell.swift in Sources */,
+				60B859AE2861B0F4006F01BF /* OrderDetailInfoWidgetViewModelBuilder.swift in Sources */,
 				608DBE512852246900A4A488 /* OrderDTO.swift in Sources */,
 				6098C948285A075400F30C9B /* OrderDetailInfoViewController.swift in Sources */,
 				60FC9FAA2846277700758ACC /* DeliveryStatusView.swift in Sources */,

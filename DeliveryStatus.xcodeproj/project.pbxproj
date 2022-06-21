@@ -106,13 +106,13 @@
 			path = OrderDetailsInfoParcelInfoCell;
 			sourceTree = "<group>";
 		};
-		600E1B11285CA63700F3C16C /* OrderDetailInfoHeader */ = {
+		600E1B11285CA63700F3C16C /* HeaderScene */ = {
 			isa = PBXGroup;
 			children = (
 				600E1B12285CA63700F3C16C /* OrderDetailInfoHeader.swift */,
 				600E1B13285CA63700F3C16C /* OrderDetailInfoHeader.xib */,
 			);
-			path = OrderDetailInfoHeader;
+			path = HeaderScene;
 			sourceTree = "<group>";
 		};
 		6029D950286060200082A985 /* Decoration */ = {
@@ -132,12 +132,12 @@
 			path = DeliveryStatusCardView;
 			sourceTree = "<group>";
 		};
-		608DBE4C284F929400A4A488 /* DeliveryStatusViewModels */ = {
+		608DBE4C284F929400A4A488 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				60FC9FAB2846565600758ACC /* DeliveryStatusViewModels.swift */,
 			);
-			path = DeliveryStatusViewModels;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		608DBE4F2852242100A4A488 /* DTO */ = {
@@ -152,11 +152,11 @@
 		6098C9372859DE1F00F30C9B /* OrderDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
-				60B859A92861AF8A006F01BF /* OrderDetailInfoViewModels */,
+				60B859A92861AF8A006F01BF /* ViewModels */,
 				6029D950286060200082A985 /* Decoration */,
-				600E1B11285CA63700F3C16C /* OrderDetailInfoHeader */,
+				600E1B11285CA63700F3C16C /* HeaderScene */,
 				6098C9442859FE0100F30C9B /* Cells */,
-				6098C93B2859E45500F30C9B /* OrderDetailInfoWidget */,
+				6098C93B2859E45500F30C9B /* Widget */,
 				6098C9422859FD8E00F30C9B /* OrderDetailInfoScene.storyboard */,
 				6098C947285A075400F30C9B /* OrderDetailInfoViewController.swift */,
 			);
@@ -166,25 +166,25 @@
 		6098C9382859E06700F30C9B /* DeliveryStatus */ = {
 			isa = PBXGroup;
 			children = (
+				60B859AA2861B01E006F01BF /* Widget */,
 				608DBE47284F417B00A4A488 /* DeliveryStatusCardView */,
 				60FC9FA82846275000758ACC /* DeliveryStatusView */,
 				60FC9F9828410DD600758ACC /* DeliveryStatusTitleView */,
 				60FC9F9728410DBD00758ACC /* DeliveryStatusStepView */,
-				608DBE4C284F929400A4A488 /* DeliveryStatusViewModels */,
+				608DBE4C284F929400A4A488 /* ViewModels */,
 				60FC9F87284100A400758ACC /* ViewController.swift */,
 				60FC9F89284100A400758ACC /* Main.storyboard */,
-				6098C949285A0BC900F30C9B /* DeliveryStatusWidgetView.swift */,
 			);
 			path = DeliveryStatus;
 			sourceTree = "<group>";
 		};
-		6098C93B2859E45500F30C9B /* OrderDetailInfoWidget */ = {
+		6098C93B2859E45500F30C9B /* Widget */ = {
 			isa = PBXGroup;
 			children = (
 				6098C93E2859E48300F30C9B /* OrderDetailInfoWidgetView.xib */,
 				6098C9402859F3B300F30C9B /* OrderDetailInfoWidget.swift */,
 			);
-			path = OrderDetailInfoWidget;
+			path = Widget;
 			sourceTree = "<group>";
 		};
 		6098C9442859FE0100F30C9B /* Cells */ = {
@@ -225,12 +225,20 @@
 			path = OrderDetailsInfoServiceCell;
 			sourceTree = "<group>";
 		};
-		60B859A92861AF8A006F01BF /* OrderDetailInfoViewModels */ = {
+		60B859A92861AF8A006F01BF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */,
 			);
-			path = OrderDetailInfoViewModels;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		60B859AA2861B01E006F01BF /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				6098C949285A0BC900F30C9B /* DeliveryStatusWidgetView.swift */,
+			);
+			path = Widget;
 			sourceTree = "<group>";
 		};
 		60FC9F77284100A400758ACC = {

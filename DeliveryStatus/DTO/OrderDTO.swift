@@ -205,6 +205,8 @@ enum OrderStatusType: String {
 struct PersonShortInfo {
     // MARK: Used old properties
     var address: String?
+    let name: String?
+    let phone: String?
 }
 
 struct City {

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// TODO: Alesya Volosach | Можно наверное избавиться от этой обертки
 struct OrderDetailInfoViewModel {
     var groups: [ContentGroup]
     

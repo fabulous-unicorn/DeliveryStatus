@@ -6,7 +6,7 @@
 
 Экран разделен на виджеты:
 - виджет "Статусы" - ``DeliveryStatusWidgetView``
-- виджет "Данные посылки" - ``OrderDetailInfoWidget``
+- виджет "Данные посылки" - ``OrderDetailInfoWidgetView``
 - виджет "Как отправить/получить"
 - виджет "Оплата"
 - виджет "Оценка сотрудника"
@@ -22,7 +22,7 @@
 
 ### Виджет "Данные о посылке"
 
-- ``OrderDetailInfoWidget``
+- ``OrderDetailInfoWidgetView``
 
 - ``OrderDetailInfoViewController``
 - ``OrderDetailInfoViewModel``

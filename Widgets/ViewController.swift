@@ -38,9 +38,17 @@ extension ViewController {
         return Order(
             plannedDeliveryDate: nil,
             status: OrderStatus.init(code: "INVOICE_CREATED", name: "Заказ создан"),
-            sender: PersonShortInfo(address: "ул. Ленина 234, кв. 56"),
+            sender: PersonShortInfo(
+                address: "ул. Ленина 234, кв. 56",
+                name: "Иванов Алексей Евгеньевич",
+                phone: "+7 (000) 000-00-00"
+            ),
             senderDeliveryType: .home,
-            receiver: PersonShortInfo(address: "ул. Лен 200, кв. 2"),
+            receiver: PersonShortInfo(
+                address: "ул. Лен 200, кв. 2",
+                name: "Иванов Сергей Алексеевич",
+                phone: "+7 (000) 000-00-01"
+            ),
             receiverDeliveryType: .home,
             departureCity: City(name: "Москва"),
             destinationCity: City(name: "Москва"),

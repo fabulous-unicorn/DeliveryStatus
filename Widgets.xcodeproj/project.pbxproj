@@ -17,7 +17,7 @@
 		6029D94F28605DD70082A985 /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6029D94E28605DD70082A985 /* FakeData.swift */; };
 		608DBE49284F6BAA00A4A488 /* DeliveryStatusCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608DBE48284F6BAA00A4A488 /* DeliveryStatusCardView.xib */; };
 		608DBE4B284F787D00A4A488 /* DeliveryStatusCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4A284F787D00A4A488 /* DeliveryStatusCardView.swift */; };
-		608DBE4E284F9D2900A4A488 /* DeliveryStatusDocumentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */; };
+		608DBE4E284F9D2900A4A488 /* Widgets.docc in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE4D284F9D2900A4A488 /* Widgets.docc */; };
 		608DBE512852246900A4A488 /* OrderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE502852246900A4A488 /* OrderDTO.swift */; };
 		608DBE53285239E900A4A488 /* StatusWidgetViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */; };
 		6098C93A2859E0E700F30C9B /* OrderDetailInfoViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */; };
@@ -57,7 +57,7 @@
 		6029D94E28605DD70082A985 /* FakeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeData.swift; sourceTree = "<group>"; };
 		608DBE48284F6BAA00A4A488 /* DeliveryStatusCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveryStatusCardView.xib; sourceTree = "<group>"; };
 		608DBE4A284F787D00A4A488 /* DeliveryStatusCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusCardView.swift; sourceTree = "<group>"; };
-		608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = DeliveryStatusDocumentation.docc; sourceTree = "<group>"; };
+		608DBE4D284F9D2900A4A488 /* Widgets.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Widgets.docc; sourceTree = "<group>"; };
 		608DBE502852246900A4A488 /* OrderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDTO.swift; sourceTree = "<group>"; };
 		608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWidgetViewModelBuilder.swift; sourceTree = "<group>"; };
 		6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoViewModels.swift; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 		6098C953285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailsInfoOrderActorCell.xib; sourceTree = "<group>"; };
 		60B859AB2861B06E006F01BF /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		60B859AD2861B0F4006F01BF /* OrderDetailInfoWidgetViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoWidgetViewModelBuilder.swift; sourceTree = "<group>"; };
-		60FC9F80284100A400758ACC /* DeliveryStatus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeliveryStatus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60FC9F80284100A400758ACC /* Widgets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Widgets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60FC9F83284100A400758ACC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60FC9F85284100A400758ACC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		60FC9F8A284100A400758ACC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				6029D94E28605DD70082A985 /* FakeData.swift */,
-				60FC9F82284100A400758ACC /* DeliveryStatus */,
+				60FC9F82284100A400758ACC /* Widgets */,
 				60FC9F81284100A400758ACC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -254,12 +254,12 @@
 		60FC9F81284100A400758ACC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				60FC9F80284100A400758ACC /* DeliveryStatus.app */,
+				60FC9F80284100A400758ACC /* Widgets.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		60FC9F82284100A400758ACC /* DeliveryStatus */ = {
+		60FC9F82284100A400758ACC /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
 				6098C9382859E06700F30C9B /* DeliveryStatus */,
@@ -273,9 +273,9 @@
 				60FC9F8E284100A500758ACC /* LaunchScreen.storyboard */,
 				60FC9F91284100A500758ACC /* Info.plist */,
 				60FC9FA62846204100758ACC /* Global.swift */,
-				608DBE4D284F9D2900A4A488 /* DeliveryStatusDocumentation.docc */,
+				608DBE4D284F9D2900A4A488 /* Widgets.docc */,
 			);
-			path = DeliveryStatus;
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		60FC9F9728410DBD00758ACC /* DeliveryStatusStepView */ = {
@@ -307,9 +307,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		60FC9F7F284100A400758ACC /* DeliveryStatus */ = {
+		60FC9F7F284100A400758ACC /* Widgets */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 60FC9F94284100A500758ACC /* Build configuration list for PBXNativeTarget "DeliveryStatus" */;
+			buildConfigurationList = 60FC9F94284100A500758ACC /* Build configuration list for PBXNativeTarget "Widgets" */;
 			buildPhases = (
 				60FC9F7C284100A400758ACC /* Sources */,
 				60FC9F7D284100A400758ACC /* Frameworks */,
@@ -319,9 +319,9 @@
 			);
 			dependencies = (
 			);
-			name = DeliveryStatus;
+			name = Widgets;
 			productName = DeliveryStatus;
-			productReference = 60FC9F80284100A400758ACC /* DeliveryStatus.app */;
+			productReference = 60FC9F80284100A400758ACC /* Widgets.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -339,7 +339,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 60FC9F7B284100A400758ACC /* Build configuration list for PBXProject "DeliveryStatus" */;
+			buildConfigurationList = 60FC9F7B284100A400758ACC /* Build configuration list for PBXProject "Widgets" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -352,7 +352,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				60FC9F7F284100A400758ACC /* DeliveryStatus */,
+				60FC9F7F284100A400758ACC /* Widgets */,
 			);
 		};
 /* End PBXProject section */
@@ -405,7 +405,7 @@
 				608DBE4B284F787D00A4A488 /* DeliveryStatusCardView.swift in Sources */,
 				608DBE53285239E900A4A488 /* StatusWidgetViewModelBuilder.swift in Sources */,
 				60FC9F84284100A400758ACC /* AppDelegate.swift in Sources */,
-				608DBE4E284F9D2900A4A488 /* DeliveryStatusDocumentation.docc in Sources */,
+				608DBE4E284F9D2900A4A488 /* Widgets.docc in Sources */,
 				600E1B05285B41EA00F3C16C /* OrderDetailsInfoServiceCell.swift in Sources */,
 				6029D94F28605DD70082A985 /* FakeData.swift in Sources */,
 				60FC9F86284100A400758ACC /* SceneDelegate.swift in Sources */,
@@ -559,7 +559,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X32NRAU4Z4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DeliveryStatus/Info.plist;
+				INFOPLIST_FILE = Widgets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = OrderDetailInfoScene;
@@ -587,7 +587,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X32NRAU4Z4;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = DeliveryStatus/Info.plist;
+				INFOPLIST_FILE = Widgets/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = OrderDetailInfoScene;
@@ -609,7 +609,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		60FC9F7B284100A400758ACC /* Build configuration list for PBXProject "DeliveryStatus" */ = {
+		60FC9F7B284100A400758ACC /* Build configuration list for PBXProject "Widgets" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				60FC9F92284100A500758ACC /* Debug */,
@@ -618,7 +618,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		60FC9F94284100A500758ACC /* Build configuration list for PBXNativeTarget "DeliveryStatus" */ = {
+		60FC9F94284100A500758ACC /* Build configuration list for PBXNativeTarget "Widgets" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				60FC9F95284100A500758ACC /* Debug */,

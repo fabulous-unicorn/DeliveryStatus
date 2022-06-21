@@ -106,13 +106,13 @@
 			path = OrderDetailsInfoParcelInfoCell;
 			sourceTree = "<group>";
 		};
-		600E1B11285CA63700F3C16C /* OrderDetailsInfoHeader */ = {
+		600E1B11285CA63700F3C16C /* OrderDetailInfoHeader */ = {
 			isa = PBXGroup;
 			children = (
 				600E1B12285CA63700F3C16C /* OrderDetailInfoHeader.swift */,
 				600E1B13285CA63700F3C16C /* OrderDetailInfoHeader.xib */,
 			);
-			path = OrderDetailsInfoHeader;
+			path = OrderDetailInfoHeader;
 			sourceTree = "<group>";
 		};
 		6029D950286060200082A985 /* Decoration */ = {
@@ -152,11 +152,11 @@
 		6098C9372859DE1F00F30C9B /* OrderDetailInfo */ = {
 			isa = PBXGroup;
 			children = (
+				60B859A92861AF8A006F01BF /* OrderDetailInfoViewModels */,
 				6029D950286060200082A985 /* Decoration */,
-				600E1B11285CA63700F3C16C /* OrderDetailsInfoHeader */,
+				600E1B11285CA63700F3C16C /* OrderDetailInfoHeader */,
 				6098C9442859FE0100F30C9B /* Cells */,
 				6098C93B2859E45500F30C9B /* OrderDetailInfoWidget */,
-				6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */,
 				6098C9422859FD8E00F30C9B /* OrderDetailInfoScene.storyboard */,
 				6098C947285A075400F30C9B /* OrderDetailInfoViewController.swift */,
 			);
@@ -171,6 +171,8 @@
 				60FC9F9828410DD600758ACC /* DeliveryStatusTitleView */,
 				60FC9F9728410DBD00758ACC /* DeliveryStatusStepView */,
 				608DBE4C284F929400A4A488 /* DeliveryStatusViewModels */,
+				60FC9F87284100A400758ACC /* ViewController.swift */,
+				60FC9F89284100A400758ACC /* Main.storyboard */,
 				6098C949285A0BC900F30C9B /* DeliveryStatusWidgetView.swift */,
 			);
 			path = DeliveryStatus;
@@ -223,6 +225,14 @@
 			path = OrderDetailsInfoServiceCell;
 			sourceTree = "<group>";
 		};
+		60B859A92861AF8A006F01BF /* OrderDetailInfoViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */,
+			);
+			path = OrderDetailInfoViewModels;
+			sourceTree = "<group>";
+		};
 		60FC9F77284100A400758ACC = {
 			isa = PBXGroup;
 			children = (
@@ -248,8 +258,6 @@
 				608DBE4F2852242100A4A488 /* DTO */,
 				60FC9F83284100A400758ACC /* AppDelegate.swift */,
 				60FC9F85284100A400758ACC /* SceneDelegate.swift */,
-				60FC9F87284100A400758ACC /* ViewController.swift */,
-				60FC9F89284100A400758ACC /* Main.storyboard */,
 				60FC9F8C284100A500758ACC /* Assets.xcassets */,
 				60FC9F8E284100A500758ACC /* LaunchScreen.storyboard */,
 				60FC9F91284100A500758ACC /* Info.plist */,

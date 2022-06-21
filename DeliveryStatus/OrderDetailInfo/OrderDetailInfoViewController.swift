@@ -137,22 +137,9 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
             let selectedItem = dataSource?.itemIdentifier(for: indexPath)
             else { return }
         
-        
-        let cellTest = collectionView.cellForItem(at: indexPath)
-        
-        // TODO: Alesya Volosach | Перенести куда нужно 
-        UIView.animate(
-            withDuration: 0.15,
-            animations: {
-                cellTest?.alpha = 0.7
-            },
-            completion: {_ in
-                UIView.animate(withDuration: 0.15) { cellTest?.alpha = 1 }
-            })
-        
-        
         switch selectedItem {
         case let actorItem as OrderDetailInfoViewModel.OrderActor:
+            showDidSelectAnimate(for: indexPath)
             didSelectActorItem(actorItem)
         case let parcelInfo as OrderDetailInfoViewModel.ParcelInfo:
             let cell = collectionView.cellForItem(at: indexPath) as? OrderDetailsInfoParcelInfoCell
@@ -161,6 +148,17 @@ extension OrderDetailInfoViewController: UICollectionViewDelegate {
         default:
             return
         }
+    }
+    
+    private func showDidSelectAnimate(for indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0,
+            options: .autoreverse,
+            animations: { cell?.alpha = 0.5 },
+            completion: { _ in cell?.alpha = 1 }
+        )
     }
     
     private func didSelectActorItem(

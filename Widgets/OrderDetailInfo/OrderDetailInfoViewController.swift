@@ -21,7 +21,7 @@ class OrderDetailInfoViewController: UIViewController {
         static let parcel = "orderDetailsInfoParcelInfoCell"
     }
     
-    struct ElementKind {
+    enum ElementKind {
         static let background = "orderDetailInfoDecorationItem"
     }
     

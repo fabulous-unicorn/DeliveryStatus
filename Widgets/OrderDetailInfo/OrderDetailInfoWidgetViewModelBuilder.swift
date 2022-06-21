@@ -24,7 +24,7 @@ class OrderDetailInfoWidgetViewModelBuilder {
     
     // MARK: - headerViewModel
 
-    func headerViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
+    private func headerViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
         // TODO: Alesya Volosach | Этих данных нет
         let title = "Посылочка, размер S"
         let description = "Супер-экспресс, доставит курьер до 16:00"
@@ -39,7 +39,7 @@ class OrderDetailInfoWidgetViewModelBuilder {
     
     // MARK: - orderActorSenderViewModel
     // TODO: Alesya Volosach | Посмотреть имеет ли смысл объединять функции sender/reciver
-    func orderActorSenderViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
+    private func orderActorSenderViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
         
         var items: [OrderDetailInfoViewModel.OrderActor] = []
         
@@ -95,7 +95,7 @@ class OrderDetailInfoWidgetViewModelBuilder {
     
     // MARK: - orderActorReceiverViewModel
     
-    func orderActorReceiverViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
+    private func orderActorReceiverViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
         
         var items: [OrderDetailInfoViewModel.OrderActor] = []
         
@@ -150,7 +150,7 @@ class OrderDetailInfoWidgetViewModelBuilder {
     
     // MARK: - additionalServicesViewModel
     
-    func additionalServicesViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
+    private func additionalServicesViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
         var services: [OrderDetailInfoViewModel.AdditionalService] = []
         // TODO: Alesya Volosach | Данных о допуслугах на данный момент в заказе нет!
 //        let a = OrderDetailInfoViewModel.AdditionalService(
@@ -163,7 +163,7 @@ class OrderDetailInfoWidgetViewModelBuilder {
     
     // MARK: - parcelInfoViewModel
     
-    func parcelInfoViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
+    private func parcelInfoViewModel(_ order: Order) -> OrderDetailInfoViewModel.ContentGroup {
         var parcelInfo: [OrderDetailInfoViewModel.ParcelInfo] = []
         // TODO: Alesya Volosach | Номера заказа  ИМ на данный момент в заказе нет!
         // TODO: Alesya Volosach | Информации о характере груза на данный момент в заказе нет!

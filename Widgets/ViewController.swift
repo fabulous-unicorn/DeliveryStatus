@@ -25,7 +25,7 @@ class ViewController: UIViewController {
         statusWidget.configure(with: steps)
         
         // StatusWidget
-        let orderDetailInfoWidget = OrderDetailInfoWidget()
+        let orderDetailInfoWidget = OrderDetailInfoWidgetView()
         
         self.containerStackView.addArrangedSubview(statusWidget)
         self.containerStackView.addArrangedSubview(orderDetailInfoWidget)

@@ -22,7 +22,7 @@
 		608DBE53285239E900A4A488 /* StatusWidgetViewModelBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */; };
 		6098C93A2859E0E700F30C9B /* OrderDetailInfoViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */; };
 		6098C93F2859E48300F30C9B /* OrderDetailInfoWidgetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6098C93E2859E48300F30C9B /* OrderDetailInfoWidgetView.xib */; };
-		6098C9412859F3B300F30C9B /* OrderDetailInfoWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C9402859F3B300F30C9B /* OrderDetailInfoWidget.swift */; };
+		6098C9412859F3B300F30C9B /* OrderDetailInfoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C9402859F3B300F30C9B /* OrderDetailInfoWidgetView.swift */; };
 		6098C9432859FD8E00F30C9B /* OrderDetailInfoScene.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6098C9422859FD8E00F30C9B /* OrderDetailInfoScene.storyboard */; };
 		6098C948285A075400F30C9B /* OrderDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C947285A075400F30C9B /* OrderDetailInfoViewController.swift */; };
 		6098C94A285A0BC900F30C9B /* DeliveryStatusWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6098C949285A0BC900F30C9B /* DeliveryStatusWidgetView.swift */; };
@@ -62,7 +62,7 @@
 		608DBE52285239E900A4A488 /* StatusWidgetViewModelBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusWidgetViewModelBuilder.swift; sourceTree = "<group>"; };
 		6098C9392859E0E700F30C9B /* OrderDetailInfoViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoViewModels.swift; sourceTree = "<group>"; };
 		6098C93E2859E48300F30C9B /* OrderDetailInfoWidgetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderDetailInfoWidgetView.xib; sourceTree = "<group>"; };
-		6098C9402859F3B300F30C9B /* OrderDetailInfoWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoWidget.swift; sourceTree = "<group>"; };
+		6098C9402859F3B300F30C9B /* OrderDetailInfoWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoWidgetView.swift; sourceTree = "<group>"; };
 		6098C9422859FD8E00F30C9B /* OrderDetailInfoScene.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OrderDetailInfoScene.storyboard; sourceTree = "<group>"; };
 		6098C947285A075400F30C9B /* OrderDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailInfoViewController.swift; sourceTree = "<group>"; };
 		6098C949285A0BC900F30C9B /* DeliveryStatusWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusWidgetView.swift; sourceTree = "<group>"; };
@@ -183,7 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				6098C93E2859E48300F30C9B /* OrderDetailInfoWidgetView.xib */,
-				6098C9402859F3B300F30C9B /* OrderDetailInfoWidget.swift */,
+				6098C9402859F3B300F30C9B /* OrderDetailInfoWidgetView.swift */,
 			);
 			path = Widget;
 			sourceTree = "<group>";
@@ -388,7 +388,7 @@
 			files = (
 				6098C94A285A0BC900F30C9B /* DeliveryStatusWidgetView.swift in Sources */,
 				60FC9FA72846204100758ACC /* Global.swift in Sources */,
-				6098C9412859F3B300F30C9B /* OrderDetailInfoWidget.swift in Sources */,
+				6098C9412859F3B300F30C9B /* OrderDetailInfoWidgetView.swift in Sources */,
 				60FC9FAC2846565600758ACC /* DeliveryStatusViewModels.swift in Sources */,
 				6098C94E285A0EBA00F30C9B /* OrderDetailsInfoTitleGroupCell.swift in Sources */,
 				6098C954285A0FC100F30C9B /* OrderDetailsInfoOrderActorCell.swift in Sources */,
@@ -565,12 +565,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = OrderDetailInfoScene;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.DeliveryStatus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -593,12 +594,13 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = OrderDetailInfoScene;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.DeliveryStatus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.unicorn.widgets;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

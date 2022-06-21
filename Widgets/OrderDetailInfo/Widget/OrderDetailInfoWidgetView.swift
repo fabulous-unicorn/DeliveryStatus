@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class OrderDetailInfoWidget: UIView {
+class OrderDetailInfoWidgetView: UIView {
     // TODO: Alesya Volosach | можно и из контейнера вытащить
     @IBOutlet private weak var contentView: UIView!
     

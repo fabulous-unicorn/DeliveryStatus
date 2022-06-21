@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+ /// Класс для создания ``Widgets/DeliveryStatusViewModel``, не требует создание экземпляра
 class StatusWidgetViewModelBuilder {
     // TODO: Alesya Volosach | Тестировать как черный ящик
     static func buildStatuses(_ order: Order) -> [DeliveryStatusViewModel] {

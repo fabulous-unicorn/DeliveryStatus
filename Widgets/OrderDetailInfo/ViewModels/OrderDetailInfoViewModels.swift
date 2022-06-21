@@ -14,12 +14,18 @@ struct OrderDetailInfoViewModel {
     
     // MARK: - ContentGroup
     
+    /// Секции детальной информации о посылке
     enum ContentGroup {
+        /// Header всей таблицы
         case header(item: HeaderItem)
+        /// Группа Откуда/Куда
         case actor(role: OrderActorRole, items: [OrderActor])
+        /// Группа Дополнительные услуги
         case additionalServices(services: [AdditionalService])
+        /// Группа Данные
         case parcelInfo(items: [ParcelInfo])
         
+        /// Title для группы
         var title: String {
             switch self {
             case .header: return ""
@@ -38,6 +44,7 @@ struct OrderDetailInfoViewModel {
     
     // MARK: - HeaderItem
     
+    /// Модель Header всей таблицы
     struct HeaderItem {
         var title: String
         var description: String
@@ -45,16 +52,19 @@ struct OrderDetailInfoViewModel {
     
     // MARK: - OrderActor
     
+    /// Модель Откуда/Куда
     struct OrderActor {
         var title: String
         var icon: UIImage
         var behavior: ItemBehavior
     }
     
+    /// Роль для блока Откуда/Куда
     enum OrderActorRole {
         case sender, receiver
     }
     
+    /// Поведение по нажатию на элемент
     enum ItemBehavior {
         case copy
         case contact(modalTitle: String)
@@ -62,6 +72,7 @@ struct OrderDetailInfoViewModel {
     
     // MARK: - AdditionalService
     
+    /// Модель Дополнительные сервисы
     struct AdditionalService {
         var title: String
         var description: [String]
@@ -69,6 +80,7 @@ struct OrderDetailInfoViewModel {
     
     // MARK: - ParcelInfo
     
+    /// Модель Данные
     struct ParcelInfo {
         var title: String
         var description: String
@@ -76,6 +88,7 @@ struct OrderDetailInfoViewModel {
         var type: ParcelInfoType
     }
     
+    /// Наличие/отсутствие вложенных элементов для раскрытия
     enum ParcelInfoType {
         case `default`(nestedItems: [ParcelInfo])
         case nested

@@ -24,11 +24,19 @@ class ViewController: UIViewController {
         let steps = StatusWidgetViewModelBuilder.buildStatuses(order)
         statusWidget.configure(with: steps)
         
-        // StatusWidget
-        let orderDetailInfoWidget = OrderDetailInfoWidgetView()
+        // DetailInfoWidget
+        let detailInfoWidget = OrderDetailInfoWidgetView()
         
-        self.containerStackView.addArrangedSubview(statusWidget)
-        self.containerStackView.addArrangedSubview(orderDetailInfoWidget)
+        // HowSendReceiveWidget
+        let howSendReceiveWidget = HowSendReceiveWidget()
+        let howSendReceiveWidgetContainer = UIStackView()
+        howSendReceiveWidgetContainer.isLayoutMarginsRelativeArrangement = true
+        howSendReceiveWidgetContainer.layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
+        howSendReceiveWidgetContainer.addArrangedSubview(howSendReceiveWidget)
+        
+//        self.containerStackView.addArrangedSubview(statusWidget)
+        self.containerStackView.addArrangedSubview(detailInfoWidget)
+        self.containerStackView.addArrangedSubview(howSendReceiveWidgetContainer)
     }
 }
 

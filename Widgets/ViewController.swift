@@ -29,14 +29,10 @@ class ViewController: UIViewController {
         
         // HowSendReceiveWidget
         let howSendReceiveWidget = HowSendReceiveWidget()
-        let howSendReceiveWidgetContainer = UIStackView()
-        howSendReceiveWidgetContainer.isLayoutMarginsRelativeArrangement = true
-        howSendReceiveWidgetContainer.layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
-        howSendReceiveWidgetContainer.addArrangedSubview(howSendReceiveWidget)
         
 //        self.containerStackView.addArrangedSubview(statusWidget)
         self.containerStackView.addArrangedSubview(detailInfoWidget)
-        self.containerStackView.addArrangedSubview(howSendReceiveWidgetContainer)
+        self.containerStackView.addArrangedSubview(howSendReceiveWidget)
     }
 }
 
